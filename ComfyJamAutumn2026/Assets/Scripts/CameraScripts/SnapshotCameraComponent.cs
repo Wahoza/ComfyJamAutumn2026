@@ -36,7 +36,7 @@ public class SnapshotCameraComponent : MonoBehaviour
     }
 
     /// <summary>
-    /// Set Up the Snapshot Camera, Including Render Texture and Camera
+    /// Set Up the Snapshot Camera, Including Render Texture and Camera, and assign these items
     /// </summary>
     void SetUpCamera()
     {
@@ -94,8 +94,8 @@ public class SnapshotCameraComponent : MonoBehaviour
 
         float finalCamOrthoSizeHeight = widthInPixels / aspectRect / (float)Screen.height * Camera.main.orthographicSize;
         renderCamera.orthographicSize = finalCamOrthoSizeHeight * 1 / _fCameraZoom;
-        
 
+        GetComponent<SnapshotPictureTakingComponent>()?.SetCurrentRenderTexture(_rtInstancedRenderTexture);
     }
 
     public void OnMousePositionChange(Vector2 newMousePosition)

@@ -242,6 +242,7 @@ GameObject:
   - component: {fileID: 583532569896759837}
   - component: {fileID: 7238544324016592734}
   - component: {fileID: 6925854635334381365}
+  - component: {fileID: 5603916946029366706}
   m_Layer: 0
   m_Name: SnapshotCamera
   m_TagString: Untagged
@@ -298,6 +299,23 @@ MonoBehaviour:
   templateRenderTexture: {fileID: 8400000, guid: 72cfb9903e4a86f478e0cdbc48aa17b7, type: 2}
   renderCamera: {fileID: 8270429242827693717}
   _fTextureResolutionScaling: 1
+  _fCameraZoom: 1.2
+  _vCameraWorldOffset: {x: 0, y: 0}
+--- !u!114 &5603916946029366706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4542055085064257265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f06a52aff91b4c4f91e829342e998b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SnapshotPictureTakingComponent
+  _iStoredImageWidth: 100
+  _snapshotCam: {fileID: 8270429242827693717}
+  debugOutput: {fileID: 0}
 --- !u!1 &8734746325774341510
 GameObject:
   m_ObjectHideFlags: 0

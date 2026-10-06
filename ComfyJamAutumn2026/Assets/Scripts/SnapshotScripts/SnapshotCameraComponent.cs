@@ -1,5 +1,7 @@
+using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEditor.PackageManager.UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -12,11 +14,11 @@ using UnityEngine.UI;
 public class SnapshotCameraComponent : MonoBehaviour
 {
     [Header("Required Elements")]
-    [SerializeField] private CanvasScaler UICameraCanvasScaler;
-    [SerializeField] private RectTransform UICameraPanel;
-    [SerializeField] private RawImage UICameraTextureHolder;
-    [SerializeField] private RenderTexture templateRenderTexture;
-    [SerializeField] private Camera renderCamera;
+    [Required][SerializeField] private CanvasScaler UICameraCanvasScaler;
+    [Required][SerializeField] private RectTransform UICameraPanel;
+    [Required][SerializeField] private RawImage UICameraTextureHolder;
+    [Required][SerializeField] private RenderTexture templateRenderTexture;
+    [Required][SerializeField] private Camera renderCamera;
 
     [Header("Parameters")]
     [SerializeField] private float _fTextureResolutionScaling = 1;
@@ -41,34 +43,22 @@ public class SnapshotCameraComponent : MonoBehaviour
     void SetUpCamera()
     {
         //Get Values
-
         Rect cameraVisualRect = UICameraPanel.rect;
 
         bool usingHeight = Screen.width < Screen.height;
 
-
-        float aspectScreen = 0;
-        float aspectRect = 0; 
-        float aspectScaler = 0; 
-
+        float aspectRect = cameraVisualRect.size.x / cameraVisualRect.size.y;
         float widthInPixels = 0; 
 
-        //Adjust in case width < height
+        //Adjust in case width < height (required because of Canvas scaler)
         switch (usingHeight)
         {
             case true:
-                aspectScreen = (float)Screen.width / (float)Screen.height;
-                aspectRect = cameraVisualRect.size.x / cameraVisualRect.size.y;
-                aspectScaler = UICameraCanvasScaler.referenceResolution.x / UICameraCanvasScaler.referenceResolution.y;
-
                 float heightInPixels = cameraVisualRect.height / (UICameraCanvasScaler.referenceResolution.y / Screen.height);
                 widthInPixels = heightInPixels * aspectRect;
                 break;
 
             case false:
-                aspectScreen = (float)Screen.width / (float)Screen.height;
-                aspectRect = cameraVisualRect.size.x / cameraVisualRect.size.y;
-                aspectScaler = UICameraCanvasScaler.referenceResolution.x / UICameraCanvasScaler.referenceResolution.y;
                 widthInPixels = cameraVisualRect.width / (UICameraCanvasScaler.referenceResolution.x / Screen.width);
                 break;
         }
@@ -96,6 +86,41 @@ public class SnapshotCameraComponent : MonoBehaviour
         renderCamera.orthographicSize = finalCamOrthoSizeHeight * 1 / _fCameraZoom;
 
         GetComponent<SnapshotPictureTakingComponent>()?.SetCurrentRenderTexture(_rtInstancedRenderTexture);
+    }
+
+    public Rect GetWorldRect()
+    {
+        Rect cameraVisualRect = UICameraPanel.rect;
+
+        float screenPositionY = cameraVisualRect.position.y / (UICameraCanvasScaler.referenceResolution.y / (float)Screen.height);
+
+        Vector2 position = Camera.main.ScreenToWorldPoint(UICameraPanel.position);
+
+        bool usingHeight = Screen.width < Screen.height;
+
+        float aspectRect = cameraVisualRect.size.x / cameraVisualRect.size.y;
+        float widthInPixels = 0;
+        float heightInPixels = 0;
+
+        //Adjust in case width < height
+        Debug.Log(usingHeight);
+        switch (usingHeight)
+        {
+            case true:
+                heightInPixels = cameraVisualRect.height / (UICameraCanvasScaler.referenceResolution.y / Screen.height);
+                widthInPixels = heightInPixels * aspectRect;
+                break;
+
+            case false:
+                widthInPixels = cameraVisualRect.width / (UICameraCanvasScaler.referenceResolution.x / Screen.width);
+                heightInPixels = widthInPixels / aspectRect;
+                break;
+        }
+
+        Vector2 size = Camera.main.ScreenToWorldPoint(new Vector2(widthInPixels, heightInPixels)) - Camera.main.ScreenToWorldPoint(Vector2.zero);
+        size = new Vector2(Mathf.Abs(size.x), Mathf.Abs(size.y)) * 1 / _fCameraZoom;
+
+        return new Rect(position - size / 2, size);
     }
 
     public void OnMousePositionChange(Vector2 newMousePosition)

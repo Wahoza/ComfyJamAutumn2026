@@ -40,6 +40,9 @@ namespace Sequences
             PrepSequence();
         }
 
+        /// <summary>
+        /// Loads the animation Sequence. This occurs automatically on awake. Ideally run asynchronously.
+        /// </summary>
         public void PrepSequence()
         {
             if (serializedDataForEditor != null)
@@ -84,6 +87,9 @@ namespace Sequences
             }
         }
 
+        /// <summary>
+        /// Plays a prepared sequence.
+        /// </summary>
         public void PlaySequence()
         {
             if (startingItem == null)
@@ -93,6 +99,9 @@ namespace Sequences
             startingItem?.Start();
         }
 
+        /// <summary>
+        /// Plays a prepared sequence, starting at a certain depth.
+        /// </summary>
         public void StartSequneceFromIndex(int index)
         {
             ISequenceItem next = null;
@@ -113,6 +122,10 @@ namespace Sequences
             next.Start();
         }
 
+        /// <summary>
+        /// Forcibly end the sequence.
+        /// </summary>
+        /// <param name="complete">Complete all sequence items</param>
         public void Quit(bool complete)
         {
             currentItem.Quit(complete);

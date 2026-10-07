@@ -21,7 +21,7 @@ namespace Sequences
         public bool _bRunInParallel = false;
 
         public Transform owner;
-        public SequenceComponent ownerAnimComp;
+        public SequenceComponent ownerSequenceComp;
 
         public Vector3 _vModVector;
         public Transform _ModTransform;
@@ -36,13 +36,14 @@ namespace Sequences
         private Coroutine updateRoutine;
         public virtual void Start()
         {
-            updateRoutine = ownerAnimComp.StartCoroutine(DurationUpdateRoutine());
+            updateRoutine = ownerSequenceComp.StartCoroutine(DurationUpdateRoutine());
+            ownerSequenceComp.currentItem = this;
         }
 
         public virtual void Quit(bool complete)
         {
             if(updateRoutine != null)
-                ownerAnimComp.StopCoroutine(updateRoutine); 
+                ownerSequenceComp.StopCoroutine(updateRoutine); 
             
             if (complete)
                 switch (type)
@@ -286,7 +287,7 @@ namespace Sequences
 
         public void SetOwnerComponent(SequenceComponent component)
         {
-            ownerAnimComp = component;
+            ownerSequenceComp = component;
         }
 
         public ISequenceItem GetNext()

@@ -40,6 +40,7 @@ public class WaitSequenceItem : ISequenceItem
     public void Start()
     {
         quitDuringWait = false;
+        owner.currentItem = this;
 
         switch (type)
         {

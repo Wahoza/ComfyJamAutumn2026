@@ -20,6 +20,7 @@ namespace Sequences
         {
             invokedEvent.Invoke();
             ownerSeqComp.StartCoroutine(WaitTickForNextStart());
+            ownerSeqComp.currentItem = this;
         }
 
         public virtual void Quit(bool complete)

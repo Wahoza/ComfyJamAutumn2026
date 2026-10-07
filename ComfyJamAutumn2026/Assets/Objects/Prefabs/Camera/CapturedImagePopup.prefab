@@ -122,6 +122,7 @@ GameObject:
   - component: {fileID: 2771171565306298209}
   - component: {fileID: 8715409918646877326}
   - component: {fileID: 8767168834134738147}
+  - component: {fileID: 150298018751355499}
   m_Layer: 0
   m_Name: CapturedImagePopup
   m_TagString: Untagged
@@ -185,14 +186,64 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 386f9a09fb967964ba6e2457bad3aa80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Sequences.SequenceComponent
-  serializedDataForEditor: []
-  serializedTransformSequenceItems: []
-  transformSequenceItemIndexes: 
+  serializedDataForEditor:
+  - isFoldedOut: 1
+    overrideTarget: 0
+    target: {fileID: 2771171565306298209}
+    type: 6
+  serializedTransformSequenceItems:
+  - type: 6
+    duration: 1
+    speed: 1
+    speedBased: 0
+    isLocalOperation: 0
+    movementCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 1
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    runInParallel: 0
+    owner: {fileID: 2771171565306298209}
+    ownerAnimComp: {fileID: 0}
+    modVector: {x: 0, y: 0, z: 0}
+    modTransform: {fileID: 0}
+  transformSequenceItemIndexes: 00000000
   serializedEventSequenceItems: []
   serializedEventSequenceItemIndexes: 
   serializedWaitSequenceItems: []
   serializedWaitSequenceItemIndexes: 
   targetToAnim: {fileID: 2771171565306298209}
+--- !u!114 &150298018751355499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3934321938378236172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56c310601b6dc2e46bd5b5fc0892949b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SequenceBlackboardComponent
 --- !u!1 &4050636993317745604
 GameObject:
   m_ObjectHideFlags: 0

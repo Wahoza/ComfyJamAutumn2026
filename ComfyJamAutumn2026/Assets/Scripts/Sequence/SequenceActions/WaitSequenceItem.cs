@@ -17,10 +17,13 @@ public class WaitSequenceItem : ISequenceItem
     public float awaitedTime;
 
     private bool quitDuringWait = false;
-
+    private Coroutine waitRoutine;  
     public void Quit(bool complete)
     {
         quitDuringWait = true;
+
+        if(waitRoutine != null)
+            owner.StopCoroutine(waitRoutine);
 
         if (complete)
         {
@@ -41,10 +44,10 @@ public class WaitSequenceItem : ISequenceItem
         switch (type)
         {
             case SequenceEnumAlloc.SequenceType.WaitForSeconds:
-                owner.StartCoroutine(WaitTimeRoutine());
+                waitRoutine = owner.StartCoroutine(WaitTimeRoutine());
                 break;
             case SequenceEnumAlloc.SequenceType.WaitForBooleanOnBlackboard:
-                owner.StartCoroutine(WaitStringRoutine());
+                waitRoutine = owner.StartCoroutine(WaitStringRoutine());
                 break;
         }
     }
@@ -107,5 +110,10 @@ public class WaitSequenceItem : ISequenceItem
     {
         SerializedProperty typeProp = serializedObject.FindPropertyRelative("type");
         typeProp.enumValueIndex = Convert.ToInt32(type);
+    }
+
+    public ISequenceItem GetNext()
+    {
+        return nextSequence;
     }
 }

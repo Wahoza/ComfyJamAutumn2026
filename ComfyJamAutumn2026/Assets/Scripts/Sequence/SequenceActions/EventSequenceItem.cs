@@ -64,6 +64,11 @@ namespace Sequences
         {
             
         }
+
+        public ISequenceItem GetNext()
+        {
+            return nextSequence;
+        }
     }
 }
 

@@ -56,6 +56,7 @@ namespace Sequences
                         serializedTransformSequenceItems[(int)index].SetOwnerComponent(this);
 
                         lastItem = serializedTransformSequenceItems[(int)index];
+                        Debug.Log("Transform");
                     }
 
                     if (serializedEventSequenceItemIndexes.Contains(i))
@@ -65,6 +66,7 @@ namespace Sequences
                         serializedEventSequenceItems[(int)index].SetOwnerComponent(this);
 
                         lastItem = serializedEventSequenceItems[(int)index];
+                        Debug.Log("Event");
                     }
 
                     if (serializedWaitSequenceItemIndexes.Contains(i))
@@ -74,6 +76,7 @@ namespace Sequences
                         serializedWaitSequenceItems[(int)index].SetOwnerComponent(this);
 
                         lastItem = serializedWaitSequenceItems[(int)index];
+                        Debug.Log("Scale");
                     }
                 }
 
@@ -83,7 +86,31 @@ namespace Sequences
 
         public void PlaySequence()
         {
+            if (startingItem == null)
+            {
+                Debug.LogWarning("Could not find Starting Item");
+            }
             startingItem?.Start();
+        }
+
+        public void StartSequneceFromIndex(int index)
+        {
+            ISequenceItem next = null;
+            if (startingItem != null)
+            {
+                next = startingItem;
+                for (int i = 0; i < index; i++)
+                {
+                    if(next == null)
+                    {
+                        return;
+                    }
+
+                    next = next.GetNext();
+                }
+            }
+
+            next.Start();
         }
 
         public void Quit(bool complete)

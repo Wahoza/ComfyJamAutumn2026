@@ -8,79 +8,200 @@ using UnityEngine;
 namespace Sequences
 {
     [System.Serializable]
-    public class TransformCurveSequenceItem : ISequenceItem
+    public partial class TransformCurveSequenceItem : ISequenceItem
     {
         public SequenceEnumAlloc.SequenceType type;
 
-        public float duration = 1;
-        public float speed = 1;
-        public bool speedBased = false;
-        public bool isLocalOperation = false;
+        public float _fDuration = 1;
+        public float _fSpeed = 1;
+        public bool _bSpeedBased = false;
+        public bool _bLocalOperation = false;
 
-        public AnimationCurve movementCurve = AnimationCurve.Linear(0,0, 1, 1);
-        public bool runInParallel = false;
+        public AnimationCurve _movementCurve = AnimationCurve.Linear(0,0, 1, 1);
+        public bool _bRunInParallel = false;
 
         public Transform owner;
         public SequenceComponent ownerAnimComp;
 
-        public Vector3 modVector;
-        public Transform modTransform;
-
-        [NonSerialized] public ISequenceItem nextSequence;
+        public Vector3 _vModVector;
+        public Transform _ModTransform;
         
+        [NonSerialized] public ISequenceItem nextSequence;
+        private bool _bQuitAtStart;
+
+        private Vector3 _vInitPosition;
+        private Vector3 _vInitRotation;
+        private Vector3 _vInitScale;
+
+        private Coroutine updateRoutine;
         public virtual void Start()
         {
-            ownerAnimComp.StartCoroutine(DurationUpdateRoutine());
-
-            if (runInParallel)
-                nextSequence?.Start();
+            updateRoutine = ownerAnimComp.StartCoroutine(DurationUpdateRoutine());
         }
 
         public virtual void Quit(bool complete)
         {
-            if (!runInParallel)
+            if(updateRoutine != null)
+                ownerAnimComp.StopCoroutine(updateRoutine); 
+            
+            if (complete)
+                switch (type)
+                {
+                    case SequenceEnumAlloc.SequenceType.MovementToTarget:
+                        OnQuitCompleteMoveToTransform();
+                        break;
+                    case SequenceEnumAlloc.SequenceType.MovementFromVector:
+                        OnQuitCompleteMoveToVector();
+                        break;
+                    case SequenceEnumAlloc.SequenceType.RotationToTarget:
+                        OnQuitCompleteRotateToTransform();
+                        break;
+                    case SequenceEnumAlloc.SequenceType.RotationFromEuler:
+                        OnQuitCompleteRotateToVector();
+                        break;
+                    case SequenceEnumAlloc.SequenceType.ScaleToTarget:
+                        OnQuitCompleteScaleToTransform();
+                        break;
+                    case SequenceEnumAlloc.SequenceType.ScaleToVector:
+                        OnQuitCompleteScaleToVector();  
+                        break;
+                }
                 nextSequence?.Start();
         }
 
-        public virtual void Update(float elapsedTime)
-        {
-        }
+
 
         private IEnumerator DurationUpdateRoutine()
         {
             float elapsed = 0;
+            float trueDuration = _fDuration;
 
-            while(elapsed < duration)
+            _vInitPosition = owner.position;
+            _vInitRotation = owner.eulerAngles;
+            _vInitScale = owner.localScale;
+
+            yield return null;
+
+            if (_bRunInParallel)
+                nextSequence?.Start();
+
+            if (!_bSpeedBased)
             {
-                Update(elapsed);
-                elapsed += Time.deltaTime;
+                while (elapsed < _fDuration)
+                {
+                    elapsed += Time.deltaTime;
 
-                yield return null;
+                    switch (type)
+                    {
+                        case SequenceEnumAlloc.SequenceType.MovementToTarget:
+                            MoveToTransform(Time.deltaTime, elapsed);
+                            break;
+                        case SequenceEnumAlloc.SequenceType.MovementFromVector:
+                            MoveToVector(Time.deltaTime, elapsed);
+                            break;
+                        case SequenceEnumAlloc.SequenceType.RotationToTarget:
+                            RotateToTransform(Time.deltaTime, elapsed);
+                            break;
+                        case SequenceEnumAlloc.SequenceType.RotationFromEuler:
+                            RotateToVector(Time.deltaTime, elapsed);
+                            break;
+                        case SequenceEnumAlloc.SequenceType.ScaleToTarget:
+                            ScaleToTransform(Time.deltaTime, elapsed);
+                            break;
+                        case SequenceEnumAlloc.SequenceType.ScaleToVector:
+                            ScaleToVector(Time.deltaTime, elapsed);
+                            break;
+                    }
+
+                    yield return null;
+                }
+
+                switch (type)
+                {
+                    case SequenceEnumAlloc.SequenceType.MovementToTarget:
+                        OnQuitCompleteMoveToTransform();
+                        break;
+                    case SequenceEnumAlloc.SequenceType.MovementFromVector:
+                        OnQuitCompleteMoveToVector();
+                        break;
+                    case SequenceEnumAlloc.SequenceType.RotationToTarget:
+                        OnQuitCompleteRotateToTransform();
+                        break;
+                    case SequenceEnumAlloc.SequenceType.RotationFromEuler:
+                        OnQuitCompleteRotateToVector();
+                        break;
+                    case SequenceEnumAlloc.SequenceType.ScaleToTarget:
+                        OnQuitCompleteScaleToTransform();
+                        break;
+                    case SequenceEnumAlloc.SequenceType.ScaleToVector:
+                        OnQuitCompleteScaleToVector();
+                        break;
+                }
+
+                if (!_bQuitAtStart)
+                {
+                    nextSequence?.Start();
+                }
             }
-
-            if (!runInParallel)
+            else
             {
-                Quit(true);
+                bool complete = false;
+
+                while (!complete)
+                {
+                    switch (type)
+                    {
+                        case SequenceEnumAlloc.SequenceType.MovementToTarget:
+                            complete = MoveToTransform(Time.deltaTime, elapsed);
+                            break;
+                        case SequenceEnumAlloc.SequenceType.MovementFromVector:
+                            complete = MoveToVector(Time.deltaTime, elapsed);
+                            break;
+                        case SequenceEnumAlloc.SequenceType.RotationToTarget:
+                            complete = RotateToTransform(Time.deltaTime, elapsed);
+                            break;
+                        case SequenceEnumAlloc.SequenceType.RotationFromEuler:
+                            complete = RotateToVector(Time.deltaTime, elapsed);
+                            break;
+                        case SequenceEnumAlloc.SequenceType.ScaleToTarget:
+                            complete = ScaleToTransform(Time.deltaTime, elapsed);
+                            break;
+                        case SequenceEnumAlloc.SequenceType.ScaleToVector:
+                            complete = ScaleToVector(Time.deltaTime, elapsed);
+                            break;
+                    }
+
+                    yield return null;
+
+                    if (complete)
+                    {
+                        if (!_bQuitAtStart)
+                        {
+                            nextSequence?.Start();
+                        }
+                        yield break;
+                    }
+                }
             }
         }
 
+        #region serialization
         public static void DrawGUI(SerializedProperty targetObject, SerializedProperty serializedObject, SequenceEnumAlloc.SequenceType type)
         {
 
-            SerializedProperty durationProp = serializedObject.FindPropertyRelative("duration");
-            SerializedProperty speedProp = serializedObject.FindPropertyRelative("speed");
-            SerializedProperty speedBasedProp = serializedObject.FindPropertyRelative("speedBased");
-            SerializedProperty runInParalellProp = serializedObject.FindPropertyRelative("runInParallel");
-            SerializedProperty isLocalProp = serializedObject.FindPropertyRelative("isLocalOperation");
+            SerializedProperty durationProp = serializedObject.FindPropertyRelative("_fDuration");
+            SerializedProperty speedProp = serializedObject.FindPropertyRelative("_fSpeed");
+            SerializedProperty speedBasedProp = serializedObject.FindPropertyRelative("_bSpeedBased");
+            SerializedProperty runInParalellProp = serializedObject.FindPropertyRelative("_bRunInParallel");
+            SerializedProperty isLocalProp = serializedObject.FindPropertyRelative("_bLocalOperation");
 
-            SerializedProperty movementCurveProp = serializedObject.FindPropertyRelative("movementCurve");
+            SerializedProperty movementCurveProp = serializedObject.FindPropertyRelative("_movementCurve");
 
-            SerializedProperty ownerAnimCompProp = serializedObject.FindPropertyRelative("ownerAnimCompProp");
             SerializedProperty ownerProp = serializedObject.FindPropertyRelative("owner");
 
 
-            SerializedProperty modVectorProp = serializedObject.FindPropertyRelative("modVector");
-            SerializedProperty modTransformProp = serializedObject.FindPropertyRelative("modTransform");
+            SerializedProperty modVectorProp = serializedObject.FindPropertyRelative("_vModVector");
+            SerializedProperty modTransformProp = serializedObject.FindPropertyRelative("_ModTransform");
 
             SerializedProperty typeProp = serializedObject.FindPropertyRelative("type");
 
@@ -88,11 +209,19 @@ namespace Sequences
 
             ownerProp.objectReferenceValue = targetObject.objectReferenceValue;
 
-            isLocalProp.boolValue = EditorGUILayout.Toggle("Local", isLocalProp.boolValue);
-
             runInParalellProp.boolValue = EditorGUILayout.Toggle("Run in Parallel", runInParalellProp.boolValue);
 
             speedBasedProp.boolValue = EditorGUILayout.Toggle("Speed Based", speedBasedProp.boolValue);
+
+
+            //Note: Unity only supports local level rescaling
+            if ((SequenceEnumAlloc.SequenceType)typeProp.enumValueIndex != SequenceEnumAlloc.SequenceType.ScaleToTarget 
+                && (SequenceEnumAlloc.SequenceType)typeProp.enumValueIndex != SequenceEnumAlloc.SequenceType.ScaleToVector 
+                && !typeToEditorData[(SequenceEnumAlloc.SequenceType)typeProp.enumValueIndex].Item1 )
+            {
+                isLocalProp.boolValue = EditorGUILayout.Toggle("Local", isLocalProp.boolValue);
+            }
+
 
             if (speedBasedProp.boolValue)
             {
@@ -119,65 +248,64 @@ namespace Sequences
                 EditorGUILayout.LabelField("Something went wrong");
             }
 
-            movementCurveProp.animationCurveValue = EditorGUILayout.CurveField("Completion Curve", movementCurveProp.animationCurveValue);
+            if (!speedBasedProp.boolValue)
+            {
+                movementCurveProp.animationCurveValue = EditorGUILayout.CurveField("Progression", movementCurveProp.animationCurveValue);
+            }
         }
 
         public static void DefaultInitialize(SerializedProperty targetObject, SequenceComponent ownerAnimComp, SerializedProperty serializedObject, SequenceEnumAlloc.SequenceType type)
         {
-            SerializedProperty durationProp = serializedObject.FindPropertyRelative("duration");
-            SerializedProperty speedProp = serializedObject.FindPropertyRelative("speed");
-            SerializedProperty speedBasedProp = serializedObject.FindPropertyRelative("speedBased");
-            SerializedProperty runInParalellProp = serializedObject.FindPropertyRelative("runInParallel");
-            SerializedProperty isLocalProp = serializedObject.FindPropertyRelative("isLocalOperation");
+            SerializedProperty durationProp = serializedObject.FindPropertyRelative("_fDuration");
+            SerializedProperty speedProp = serializedObject.FindPropertyRelative("_fSpeed");
+            SerializedProperty speedBasedProp = serializedObject.FindPropertyRelative("_bSpeedBased");
+            SerializedProperty runInParalellProp = serializedObject.FindPropertyRelative("_bRunInParallel");
+            SerializedProperty isLocalProp = serializedObject.FindPropertyRelative("_bLocalOperation");
 
-            SerializedProperty movementCurveProp = serializedObject.FindPropertyRelative("movementCurve");
+            SerializedProperty movementCurveProp = serializedObject.FindPropertyRelative("_movementCurve");
 
             SerializedProperty ownerAnimCompProp = serializedObject.FindPropertyRelative("ownerAnimCompProp");
             SerializedProperty ownerProp = serializedObject.FindPropertyRelative("owner");
 
 
-            SerializedProperty modVectorProp = serializedObject.FindPropertyRelative("modVector");
-            SerializedProperty modTransformProp = serializedObject.FindPropertyRelative("modTransform");
+            SerializedProperty modVectorProp = serializedObject.FindPropertyRelative("_vModVector");
+            SerializedProperty modTransformProp = serializedObject.FindPropertyRelative("_ModTransform");
 
             SerializedProperty typeProp = serializedObject.FindPropertyRelative("type");
 
             TransformCurveSequenceItem item = new();
 
-            isLocalProp.boolValue = item.isLocalOperation;
-            durationProp.floatValue = item.duration;
-            speedProp.floatValue = item.speed;
-            speedBasedProp.boolValue = item.speedBased;
-            runInParalellProp.boolValue = item.runInParallel;
-            movementCurveProp.animationCurveValue = item.movementCurve;
+            isLocalProp.boolValue = item._bLocalOperation;
+            durationProp.floatValue = item._fDuration;
+            speedProp.floatValue = item._fSpeed;
+            speedBasedProp.boolValue = item._bSpeedBased;
+            runInParalellProp.boolValue = item._bRunInParallel;
+            movementCurveProp.animationCurveValue = item._movementCurve;
             ownerProp.objectReferenceValue = targetObject.objectReferenceValue;
-            modVectorProp.vector3Value = item.modVector;
+            modVectorProp.vector3Value = item._vModVector;
         }
 
         public void SetOwnerComponent(SequenceComponent component)
         {
             ownerAnimComp = component;
         }
-        //public void SetDataFromOtherCurveItem(AnimationCurveSequenceItem other)
-        //{
-        //    duration = other.duration;
-        //    speed = other.speed;
-        //    movementCurve = other.movementCurve;
-        //    runInParallel = other.runInParallel;
-        //    speedBased = other.speedBased;
-        //    owner = other.owner;
-        //    ownerAnimComp = other.ownerAnimComp;
-        //}
+
+        public ISequenceItem GetNext()
+        {
+            return nextSequence;
+        }
 
         //Type, use Transform?, DescripitveText
         private static Dictionary<SequenceEnumAlloc.SequenceType, (bool, string)> typeToEditorData = new()
         {
             {SequenceEnumAlloc.SequenceType.MovementFromVector, (false, "Movement Vector") },
             {SequenceEnumAlloc.SequenceType.MovementToTarget, (true, "Move To") },
-            {SequenceEnumAlloc.SequenceType.RotationFromEuler, (true, "Euler Angles") },
+            {SequenceEnumAlloc.SequenceType.RotationFromEuler, (false, "Euler Angles") },
             {SequenceEnumAlloc.SequenceType.RotationToTarget, (true, "Match Rotation To") },
-            {SequenceEnumAlloc.SequenceType.ScaleToVector, (true, "Scale Vector") },
+            {SequenceEnumAlloc.SequenceType.ScaleToVector, (false, "Scale Vector") },
             {SequenceEnumAlloc.SequenceType.ScaleToTarget, (true, "Match Scale To") }
         };
+        #endregion
     }
 }
 

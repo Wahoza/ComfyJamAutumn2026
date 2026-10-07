@@ -9,5 +9,7 @@ public interface ISequenceItem
     void Start();
     void Quit(bool complete);
     void SetOwnerComponent(SequenceComponent component);
+
+    ISequenceItem GetNext();
     //static void DrawGUI(Transform targetObject, AnimSequenceComponent ownerAnimComp, SerializedProperty serializedObject, AnimEnumAlloc.AnimationTypes type);
 }

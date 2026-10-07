@@ -150,7 +150,7 @@ namespace Sequences
                         }
                         else
                         {
-                            target.objectReferenceValue = script.transform;
+                            target.objectReferenceValue = script.targetToAnim;
                         }
                     }
 

@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 656b9d854d33eb04d997df4e263e63ce, type: 3}
+  m_Name: TestNPC
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueProfileSO
+  key: 0
+  conversations:
+  - requirementId: -1
+    sentences:
+    - Test1
+    - Test2
+    - Test3
+  - requirementId: -1
+    sentences:
+    - Test4
+    - Test5
+    - Test6
+    - Test7
+    - Test8
+  - requirementId: -1
+    sentences:
+    - Test9
+  - requirementId: 0
+    sentences:
+    - Test10

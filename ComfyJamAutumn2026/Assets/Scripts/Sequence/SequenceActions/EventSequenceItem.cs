@@ -11,21 +11,37 @@ namespace Sequences
     {
         public UnityEvent invokedEvent = new();
 
-        public SequenceComponent ownerAnimComp;
+        public SequenceComponent ownerSeqComp;
 
         public ISequenceItem nextSequence;
+
+        private bool quitAtStart;
         public virtual void Start()
         {
             invokedEvent.Invoke();
-            nextSequence.Start();
+            ownerSeqComp.StartCoroutine(WaitTickForNextStart());
         }
 
         public virtual void Quit(bool complete)
         {
+            quitAtStart = true;
+
+            if (complete)
+            {
+                nextSequence?.Start();
+                nextSequence?.Quit(true);
+            }
         }
 
-        public virtual void Update(float elapsedTime)
+        IEnumerator WaitTickForNextStart()
         {
+            quitAtStart = false;
+            yield return null;
+
+            if (!quitAtStart)
+            {
+                nextSequence?.Start();
+            }
         }
 
         private IEnumerator DurationUpdateRoutine()
@@ -41,7 +57,7 @@ namespace Sequences
 
         public void SetOwnerComponent(SequenceComponent component)
         {
-            ownerAnimComp = component;
+            ownerSeqComp = component;
         }
 
         public static void DefaultInitialize(SerializedProperty serializedObject, SequenceEnumAlloc.SequenceType type)

@@ -1,14 +1,32 @@
 using Sequences;
+using System;
 using UnityEditor;
 using UnityEngine;
+using System.Collections.Generic;
+using System.Collections;
 
 [System.Serializable]
 public class WaitSequenceItem : ISequenceItem
 {
     public ISequenceItem nextSequence;
     public SequenceComponent owner;
+    public SequenceEnumAlloc.SequenceType type;
+    public List<string> awaitedStrings;
+    public int minRequiredAwaitedStrings;
+
+    public float awaitedTime;
+
+    private bool quitDuringWait = false;
+
     public void Quit(bool complete)
     {
+        quitDuringWait = true;
+
+        if (complete)
+        {
+            nextSequence?.Start();
+            nextSequence?.Quit(true);
+        }
     }
 
     public void SetOwnerComponent(SequenceComponent component)
@@ -18,13 +36,76 @@ public class WaitSequenceItem : ISequenceItem
 
     public void Start()
     {
+        quitDuringWait = false;
+
+        switch (type)
+        {
+            case SequenceEnumAlloc.SequenceType.WaitForSeconds:
+                owner.StartCoroutine(WaitTimeRoutine());
+                break;
+            case SequenceEnumAlloc.SequenceType.WaitForBooleanOnBlackboard:
+                owner.StartCoroutine(WaitStringRoutine());
+                break;
+        }
     }
 
-    public void Update(float deltaTime)
+    private IEnumerator WaitTimeRoutine()
     {
+        yield return new WaitForSeconds(awaitedTime);
+
+        if (!quitDuringWait)
+        {
+            nextSequence?.Start();
+        }
     }
 
-    public static void DrawGUI(SerializedProperty serializedObject, SequenceEnumAlloc.SequenceType type) { }
+    private IEnumerator WaitStringRoutine()
+    {
+        SequenceBlackboardComponent blackboard = owner.GetComponent<SequenceBlackboardComponent>();
+        int ctr = 0;
+        while (!quitDuringWait)
+        {
+            ctr = 0;
 
-    public static void DefaultInitialize(SerializedProperty serializedObject, SequenceEnumAlloc.SequenceType type) { }
+            foreach (string str in awaitedStrings)
+            {
+                if (blackboard.ReadFromDictionary<bool>(str))
+                {
+                    ctr++;
+                }
+            }
+
+            if(ctr > minRequiredAwaitedStrings)
+            {
+                nextSequence.Start();
+                yield break;
+            }
+
+            yield return null;
+        }
+    }
+    public static void DrawGUI(SerializedProperty serializedObject, SequenceEnumAlloc.SequenceType type) 
+    {
+        SerializedProperty typeProp = serializedObject.FindPropertyRelative("type");
+        SerializedProperty awaitedStringProp = serializedObject.FindPropertyRelative("awaitedStrings");
+        SerializedProperty awaitedTimeProp = serializedObject.FindPropertyRelative("awaitedTime");
+        SerializedProperty minStringsProp = serializedObject.FindPropertyRelative("minRequiredAwaitedStrings");
+
+        typeProp.enumValueIndex = (int)type;
+
+        if ((SequenceEnumAlloc.SequenceType)typeProp.enumValueIndex == SequenceEnumAlloc.SequenceType.WaitForSeconds) {
+            awaitedTimeProp.floatValue = EditorGUILayout.FloatField("Wait Duration", awaitedTimeProp.floatValue);
+        }
+
+        if((SequenceEnumAlloc.SequenceType)typeProp.enumValueIndex == SequenceEnumAlloc.SequenceType.WaitForBooleanOnBlackboard){
+            EditorGUILayout.PropertyField(awaitedStringProp);
+            minStringsProp.intValue = EditorGUILayout.IntField("Amount Required For Completion", minStringsProp.intValue);
+        }
+    }
+
+    public static void DefaultInitialize(SerializedProperty serializedObject, SequenceEnumAlloc.SequenceType type) 
+    {
+        SerializedProperty typeProp = serializedObject.FindPropertyRelative("type");
+        typeProp.enumValueIndex = Convert.ToInt32(type);
+    }
 }

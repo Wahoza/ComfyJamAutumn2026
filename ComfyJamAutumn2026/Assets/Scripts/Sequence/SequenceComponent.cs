@@ -10,6 +10,7 @@ using System.Collections;
 
 namespace Sequences
 {
+    [RequireComponent(typeof(SequenceBlackboardComponent))]
     public class SequenceComponent : MonoBehaviour
     {
         [SerializeField] public List<DataForUnityEditor> serializedDataForEditor = new List<DataForUnityEditor>() { };
@@ -32,12 +33,14 @@ namespace Sequences
 
         ISequenceItem startingItem;
 
+        public ISequenceItem currentItem;
+
         public void Awake()
         {
-            PrepAnim();
+            PrepSequence();
         }
 
-        public void PrepAnim()
+        public void PrepSequence()
         {
             if (serializedDataForEditor != null)
             {
@@ -78,9 +81,14 @@ namespace Sequences
             }
         }
 
-        public void PlayAnim()
+        public void PlaySequence()
         {
             startingItem?.Start();
+        }
+
+        public void Quit(bool complete)
+        {
+            currentItem.Quit(complete);
         }
 
 #region List Operations

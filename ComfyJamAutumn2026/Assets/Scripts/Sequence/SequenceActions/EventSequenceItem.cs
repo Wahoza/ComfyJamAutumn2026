@@ -16,8 +16,8 @@ namespace Sequences
         public ISequenceItem nextSequence;
         public virtual void Start()
         {
-            ownerAnimComp.StartCoroutine(DurationUpdateRoutine());
-
+            invokedEvent.Invoke();
+            nextSequence.Start();
         }
 
         public virtual void Quit(bool complete)

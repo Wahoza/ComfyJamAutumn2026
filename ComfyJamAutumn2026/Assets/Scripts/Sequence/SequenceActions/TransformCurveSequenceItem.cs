@@ -17,7 +17,7 @@ namespace Sequences
         public bool _bSpeedBased = false;
         public bool _bLocalOperation = false;
 
-        public AnimationCurve _movementCurve = AnimationCurve.Linear(0,0, 1, 1);
+        public AnimationCurve _effectCurve = AnimationCurve.Linear(0,0, 1, 1);
         public bool _bRunInParallel = false;
 
         public Transform owner;
@@ -74,7 +74,6 @@ namespace Sequences
         private IEnumerator DurationUpdateRoutine()
         {
             float elapsed = 0;
-            float trueDuration = _fDuration;
 
             _vInitPosition = owner.position;
             _vInitRotation = owner.eulerAngles;
@@ -195,7 +194,7 @@ namespace Sequences
             SerializedProperty runInParalellProp = serializedObject.FindPropertyRelative("_bRunInParallel");
             SerializedProperty isLocalProp = serializedObject.FindPropertyRelative("_bLocalOperation");
 
-            SerializedProperty movementCurveProp = serializedObject.FindPropertyRelative("_movementCurve");
+            SerializedProperty movementCurveProp = serializedObject.FindPropertyRelative("_effectCurve");
 
             SerializedProperty ownerProp = serializedObject.FindPropertyRelative("owner");
 
@@ -262,7 +261,7 @@ namespace Sequences
             SerializedProperty runInParalellProp = serializedObject.FindPropertyRelative("_bRunInParallel");
             SerializedProperty isLocalProp = serializedObject.FindPropertyRelative("_bLocalOperation");
 
-            SerializedProperty movementCurveProp = serializedObject.FindPropertyRelative("_movementCurve");
+            SerializedProperty movementCurveProp = serializedObject.FindPropertyRelative("_effectCurve");
 
             SerializedProperty ownerAnimCompProp = serializedObject.FindPropertyRelative("ownerAnimCompProp");
             SerializedProperty ownerProp = serializedObject.FindPropertyRelative("owner");
@@ -280,7 +279,7 @@ namespace Sequences
             speedProp.floatValue = item._fSpeed;
             speedBasedProp.boolValue = item._bSpeedBased;
             runInParalellProp.boolValue = item._bRunInParallel;
-            movementCurveProp.animationCurveValue = item._movementCurve;
+            movementCurveProp.animationCurveValue = item._effectCurve;
             ownerProp.objectReferenceValue = targetObject.objectReferenceValue;
             modVectorProp.vector3Value = item._vModVector;
         }
@@ -302,7 +301,7 @@ namespace Sequences
             {SequenceEnumAlloc.SequenceType.MovementToTarget, (true, "Move To") },
             {SequenceEnumAlloc.SequenceType.RotationFromEuler, (false, "Euler Angles") },
             {SequenceEnumAlloc.SequenceType.RotationToTarget, (true, "Match Rotation To") },
-            {SequenceEnumAlloc.SequenceType.ScaleToVector, (false, "Scale Vector") },
+            {SequenceEnumAlloc.SequenceType.ScaleToVector, (false, "Scale Change") },
             {SequenceEnumAlloc.SequenceType.ScaleToTarget, (true, "Match Scale To") }
         };
         #endregion

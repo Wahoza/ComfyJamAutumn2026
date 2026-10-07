@@ -8,4 +8,10 @@ public class SequenceStarter : MonoBehaviour
     {
         GetComponent<SequenceComponent>().PlaySequence();
     }
+
+    [NaughtyAttributes.Button()]
+    void ReloadSequence()
+    {
+        GetComponent<SequenceComponent>().PrepSequence();
+    }
 }

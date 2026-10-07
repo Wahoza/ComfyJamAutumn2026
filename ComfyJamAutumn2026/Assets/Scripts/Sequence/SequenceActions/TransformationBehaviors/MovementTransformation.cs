@@ -27,7 +27,7 @@ namespace Sequences
             else if(_ModTransform)
             {
                 var pointInCurve = (elapsed / _fDuration);
-                float valueInCurve = _movementCurve.Evaluate(pointInCurve);
+                float valueInCurve = _effectCurve.Evaluate(pointInCurve);
 
                 Vector3 path = _ModTransform.position - _vInitPosition;
 
@@ -64,7 +64,7 @@ namespace Sequences
             else
             {
                 var pointInCurve = (elapsed / _fDuration);
-                float valueInCurve = _movementCurve.Evaluate(pointInCurve);
+                float valueInCurve = _effectCurve.Evaluate(pointInCurve);
 
                 Vector3 path = (_bLocalOperation ? owner.InverseTransformDirection(_vModVector) : _vModVector);
 
@@ -84,7 +84,7 @@ namespace Sequences
 
         void OnQuitCompleteMoveToVector()
         {
-            owner.transform.position = _vInitPosition + (_bLocalOperation ? owner.InverseTransformDirection(_vModVector) : _vModVector);
+            owner.transform.position = _vInitPosition + _effectCurve.Evaluate(1)*(_bLocalOperation ? owner.InverseTransformDirection(_vModVector) : _vModVector);
         }
     }
 }

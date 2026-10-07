@@ -27,7 +27,7 @@ namespace Sequences
             else if (_ModTransform)
             {
                 var pointInCurve = (elapsed / _fDuration);
-                float valueInCurve = _movementCurve.Evaluate(pointInCurve);
+                float valueInCurve = _effectCurve.Evaluate(pointInCurve);
 
                 Vector3 path = _ModTransform.localScale - _vInitScale;
 
@@ -55,7 +55,7 @@ namespace Sequences
 
                 if (Vector3.SqrMagnitude(directionToTarget) < Vector3.SqrMagnitude(newDirectionToTarget) || Vector3.SqrMagnitude(directionToTarget) < 0.001f)
                 {
-                    owner.transform.localScale = _vModVector + _vInitScale;
+                    owner.transform.localScale = _vModVector;
                     return true;
                 }
 
@@ -64,13 +64,13 @@ namespace Sequences
             else
             {
                 var pointInCurve = (elapsed / _fDuration);
-                float valueInCurve = _movementCurve.Evaluate(pointInCurve);
+                float valueInCurve = _effectCurve.Evaluate(pointInCurve);
 
-                Vector3 path = (_bLocalOperation ? owner.InverseTransformDirection(_vModVector) : _vModVector);
+                Vector3 path =  _vModVector;
 
                 Vector3 completed = valueInCurve * path;
 
-                owner.transform.localScale = _vInitPosition + completed;
+                owner.transform.localScale = _vInitScale + completed;
 
                 return true;
             }
@@ -84,7 +84,7 @@ namespace Sequences
 
         void OnQuitCompleteScaleToVector()
         {
-            owner.transform.localScale = _vInitScale + _vModVector;
+            owner.transform.localScale = _vInitScale + _effectCurve.Evaluate(1) * _vModVector;
 
         }
     }

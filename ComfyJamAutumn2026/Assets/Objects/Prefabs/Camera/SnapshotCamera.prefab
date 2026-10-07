@@ -61,7 +61,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!114 &1623490476741995941
 MonoBehaviour:
@@ -316,6 +316,7 @@ MonoBehaviour:
   _iStoredImageWidth: 100
   _snapshotCam: {fileID: 8270429242827693717}
   debugOutput: {fileID: 0}
+  debugWorldVisual: {fileID: 0}
 --- !u!1 &8734746325774341510
 GameObject:
   m_ObjectHideFlags: 0

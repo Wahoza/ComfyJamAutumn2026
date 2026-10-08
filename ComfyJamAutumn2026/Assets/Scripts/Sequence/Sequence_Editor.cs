@@ -21,10 +21,10 @@ namespace Sequences
 
         private void OnEnable()
         {
-            serializedDataForEditor = serializedObject.FindProperty("serializedDataForEditor"); // Find the List in our script and create a refrence of it
+            serializedDataForEditor = serializedObject.FindProperty("serializedDataForEditor");
 
-            serializedTransformSequenceItems = serializedObject.FindProperty("serializedTransformSequenceItems"); // Find the List in our script and create a refrence of it
-            transformSequenceItemIndexes = serializedObject.FindProperty("transformSequenceItemIndexes"); // Find the List in our script and create a refrence of it
+            serializedTransformSequenceItems = serializedObject.FindProperty("serializedTransformSequenceItems");
+            transformSequenceItemIndexes = serializedObject.FindProperty("transformSequenceItemIndexes"); 
 
             serializedEventSequenceItems = serializedObject.FindProperty("serializedEventSequenceItems");
             eventSequenceItemIndexes = serializedObject.FindProperty("serializedEventSequenceItemIndexes");
@@ -32,6 +32,10 @@ namespace Sequences
             serializedWaitSequenceItems = serializedObject.FindProperty("serializedWaitSequenceItems");
             waitSequenceItemIndexes = serializedObject.FindProperty("serializedWaitSequenceItemIndexes");
         }
+
+        /// <summary>
+        /// Draw UI
+        /// </summary>
         public override void OnInspectorGUI()
         {
             serializedObject.Update();
@@ -272,6 +276,9 @@ namespace Sequences
 
         }
 
+        /// <summary>
+        /// Modify type
+        /// </summary>
 
         public void ModifyTypeAtIndex(int index, SequenceEnumAlloc.SequenceType newType, SerializedProperty targetObject, SequenceComponent script, bool isNewType)
         {

@@ -94,7 +94,7 @@ namespace Sequences
 
             if((SequenceEnumAlloc.SequenceType)typeProp.enumValueIndex == SequenceEnumAlloc.SequenceType.BroadcastEvent)
             {
-                EditorGUILayout.PropertyField(unityEventProp);
+                EditorGUILayout.PropertyField(unityEventProp, new GUIContent("Brodcast Event"));
             }
             else if ((SequenceEnumAlloc.SequenceType)typeProp.enumValueIndex == SequenceEnumAlloc.SequenceType.BroadcastConditionalEvent)
             {
@@ -124,7 +124,7 @@ namespace Sequences
                     if (foldProp.boolValue)
                     {
                         stringProp.stringValue = EditorGUILayout.TextField("Condition", stringProp.stringValue);
-                        EditorGUILayout.PropertyField(eventProp);
+                        EditorGUILayout.PropertyField(eventProp, new GUIContent($"Brodcast Event if {stringProp.stringValue}"));
 
 
                         if (GUILayout.Button("Insert New Event"))

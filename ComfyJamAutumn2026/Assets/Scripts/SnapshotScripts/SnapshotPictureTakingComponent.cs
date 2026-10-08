@@ -119,7 +119,6 @@ public class SnapshotPictureTakingComponent : MonoBehaviour
             }
         }
 
-        Debug.Log(snapshotString);
 #endif
 
         return output;

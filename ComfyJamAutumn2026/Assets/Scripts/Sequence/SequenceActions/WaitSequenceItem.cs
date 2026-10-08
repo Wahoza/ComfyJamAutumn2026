@@ -102,7 +102,7 @@ public class WaitSequenceItem : ISequenceItem
         }
 
         if((SequenceEnumAlloc.SequenceType)typeProp.enumValueIndex == SequenceEnumAlloc.SequenceType.WaitForBooleanOnBlackboard){
-            EditorGUILayout.PropertyField(awaitedStringProp);
+            EditorGUILayout.PropertyField(awaitedStringProp, new GUIContent($"Completion Strings"));
             minStringsProp.intValue = EditorGUILayout.IntField("Amount Required For Completion", minStringsProp.intValue);
         }
     }

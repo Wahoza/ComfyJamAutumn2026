@@ -103,7 +103,6 @@ public class SnapshotCameraComponent : MonoBehaviour
         float heightInPixels = 0;
 
         //Adjust in case width < height
-        Debug.Log(usingHeight);
         switch (usingHeight)
         {
             case true:

@@ -59,7 +59,6 @@ namespace Sequences
                         serializedTransformSequenceItems[(int)index].SetOwnerComponent(this);
 
                         lastItem = serializedTransformSequenceItems[(int)index];
-                        Debug.Log("Transform");
                     }
 
                     if (serializedEventSequenceItemIndexes.Contains(i))
@@ -69,7 +68,6 @@ namespace Sequences
                         serializedEventSequenceItems[(int)index].SetOwnerComponent(this);
 
                         lastItem = serializedEventSequenceItems[(int)index];
-                        Debug.Log("Event");
                     }
 
                     if (serializedWaitSequenceItemIndexes.Contains(i))
@@ -79,7 +77,6 @@ namespace Sequences
                         serializedWaitSequenceItems[(int)index].SetOwnerComponent(this);
 
                         lastItem = serializedWaitSequenceItems[(int)index];
-                        Debug.Log("Scale");
                     }
                 }
 

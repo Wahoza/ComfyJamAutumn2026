@@ -65,7 +65,7 @@ namespace Sequences
                     if (serializedEventSequenceItemIndexes.Contains(i))
                     {
                         int index = serializedEventSequenceItemIndexes.IndexOf(i);
-                        serializedEventSequenceItems[(int)index].nextSequence = lastItem;
+                        serializedEventSequenceItems[(int)index]._nextSequence = lastItem;
                         serializedEventSequenceItems[(int)index].SetOwnerComponent(this);
 
                         lastItem = serializedEventSequenceItems[(int)index];

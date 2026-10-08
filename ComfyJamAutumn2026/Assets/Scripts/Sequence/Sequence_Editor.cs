@@ -129,8 +129,9 @@ namespace Sequences
 
                 if (isFoldedOut.boolValue)
                 {
-                    var newType = Convert.ToInt32(EditorGUILayout.EnumPopup("Type", (SequenceEnumAlloc.SequenceType)type.enumValueIndex));
+                    EditorGUI.indentLevel++;
 
+                    var newType = Convert.ToInt32(EditorGUILayout.EnumPopup("Type", (SequenceEnumAlloc.SequenceType)type.enumValueIndex));
                     if(type.enumValueIndex != newType)
                     {
                         ModifyTypeAtIndex(i, (SequenceEnumAlloc.SequenceType)newType, target, script, 
@@ -241,6 +242,9 @@ namespace Sequences
                     {
                         script.InsertNewAt(i + 1);
                     }
+
+                    EditorGUI.indentLevel--;
+
                 }
             }
             EditorGUI.indentLevel = 0;

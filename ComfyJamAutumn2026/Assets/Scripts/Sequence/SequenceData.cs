@@ -17,6 +17,7 @@ namespace Sequences
             ScaleToTarget,
             ScaleToVector,
             BroadcastEvent,
+            BroadcastConditionalEvent,
             WaitForSeconds,
             WaitForBooleanOnBlackboard
         }
@@ -33,6 +34,7 @@ namespace Sequences
             {SequenceType.ScaleToVector, typeof(TransformCurveSequenceItem) },
 
             {SequenceType.BroadcastEvent, typeof(EventSequenceItem) },
+            {SequenceType.BroadcastConditionalEvent, typeof(EventSequenceItem) },
 
             {SequenceType.WaitForSeconds, typeof(WaitSequenceItem) },
             {SequenceType.WaitForBooleanOnBlackboard, typeof(WaitSequenceItem) },

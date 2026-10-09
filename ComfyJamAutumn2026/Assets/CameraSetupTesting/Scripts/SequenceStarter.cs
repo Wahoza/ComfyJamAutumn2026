@@ -3,15 +3,16 @@ using UnityEngine;
 
 public class SequenceStarter : MonoBehaviour
 {
+    [SerializeField] SequenceComponent sequenceComp;
     [NaughtyAttributes.Button()]
     void StartSequence()
     {
-        GetComponent<SequenceComponent>().PlaySequence();
+        sequenceComp.PlaySequence();
     }
 
     [NaughtyAttributes.Button()]
     void ReloadSequence()
     {
-        GetComponent<SequenceComponent>().PrepSequence();
+        sequenceComp.PrepSequence();
     }
 }

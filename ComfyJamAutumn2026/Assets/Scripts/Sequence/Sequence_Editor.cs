@@ -18,6 +18,7 @@ namespace Sequences
 
         SerializedProperty serializedWaitSequenceItems;
         SerializedProperty waitSequenceItemIndexes;
+        SerializedProperty targetToSequenceProp;
 
         private void OnEnable()
         {
@@ -31,6 +32,7 @@ namespace Sequences
 
             serializedWaitSequenceItems = serializedObject.FindProperty("serializedWaitSequenceItems");
             waitSequenceItemIndexes = serializedObject.FindProperty("serializedWaitSequenceItemIndexes");
+            targetToSequenceProp = serializedObject.FindProperty("targetToApplySequence");
         }
 
         /// <summary>
@@ -42,14 +44,9 @@ namespace Sequences
 
             var script = (SequenceComponent)target;
 
-            if (!script.targetToAnim)
-            {
-                script.targetToAnim = (Transform)EditorGUILayout.ObjectField("AnimationTarget", script.transform, typeof(Transform), allowSceneObjects: true);
-            }
-            else
-            {
-                script.targetToAnim = (Transform)EditorGUILayout.ObjectField("AnimationTarget", script.targetToAnim, typeof(Transform), allowSceneObjects: true);
-            }
+
+            targetToSequenceProp.objectReferenceValue = (Transform)EditorGUILayout.ObjectField("SequenceTarget", targetToSequenceProp.objectReferenceValue ? targetToSequenceProp.objectReferenceValue : script.transform, typeof(Transform), allowSceneObjects: true);
+
 
             EditorGUILayout.Space();
             EditorGUILayout.Space();
@@ -77,7 +74,7 @@ namespace Sequences
                     SerializedProperty intRef = transformSequenceItemIndexes.GetArrayElementAtIndex(i);
                     int initValue = intRef.intValue;
 
-                    if(script.insertionIndexQueue.Peek() <= intRef.intValue)
+                    if(script.insertionIndexQueue.Peek() <= intRef.intValue + 1)
                         intRef.intValue = (intRef.intValue + 1);
 
                 }
@@ -86,7 +83,7 @@ namespace Sequences
                     SerializedProperty intRef = eventSequenceItemIndexes.GetArrayElementAtIndex(i);
                     int initValue = intRef.intValue;
 
-                    if (script.insertionIndexQueue.Peek() <= intRef.intValue)
+                    if (script.insertionIndexQueue.Peek() <= intRef.intValue + 1)
                         intRef.intValue = (intRef.intValue + 1);
 
                 }
@@ -95,7 +92,7 @@ namespace Sequences
                     SerializedProperty intRef = waitSequenceItemIndexes.GetArrayElementAtIndex(i);
                     int initValue = intRef.intValue;
 
-                    if (script.insertionIndexQueue.Peek() <= intRef.intValue)
+                    if (script.insertionIndexQueue.Peek() <= intRef.intValue + 1)
                         intRef.intValue = (intRef.intValue + 1);
 
                 }
@@ -155,7 +152,7 @@ namespace Sequences
                         }
                         else
                         {
-                            target.objectReferenceValue = script.targetToAnim;
+                            target.objectReferenceValue = script.targetToApplySequence;
                         }
                     }
 

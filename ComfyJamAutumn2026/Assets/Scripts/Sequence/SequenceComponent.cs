@@ -28,7 +28,7 @@ namespace Sequences
 
         private List<List<int>> indexingLists;
 
-        public Transform targetToAnim = null;
+        [SerializeField] public Transform targetToApplySequence = null;
         public Queue<int> insertionIndexQueue = new();
 
         ISequenceItem startingItem;

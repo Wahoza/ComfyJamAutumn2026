@@ -138,7 +138,7 @@ namespace Sequences
                         break;
                 }
 
-                if (!_bQuitAtStart)
+                if (!_bQuitAtStart && !_bRunInParallel)
                 {
                     nextSequence?.Start();
                 }
@@ -175,7 +175,7 @@ namespace Sequences
 
                     if (complete)
                     {
-                        if (!_bQuitAtStart)
+                        if (!_bQuitAtStart && !_bRunInParallel)
                         {
                             nextSequence?.Start();
                         }

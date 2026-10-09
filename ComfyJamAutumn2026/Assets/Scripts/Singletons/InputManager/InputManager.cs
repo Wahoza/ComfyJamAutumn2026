@@ -30,7 +30,6 @@ public class InputManager : MonoBehaviour, IGameStateListener
     [SerializeField] private List<IGameState> _gameStates = new();
     [SerializeField] private List<string> _boundMaps = new();
     [SerializeField] private List<int> _allocatedMapSize = new();
-    [SerializeField] private List<bool> _isFoldedOutList = new();
 
     private void Awake()
     {

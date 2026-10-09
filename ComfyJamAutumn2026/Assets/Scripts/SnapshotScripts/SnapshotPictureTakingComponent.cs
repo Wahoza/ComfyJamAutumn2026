@@ -26,20 +26,9 @@ public class SnapshotPictureTakingComponent : MonoBehaviour
     bool _bIsMouseButtonDown;
 
     //CHANGE THIS TO USE ACTUAL INPUT MAPPING
-    private void Update()
+    private void Start()
     {
-        if (Mouse.current.leftButton.IsPressed())
-        {
-            if (!_bIsMouseButtonDown)
-            {
-                TakeImage();
-                _bIsMouseButtonDown = true;
-            }
-        }
-        else
-        {
-            _bIsMouseButtonDown = false;
-        }
+        InputManager.InputActions.CameraControll.TakePicture.performed += OnTakeImageInput;
     }
 
     /// <summary>
@@ -124,6 +113,10 @@ public class SnapshotPictureTakingComponent : MonoBehaviour
         return output;
     }
 
+    void OnTakeImageInput(InputAction.CallbackContext callbackContext)
+    {
+        TakeImage();
+    }
     public void SetCurrentRenderTexture(RenderTexture currentTexture)
     {
         _currentRT = currentTexture;

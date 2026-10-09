@@ -6,6 +6,7 @@ using UnityEditor.PackageManager.UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using static UnityEditor.PlayerSettings;
 
 
 /// <summary>
@@ -24,9 +25,15 @@ public class SnapshotCameraComponent : MonoBehaviour
     [SerializeField] private float _fTextureResolutionScaling = 1;
     [SerializeField] private float _fCameraZoom = 1.2f;
     [SerializeField] private Vector2 _vCameraWorldOffset;
-    
-    private Vector2 _fPrevMousePosition = new Vector2( float.MaxValue, float.MaxValue );
+
+    [Header("Parameters for Alternative Movement")]
+    [SerializeField] private int _iRefScreenWidth = 1920;
+    [SerializeField] private float _fPadding = 1;
+    [SerializeField] private float _fMoveSpeed = 1;
+
+    private Vector2 _vPrevPointVal = new Vector2( float.MaxValue, float.MaxValue );
     private RenderTexture _rtInstancedRenderTexture;
+
 
     void OnEnable()
     { 
@@ -45,23 +52,11 @@ public class SnapshotCameraComponent : MonoBehaviour
         //Get Values
         Rect cameraVisualRect = UICameraPanel.rect;
 
-        bool usingHeight = Screen.width < Screen.height;
-
+        float widthInPixels = 0;
+        float heightInPixels = 0;
         float aspectRect = cameraVisualRect.size.x / cameraVisualRect.size.y;
-        float widthInPixels = 0; 
 
-        //Adjust in case width < height (required because of Canvas scaler)
-        switch (usingHeight)
-        {
-            case true:
-                float heightInPixels = cameraVisualRect.height / (UICameraCanvasScaler.referenceResolution.y / Screen.height);
-                widthInPixels = heightInPixels * aspectRect;
-                break;
-
-            case false:
-                widthInPixels = cameraVisualRect.width / (UICameraCanvasScaler.referenceResolution.x / Screen.width);
-                break;
-        }
+        GetRectBoundingInPX(ref widthInPixels, ref heightInPixels);
 
         //Setup Render Texture
 
@@ -96,11 +91,66 @@ public class SnapshotCameraComponent : MonoBehaviour
 
         Vector2 position = Camera.main.ScreenToWorldPoint(UICameraPanel.position);
 
+        float widthInPixels = 0;
+        float heightInPixels = 0;
+        GetRectBoundingInPX(ref widthInPixels, ref heightInPixels);
+
+        Vector2 size = Camera.main.ScreenToWorldPoint(new Vector2(widthInPixels, heightInPixels)) - Camera.main.ScreenToWorldPoint(Vector2.zero);
+        size = new Vector2(Mathf.Abs(size.x), Mathf.Abs(size.y)) * 1 / _fCameraZoom;
+
+        return new Rect(position - size / 2, size);
+    }
+
+    public void OnMousePositionChange(Vector2 newMousePosition)
+    {
+        if(_vPrevPointVal == newMousePosition)
+            return;
+
+        _vPrevPointVal = newMousePosition;
+
+        UICameraPanel.position = newMousePosition;
+
+        var pos = Camera.main.ScreenToWorldPoint(newMousePosition);
+        renderCamera.transform.position = pos + (Vector3)_vCameraWorldOffset;
+    }
+    public void OnCameraMoveInput(Vector2 moveInput)
+    {
+        if(moveInput == Vector2.zero)
+            return;
+
+
+        float comparisonScale = Screen.width / _iRefScreenWidth;
+        Vector3 newPos = UICameraPanel.position + (Vector3)moveInput * Time.deltaTime * (comparisonScale * _fMoveSpeed);
+
+        float widthInPixels = 0;
+        float heightInPixels = 0;
+        GetRectBoundingInPX(ref widthInPixels,ref heightInPixels);
+
+        newPos = new Vector3(Mathf.Clamp(newPos.x, 0 + widthInPixels / 2 + _fPadding * comparisonScale, Screen.width - widthInPixels / 2 - _fPadding * comparisonScale), 
+            Mathf.Clamp(newPos.y, 0 + heightInPixels/2 + _fPadding * comparisonScale, Screen.height - heightInPixels / 2 - _fPadding * comparisonScale));
+
+        UICameraPanel.position = newPos;
+
+
+        var pos = Camera.main.ScreenToWorldPoint(UICameraPanel.position);
+        renderCamera.transform.position = pos + (Vector3)_vCameraWorldOffset;
+    }
+    private void Update()
+    {
+        var moveInput = InputManager.InputActions.CameraControll.Move.ReadValue<Vector2>();
+        var pointDir = InputManager.InputActions.CameraControll.Point.ReadValue<Vector2>();
+
+        OnCameraMoveInput(moveInput);
+        OnMousePositionChange(pointDir);
+    }
+
+    void GetRectBoundingInPX(ref float widthInPixels, ref float heightInPixels)
+    {
+        Rect cameraVisualRect = UICameraPanel.rect;
+
         bool usingHeight = Screen.width < Screen.height;
 
         float aspectRect = cameraVisualRect.size.x / cameraVisualRect.size.y;
-        float widthInPixels = 0;
-        float heightInPixels = 0;
 
         //Adjust in case width < height
         switch (usingHeight)
@@ -116,27 +166,5 @@ public class SnapshotCameraComponent : MonoBehaviour
                 break;
         }
 
-        Vector2 size = Camera.main.ScreenToWorldPoint(new Vector2(widthInPixels, heightInPixels)) - Camera.main.ScreenToWorldPoint(Vector2.zero);
-        size = new Vector2(Mathf.Abs(size.x), Mathf.Abs(size.y)) * 1 / _fCameraZoom;
-
-        return new Rect(position - size / 2, size);
-    }
-
-    public void OnMousePositionChange(Vector2 newMousePosition)
-    {
-        if(_fPrevMousePosition == newMousePosition)
-            return;
-
-        _fPrevMousePosition = newMousePosition;
-
-        UICameraPanel.position = newMousePosition;
-
-        var pos = Camera.main.ScreenToWorldPoint(newMousePosition);
-        renderCamera.transform.position = pos + (Vector3)_vCameraWorldOffset;
-    }
-
-    private void Update()
-    {
-        OnMousePositionChange(Mouse.current.position.value);
     }
 }

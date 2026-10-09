@@ -13,15 +13,15 @@ public class Editor_InputManager : Editor
     SerializedProperty gamestateListProp;
     SerializedProperty gamestateInputActionsProp;
     SerializedProperty mappedActionsSizeProp;
-    SerializedProperty isFoldedOutProp;
 
-
+    List<bool> isFoldedOut = new List<bool>();
     private void OnEnable()
     {
         gamestateListProp = serializedObject.FindProperty("_gameStates");
         gamestateInputActionsProp = serializedObject.FindProperty("_boundMaps");
         mappedActionsSizeProp = serializedObject.FindProperty("_allocatedMapSize");
-        isFoldedOutProp = serializedObject.FindProperty("_isFoldedOutList");
+
+        isFoldedOut = new List<bool>(gamestateListProp.arraySize);
     }
 
     public override void OnInspectorGUI()
@@ -47,7 +47,6 @@ public class Editor_InputManager : Editor
 
         for (int i = 0; i < gamestateListProp.arraySize; i++) 
         {
-            SerializedProperty foldout = isFoldedOutProp.GetArrayElementAtIndex(i);
             SerializedProperty gamestateProp = gamestateListProp.GetArrayElementAtIndex(i);
 
             string name = ((IGameState)gamestateProp.objectReferenceValue)?.name;
@@ -61,9 +60,13 @@ public class Editor_InputManager : Editor
             if (name == null)
                 name = "None";
 
-            foldout.boolValue = EditorGUILayout.Foldout(foldout.boolValue, $"{i} - Gamestate: {name}");
+            while (isFoldedOut.Count <= i)
+            {
+                isFoldedOut.Add(false);
+            }
+            isFoldedOut[i] = EditorGUILayout.Foldout(isFoldedOut[i], $"{i} - Gamestate: {name}");
 
-            if(!foldout.boolValue )
+            if(!isFoldedOut[i] )
                 continue;
 
             SerializedProperty mappedSizeProp = mappedActionsSizeProp.GetArrayElementAtIndex(i);
@@ -141,7 +144,7 @@ public class Editor_InputManager : Editor
         gamestateListProp.GetArrayElementAtIndex(index).objectReferenceValue = null;
         gamestateListProp.serializedObject.ApplyModifiedProperties();
 
-        isFoldedOutProp.InsertArrayElementAtIndex(index);
+        isFoldedOut.Insert(index, true);
         mappedActionsSizeProp.InsertArrayElementAtIndex(index);
         mappedActionsSizeProp.GetArrayElementAtIndex(index).intValue = 0;
         mappedActionsSizeProp.serializedObject.ApplyModifiedProperties();
@@ -163,7 +166,7 @@ public class Editor_InputManager : Editor
 
         mappedActionsSizeProp.DeleteArrayElementAtIndex(index);
         gamestateListProp.DeleteArrayElementAtIndex(index);
-        isFoldedOutProp.DeleteArrayElementAtIndex(index);
+        isFoldedOut.RemoveAt(index);
     }
 
     public void Clear()
@@ -171,6 +174,6 @@ public class Editor_InputManager : Editor
         gamestateListProp.ClearArray();
         gamestateInputActionsProp.ClearArray();
         mappedActionsSizeProp.ClearArray();
-        isFoldedOutProp.ClearArray();
+        isFoldedOut.Clear();
     }
 }

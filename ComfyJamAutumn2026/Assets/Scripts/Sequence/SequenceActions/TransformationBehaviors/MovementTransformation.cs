@@ -45,18 +45,24 @@ namespace Sequences
         {
             if (_bSpeedBased)
             {
-                Vector3 directionToTarget = (_bLocalOperation ? owner.InverseTransformDirection(_vModVector) : _vModVector) + _vInitPosition - owner.transform.position;
+                Vector3 directionToTarget = _vModVector + _vInitPosition - (_bLocalOperation ? owner.transform.localPosition : owner.transform.position);
 
                 Vector3 normToTarget = Vector3.Normalize(directionToTarget);
 
-                owner.transform.position += normToTarget * _fSpeed * deltaTime;
+                if(_bLocalOperation)
+                    owner.transform.localPosition += normToTarget * _fSpeed * deltaTime;
+                else
+                    owner.transform.position += normToTarget * _fSpeed * deltaTime;
 
-                Vector3 newDirectionToTarget = (_bLocalOperation ? owner.InverseTransformDirection(_vModVector) : _vModVector) + _vInitPosition - owner.transform.position;
+                Vector3 newDirectionToTarget = _vModVector + _vInitPosition - (_bLocalOperation ? owner.transform.localPosition : owner.transform.position);
 
                 if (Vector3.SqrMagnitude(directionToTarget) < Vector3.SqrMagnitude(newDirectionToTarget) || Vector3.SqrMagnitude(directionToTarget) < 0.001f)
                 {
-                    owner.transform.position = _vInitPosition + (_bLocalOperation ? owner.InverseTransformDirection(_vModVector) : _vModVector);
-                    return true;
+                    if (_bLocalOperation)
+                        owner.transform.localPosition = _vInitPosition + _vModVector;
+                    else
+                        owner.transform.position = _vInitPosition + _vModVector;
+                        return true;
                 }
 
                 return false;
@@ -66,11 +72,12 @@ namespace Sequences
                 var pointInCurve = (elapsed / _fDuration);
                 float valueInCurve = _effectCurve.Evaluate(pointInCurve);
 
-                Vector3 path = (_bLocalOperation ? owner.InverseTransformDirection(_vModVector) : _vModVector);
+                Vector3 completed = valueInCurve * _vModVector;
 
-                Vector3 completed = valueInCurve * path;
-
-                owner.transform.position = _vInitPosition + completed;
+                if(_bLocalOperation)
+                    owner.transform.localPosition = _vInitPosition + completed;
+                else
+                    owner.transform.position = _vInitPosition + completed;
 
                 return true;
             }
@@ -84,7 +91,10 @@ namespace Sequences
 
         void OnQuitCompleteMoveToVector()
         {
-            owner.transform.position = _vInitPosition + _effectCurve.Evaluate(1)*(_bLocalOperation ? owner.InverseTransformDirection(_vModVector) : _vModVector);
+            if(_bLocalOperation)
+                owner.transform.localPosition = _vInitPosition + _effectCurve.Evaluate(1) * _vModVector;
+            else
+                owner.transform.position = _vInitPosition + _effectCurve.Evaluate(1) * _vModVector;
         }
     }
 }

@@ -17,7 +17,8 @@ namespace Sequences
         public ISequenceItem _nextSequence;
 
         public List<string> conditionStrings = new List<string>();
-        public List<UnityEvent> eventForCondition = new List<UnityEvent>();
+        public List<UnityEvent> eventForConditionSucceed = new List<UnityEvent>();
+        public List<UnityEvent> eventForConditionFail = new List<UnityEvent>();
         public List<bool> isFoldedOut = new List<bool>();
 
         public SequenceEnumAlloc.SequenceType type;
@@ -71,7 +72,11 @@ namespace Sequences
             {
                 if (blackboard.ReadFromDictionary<bool>(conditionStrings[i]))
                 {
-                    eventForCondition[i].Invoke();
+                    eventForConditionSucceed[i].Invoke();
+                }
+                else
+                {
+                    eventForConditionFail[i].Invoke();
                 }
             }
         }
@@ -86,7 +91,8 @@ namespace Sequences
             SerializedProperty unityEventProp = serializedObject.FindPropertyRelative("invokedEvent");
 
             SerializedProperty conditionStringsProp = serializedObject.FindPropertyRelative("conditionStrings");
-            SerializedProperty eventForConditionProp = serializedObject.FindPropertyRelative("eventForCondition");
+            SerializedProperty eventForConditionSucceedProp = serializedObject.FindPropertyRelative("eventForConditionSucceed");
+            SerializedProperty eventForConditionFailProp = serializedObject.FindPropertyRelative("eventForConditionFail");
             SerializedProperty foldedOutProp = serializedObject.FindPropertyRelative("isFoldedOut");
 
             SerializedProperty typeProp = serializedObject.FindPropertyRelative("type");
@@ -108,7 +114,8 @@ namespace Sequences
                     foldedOutProp.serializedObject.ApplyModifiedProperties();
                     foldedOutProp.GetArrayElementAtIndex(0).boolValue = true;
 
-                    eventForConditionProp.InsertArrayElementAtIndex(0);
+                    eventForConditionSucceedProp.InsertArrayElementAtIndex(0);
+                    eventForConditionFailProp.InsertArrayElementAtIndex(0);
                 }
 
                 EditorGUI.indentLevel++;
@@ -117,14 +124,16 @@ namespace Sequences
                 {
                     SerializedProperty foldProp = foldedOutProp.GetArrayElementAtIndex(i);
                     SerializedProperty stringProp = conditionStringsProp.GetArrayElementAtIndex(i);
-                    SerializedProperty eventProp = eventForConditionProp.GetArrayElementAtIndex(i);
+                    SerializedProperty eventSucProp = eventForConditionSucceedProp.GetArrayElementAtIndex(i);
+                    SerializedProperty eventFailProp = eventForConditionFailProp.GetArrayElementAtIndex(i);
 
                     foldProp.boolValue = EditorGUILayout.Foldout(foldProp.boolValue, $"{stringProp.stringValue} Event");
 
                     if (foldProp.boolValue)
                     {
                         stringProp.stringValue = EditorGUILayout.TextField("Condition", stringProp.stringValue);
-                        EditorGUILayout.PropertyField(eventProp, new GUIContent($"Brodcast Event if {stringProp.stringValue}"));
+                        EditorGUILayout.PropertyField(eventSucProp, new GUIContent($"Brodcast Event if {stringProp.stringValue} is True"));
+                        EditorGUILayout.PropertyField(eventFailProp, new GUIContent($"Brodcast Event if {stringProp.stringValue} is False"));
 
 
                         if (GUILayout.Button("Insert New Event"))
@@ -137,12 +146,14 @@ namespace Sequences
                             foldedOutProp.serializedObject.ApplyModifiedProperties();
                             foldedOutProp.GetArrayElementAtIndex(0).boolValue = true;
 
-                            eventForConditionProp.InsertArrayElementAtIndex(0);
+                            eventForConditionSucceedProp.InsertArrayElementAtIndex(0);
+                            eventForConditionFailProp.InsertArrayElementAtIndex(0);
                         }
                         if (GUILayout.Button("Delete Event"))
                         {
                             conditionStringsProp.DeleteArrayElementAtIndex(i);
-                            eventForConditionProp.DeleteArrayElementAtIndex(i);
+                            eventForConditionSucceedProp.DeleteArrayElementAtIndex(i);
+                            eventForConditionFailProp.DeleteArrayElementAtIndex(i);
                             foldedOutProp.DeleteArrayElementAtIndex(i);
                         }
                     }
@@ -156,7 +167,8 @@ namespace Sequences
                 if (GUILayout.Button("Clear Events"))
                 {
                     conditionStringsProp.ClearArray();
-                    eventForConditionProp.ClearArray();
+                    eventForConditionSucceedProp.ClearArray();
+                    eventForConditionFailProp.ClearArray();
                     foldedOutProp.ClearArray();
                 }
                 EditorGUILayout.Space();

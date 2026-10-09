@@ -16,13 +16,13 @@ public class SnapshotPictureTakingComponent : MonoBehaviour
 {
     RenderTexture _currentRT;
 
-    [SerializeField] int _iStoredImageWidth = 300;
     [SerializeField] Camera _snapshotCam;
+    [SerializeField] ShowTakenSnapshotComponent _showTakenSnapshot;
 
+    [Header("Picture Settings")]
+    [SerializeField] int _iStoredImageWidth = 300;
+    [SerializeField] FilterMode _imageFilterMode = FilterMode.Point;
 
-    [Header("Debug")]
-    [SerializeField] RawImage debugOutput;
-    [SerializeField] Transform debugWorldVisual;
     bool _bIsMouseButtonDown;
 
     //CHANGE THIS TO USE ACTUAL INPUT MAPPING
@@ -48,7 +48,7 @@ public class SnapshotPictureTakingComponent : MonoBehaviour
 
         pictureTexture.width = targetWidth;
         pictureTexture.height = targetHeight;
-
+        pictureTexture.filterMode = _imageFilterMode;
         _snapshotCam.targetTexture = pictureTexture;
         _snapshotCam.Render();
         _snapshotCam.targetTexture = _currentRT;
@@ -85,40 +85,16 @@ public class SnapshotPictureTakingComponent : MonoBehaviour
         output.picture = pictureTexture;
         output.capturedItems = foundObjects;
 
-#if UNITY_EDITOR
-        if (debugOutput)
-        {
-            debugOutput.texture = pictureTexture;
-            debugOutput.SetNativeSize();
-        }
-        if (debugWorldVisual)
-        {
-            debugWorldVisual.position = worldCameraRect.position;
-            debugWorldVisual.localScale = worldCameraRect.size;
-        }
-
-        string snapshotString = "Created Snapshot! Contains: \n";
-        foreach(SnapshotCapturedItemData data in output.capturedItems)
-        {
-            snapshotString += $"   -{data.name}:\n";
-
-            foreach(string description in data.descriptors)
-            {
-                snapshotString += $"       -{description}\n";
-            }
-        }
-
-#endif
-
         return output;
     }
 
     void OnTakeImageInput(InputAction.CallbackContext callbackContext)
     {
-        TakeImage();
+        _showTakenSnapshot.StartShowingImage(TakeImage());
     }
     public void SetCurrentRenderTexture(RenderTexture currentTexture)
     {
         _currentRT = currentTexture;
     }
+
 }

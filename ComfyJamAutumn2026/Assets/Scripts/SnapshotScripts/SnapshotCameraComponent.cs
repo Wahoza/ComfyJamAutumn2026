@@ -103,6 +103,9 @@ public class SnapshotCameraComponent : MonoBehaviour
 
     public void OnMousePositionChange(Vector2 newMousePosition)
     {
+        if(newMousePosition == Vector2.zero)
+            return;
+
         if(_vPrevPointVal == newMousePosition)
             return;
 

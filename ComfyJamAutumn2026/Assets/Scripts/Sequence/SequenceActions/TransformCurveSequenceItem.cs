@@ -76,8 +76,8 @@ namespace Sequences
         {
             float elapsed = 0;
 
-            _vInitPosition = owner.position;
-            _vInitRotation = owner.eulerAngles;
+            _vInitPosition = _bLocalOperation ? owner.localPosition : owner.position;
+            _vInitRotation = _bLocalOperation ? owner.localEulerAngles : owner.eulerAngles;
             _vInitScale = owner.localScale;
 
             yield return null;

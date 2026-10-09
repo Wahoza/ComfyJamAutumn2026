@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEditor;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
@@ -74,7 +75,7 @@ namespace Sequences
                     SerializedProperty intRef = transformSequenceItemIndexes.GetArrayElementAtIndex(i);
                     int initValue = intRef.intValue;
 
-                    if(script.insertionIndexQueue.Peek() <= intRef.intValue + 1)
+                    if(initValue >= script.insertionIndexQueue.Peek())
                         intRef.intValue = (intRef.intValue + 1);
 
                 }
@@ -83,7 +84,7 @@ namespace Sequences
                     SerializedProperty intRef = eventSequenceItemIndexes.GetArrayElementAtIndex(i);
                     int initValue = intRef.intValue;
 
-                    if (script.insertionIndexQueue.Peek() <= intRef.intValue + 1)
+                    if (initValue >= script.insertionIndexQueue.Peek())
                         intRef.intValue = (intRef.intValue + 1);
 
                 }
@@ -92,7 +93,7 @@ namespace Sequences
                     SerializedProperty intRef = waitSequenceItemIndexes.GetArrayElementAtIndex(i);
                     int initValue = intRef.intValue;
 
-                    if (script.insertionIndexQueue.Peek() <= intRef.intValue + 1)
+                    if (initValue >= script.insertionIndexQueue.Peek())
                         intRef.intValue = (intRef.intValue + 1);
 
                 }
@@ -208,32 +209,53 @@ namespace Sequences
 
                         for (int seqIterator = 0; seqIterator < transformSequenceItemIndexes.arraySize; seqIterator++)
                         {
-                            if (transformSequenceItemIndexes.GetArrayElementAtIndex(seqIterator).intValue == i)
+                            SerializedProperty intRef = transformSequenceItemIndexes.GetArrayElementAtIndex(seqIterator);
+
+                            if (intRef.intValue == i)
                             {
                                 transformSequenceItemIndexes.DeleteArrayElementAtIndex(seqIterator);
                                 serializedTransformSequenceItems.DeleteArrayElementAtIndex(seqIterator);
-                                break;
+                                continue;
                             }
+
+                            int initValue = intRef.intValue;
+
+                            if (initValue >= i)
+                                intRef.intValue = (intRef.intValue - 1);
                         }
 
                         for (int seqIterator = 0; seqIterator < eventSequenceItemIndexes.arraySize; seqIterator++)
                         {
-                            if (eventSequenceItemIndexes.GetArrayElementAtIndex(seqIterator).intValue == i)
+                            SerializedProperty intRef = eventSequenceItemIndexes.GetArrayElementAtIndex(seqIterator);
+
+                            if (intRef.intValue == i)
                             {
                                 eventSequenceItemIndexes.DeleteArrayElementAtIndex(seqIterator);
                                 serializedEventSequenceItems.DeleteArrayElementAtIndex(seqIterator);
-                                break;
+                                continue;
                             }
+
+                            int initValue = intRef.intValue;
+
+                            if (initValue >= i)
+                                intRef.intValue = (intRef.intValue - 1);
                         }
 
                         for (int seqIterator = 0; seqIterator < waitSequenceItemIndexes.arraySize; seqIterator++)
                         {
-                            if (waitSequenceItemIndexes.GetArrayElementAtIndex(seqIterator).intValue == i)
+                            SerializedProperty intRef = waitSequenceItemIndexes.GetArrayElementAtIndex(seqIterator);
+
+                            if (intRef.intValue == i)
                             {
                                 waitSequenceItemIndexes.DeleteArrayElementAtIndex(seqIterator);
                                 serializedWaitSequenceItems.DeleteArrayElementAtIndex(seqIterator);
-                                break;
+                                continue;
                             }
+
+                            int initValue = intRef.intValue;
+
+                            if (initValue >= i)
+                                intRef.intValue = (intRef.intValue - 1);
                         }
                     }
 

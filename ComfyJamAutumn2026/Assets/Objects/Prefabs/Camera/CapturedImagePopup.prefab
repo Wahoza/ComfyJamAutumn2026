@@ -1486,16 +1486,16 @@ MonoBehaviour:
     target: {fileID: 571906985631281376}
     type: 7
   - isFoldedOut: 1
-    overrideTarget: 0
-    target: {fileID: 4102486865831205320}
+    overrideTarget: 1
+    target: {fileID: 2942100624319810841}
     type: 1
-  - isFoldedOut: 0
-    overrideTarget: 0
-    target: {fileID: 4102486865831205320}
+  - isFoldedOut: 1
+    overrideTarget: 1
+    target: {fileID: 571906985631281376}
     type: 3
-  - isFoldedOut: 0
-    overrideTarget: 0
-    target: {fileID: 4102486865831205320}
+  - isFoldedOut: 1
+    overrideTarget: 1
+    target: {fileID: 571906985631281376}
     type: 5
   - isFoldedOut: 0
     overrideTarget: 0
@@ -1505,7 +1505,15 @@ MonoBehaviour:
     overrideTarget: 0
     target: {fileID: 571906985631281376}
     type: 7
-  - isFoldedOut: 0
+  - isFoldedOut: 1
+    overrideTarget: 1
+    target: {fileID: 571906985631281376}
+    type: 1
+  - isFoldedOut: 1
+    overrideTarget: 0
+    target: {fileID: 571906985631281376}
+    type: 9
+  - isFoldedOut: 1
     overrideTarget: 0
     target: {fileID: 4102486865831205320}
     type: 1
@@ -1513,21 +1521,13 @@ MonoBehaviour:
     overrideTarget: 0
     target: {fileID: 571906985631281376}
     type: 9
-  - isFoldedOut: 0
+  - isFoldedOut: 1
     overrideTarget: 1
-    target: {fileID: 7339977629158633783}
-    type: 1
-  - isFoldedOut: 0
-    overrideTarget: 0
     target: {fileID: 571906985631281376}
-    type: 9
-  - isFoldedOut: 0
-    overrideTarget: 0
-    target: {fileID: 4102486865831205320}
     type: 1
-  - isFoldedOut: 0
-    overrideTarget: 0
-    target: {fileID: 4102486865831205320}
+  - isFoldedOut: 1
+    overrideTarget: 1
+    target: {fileID: 571906985631281376}
     type: 5
   - isFoldedOut: 1
     overrideTarget: 0
@@ -1564,7 +1564,7 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     _bRunInParallel: 0
-    owner: {fileID: 4102486865831205320}
+    owner: {fileID: 2942100624319810841}
     ownerSequenceComp: {fileID: 0}
     _vModVector: {x: 0, y: 0, z: 0}
     _ModTransform: {fileID: 2942100624319810841}
@@ -1598,7 +1598,7 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     _bRunInParallel: 0
-    owner: {fileID: 4102486865831205320}
+    owner: {fileID: 571906985631281376}
     ownerSequenceComp: {fileID: 0}
     _vModVector: {x: 0, y: 0, z: 0}
     _ModTransform: {fileID: 2942100624319810841}
@@ -1641,7 +1641,7 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     _bRunInParallel: 0
-    owner: {fileID: 4102486865831205320}
+    owner: {fileID: 571906985631281376}
     ownerSequenceComp: {fileID: 0}
     _vModVector: {x: 0, y: 0, z: 0}
     _ModTransform: {fileID: 629466383195756629}
@@ -1684,7 +1684,7 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     _bRunInParallel: 1
-    owner: {fileID: 7339977629158633783}
+    owner: {fileID: 4102486865831205320}
     ownerSequenceComp: {fileID: 0}
     _vModVector: {x: 0, y: 0, z: 0}
     _ModTransform: {fileID: 2015496825279086901}
@@ -1718,7 +1718,7 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     _bRunInParallel: 0
-    owner: {fileID: 4102486865831205320}
+    owner: {fileID: 571906985631281376}
     ownerSequenceComp: {fileID: 0}
     _vModVector: {x: 0, y: 0, z: 0}
     _ModTransform: {fileID: 1744014919984994496}
@@ -1752,7 +1752,7 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     _bRunInParallel: 1
-    owner: {fileID: 4102486865831205320}
+    owner: {fileID: 571906985631281376}
     ownerSequenceComp: {fileID: 0}
     _vModVector: {x: 0, y: 0, z: 0}
     _ModTransform: {fileID: 1744014919984994496}
@@ -1786,7 +1786,7 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     _bRunInParallel: 0
-    owner: {fileID: 4102486865831205320}
+    owner: {fileID: 571906985631281376}
     ownerSequenceComp: {fileID: 0}
     _vModVector: {x: 0, y: 0, z: 0}
     _ModTransform: {fileID: 2942100624319810841}
@@ -1873,7 +1873,7 @@ MonoBehaviour:
     type: 9
     awaitedStrings: []
     minRequiredAwaitedStrings: 0
-    awaitedTime: 0.4
+    awaitedTime: 1
   - owner: {fileID: 0}
     type: 9
     awaitedStrings: []

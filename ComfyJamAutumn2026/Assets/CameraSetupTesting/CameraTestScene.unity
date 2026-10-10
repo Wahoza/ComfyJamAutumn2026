@@ -982,6 +982,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SnapshotCameraHolder
       objectReference: {fileID: 0}
+    - target: {fileID: 7352200121053089618, guid: 62a23414f8a113c488d8dd9c602927e6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

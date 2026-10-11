@@ -2,6 +2,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem.LowLevel;
 
+public enum GameStateType { 
+    Default,
+    Camera,
+    Dialogue,
+    ShowPicture
+}
+
 
 /// <summary>
 /// Singleton that manages the Game State, the switching between different Game States, and the Notification of IGameStateListener objects
@@ -10,11 +17,18 @@ public class GameStateManager : MonoBehaviour
 {
     public static GameStateManager Instance {get; private set;}
     [SerializeField] IGameState initialGameState;
+    [SerializeField] IGameState[] allGameStates;
 
     private Stack<IGameState> _previousStates;
     private IGameState _currentState;
 
     private List<IGameStateListener> _listeners;
+
+    //Dzoi added this
+    public IGameState GetGameStateByType(GameStateType type) {
+        return allGameStates[((int)type)];
+    }
+
 
     #region SignletonHandling
     private void Awake()

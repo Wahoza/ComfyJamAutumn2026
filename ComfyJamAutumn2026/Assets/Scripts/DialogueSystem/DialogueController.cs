@@ -3,7 +3,7 @@ using UnityEngine;
 
 
 //Script that controlls dialogue of a npc
-public class DialogueController : MonoBehaviour
+public class DialogueController : MonoBehaviour, IInteractable
 {
     [SerializeField] DialogueProfileSO profile;
     [SerializeField] DialogueWindow window;
@@ -24,21 +24,8 @@ public class DialogueController : MonoBehaviour
         }
     }
 
-    //debugging purposes
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Escape))
-        {
-            Interract();
-        }
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Blackboard.Instance.UpdateReqDict(0, true);
-        }
-    }
-
     //Player should call this ontriggerenter2d when near an object tagged dialogue or smth and if correct key pressed
-    public void Interract()
+    public void Interact()
     {
         if (currentConversation == null)
         {
@@ -56,6 +43,7 @@ public class DialogueController : MonoBehaviour
     }
     //firstly gets the conversation it should start displaying, then if it is locked it returns to the last conversation had
     void StartConversation() {
+        GameStateManager.Instance.RequestGameStateSwitch(GameStateManager.Instance.GetGameStateByType(GameStateType.Dialogue));
         currentSentenceIndex = 0;
         currentConversation = profile.Conversations[currentConversationIndex];
         if (currentConversation.requirementId!=-1 && Blackboard.Instance.TryGetReqDict(currentConversation.requirementId)==false) {
@@ -69,5 +57,6 @@ public class DialogueController : MonoBehaviour
         Blackboard.Instance.UpdateDialogueDict(profile.Key, currentConversationIndex);
         currentConversation = null;
         window.Close();
+        GameStateManager.Instance.RequestGameStateSwitch(GameStateManager.Instance.GetGameStateByType(GameStateType.Default));
     }
 }

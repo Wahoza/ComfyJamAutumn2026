@@ -39,4 +39,16 @@ public class SequenceBlackboardComponent : MonoBehaviour
 
         return default(T);
     }
+
+
+    //Simple boolean operators to access from editor
+    public void SetBoolTrue(string key)
+    {
+        AddToDictionary(key, true, true);
+    }
+
+    public void SetBoolFalse(string key)
+    {
+        AddToDictionary(key, false, true);
+    }
 }

@@ -136,7 +136,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &19552450
 Transform:
   m_ObjectHideFlags: 0
@@ -421,7 +421,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 55
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -834,7 +834,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1845626791
 SpriteRenderer:
   serializedVersion: 2
@@ -982,9 +982,29 @@ PrefabInstance:
       propertyPath: m_Name
       value: SnapshotCameraHolder
       objectReference: {fileID: 0}
+    - target: {fileID: 5023941916690173304, guid: 62a23414f8a113c488d8dd9c602927e6, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -6496161342142045740, guid: 500ff72182aaae3458727324c7a02f5a, type: 3}
+    - target: {fileID: 5023941916690173304, guid: 62a23414f8a113c488d8dd9c602927e6, type: 3}
+      propertyPath: m_Color.b
+      value: 0.6627451
+      objectReference: {fileID: 0}
+    - target: {fileID: 5023941916690173304, guid: 62a23414f8a113c488d8dd9c602927e6, type: 3}
+      propertyPath: m_Color.g
+      value: 0.9019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 5023941916690173304, guid: 62a23414f8a113c488d8dd9c602927e6, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5023941916690173304, guid: 62a23414f8a113c488d8dd9c602927e6, type: 3}
+      propertyPath: m_PixelsPerUnitMultiplier
+      value: 9.32
+      objectReference: {fileID: 0}
     - target: {fileID: 7352200121053089618, guid: 62a23414f8a113c488d8dd9c602927e6, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

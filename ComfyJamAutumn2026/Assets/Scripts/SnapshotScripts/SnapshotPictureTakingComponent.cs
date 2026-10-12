@@ -1,4 +1,6 @@
+using DG.Tweening;
 using NUnit.Framework;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using Unity.Mathematics.Geometry;
@@ -23,14 +25,37 @@ public class SnapshotPictureTakingComponent : MonoBehaviour
     [SerializeField] int _iStoredImageWidth = 300;
     [SerializeField] FilterMode _imageFilterMode = FilterMode.Point;
 
-    bool _bIsMouseButtonDown;
+    [Header("Visual Changes - MoveCam")]
+    [SerializeField] float _cameraPunchStrength;
+    [SerializeField] float _snapshotCameraPunchStrength;
+    [SerializeField] float _cameraPunchInDuration;
+    [SerializeField] float _cameraPunchOutDuration;
+    [SerializeField] AnimationCurve _cameraPunchInCurve;
+    [SerializeField] AnimationCurve _cameraPunchOutCurve;
 
+    [Header("Visual Changes - MoveCam")]
+
+
+    bool _bIsMouseButtonDown;
+    float _finitOrthoSize;
+    float _finitOrthoSnapSize;
     //CHANGE THIS TO USE ACTUAL INPUT MAPPING
     private void Start()
     {
         InputManager.InputActions.CameraControll.TakePicture.performed += OnTakeImageInput;
     }
+    private void OnEnable()
+    {
+        StartCoroutine(GetCameraDataAfterNextUpade());
+    }
+    private IEnumerator GetCameraDataAfterNextUpade()
+    {
+        yield return new WaitForFixedUpdate();
+        yield return null;
 
+        _finitOrthoSnapSize = _snapshotCam.orthographicSize;
+        _finitOrthoSize = Camera.main.orthographicSize;
+    }
     /// <summary>
     /// Handles Picture Taking, and attempts to find capturable objects within cameras frustum
     /// </summary>
@@ -88,6 +113,52 @@ public class SnapshotPictureTakingComponent : MonoBehaviour
         return output;
     }
 
+    public void DoPunchIn()
+    {
+        StartCoroutine(DoCameraPunch());
+    }
+
+    public void DoPunchOut()
+    {
+        StartCoroutine(DoCameraPunchOut());
+    }
+
+    private IEnumerator DoCameraPunch()
+    {
+        float elapsed = 0;
+
+
+        while(elapsed < _cameraPunchInDuration)
+        {
+            elapsed += Time.deltaTime;
+            float eval = _cameraPunchInCurve.Evaluate(elapsed / _cameraPunchInDuration);
+            Camera.main.orthographicSize = eval * - _cameraPunchStrength + _finitOrthoSize;
+            _snapshotCam.orthographicSize = eval * - _snapshotCameraPunchStrength + _finitOrthoSnapSize; 
+
+            yield return null;
+        }
+
+        Camera.main.orthographicSize = _finitOrthoSize - _cameraPunchStrength;
+        _snapshotCam.orthographicSize = _finitOrthoSnapSize - _snapshotCameraPunchStrength;
+
+
+    }
+
+    private IEnumerator DoCameraPunchOut()
+    {
+        float elapsed = 0;
+        while (elapsed < _cameraPunchOutDuration)
+        {
+            elapsed += Time.deltaTime;
+            float eval = _cameraPunchOutCurve.Evaluate(elapsed / _cameraPunchOutDuration);
+            Camera.main.orthographicSize = _finitOrthoSize - _cameraPunchStrength + _cameraPunchStrength * eval;
+            _snapshotCam.orthographicSize = _finitOrthoSnapSize - _snapshotCameraPunchStrength + _snapshotCameraPunchStrength * eval;
+            yield return null;
+        }
+
+        Camera.main.orthographicSize = _finitOrthoSize;
+        _snapshotCam.orthographicSize = _finitOrthoSnapSize;
+    }
     void OnTakeImageInput(InputAction.CallbackContext callbackContext)
     {
         _showTakenSnapshot.StartShowingImage(TakeImage());

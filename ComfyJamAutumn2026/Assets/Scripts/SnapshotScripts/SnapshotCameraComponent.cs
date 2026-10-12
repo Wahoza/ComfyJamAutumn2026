@@ -73,7 +73,7 @@ public class SnapshotCameraComponent : MonoBehaviour
 
         renderCamera.targetTexture = _rtInstancedRenderTexture;
         UICameraTextureHolder.texture = _rtInstancedRenderTexture;
-
+        UICameraTextureHolder.color = Color.white;
 
         //Rescale Camera Orthographic Size
 

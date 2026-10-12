@@ -164,6 +164,7 @@ RectTransform:
   - {fileID: 8018797418743193948}
   - {fileID: 2015496825279086901}
   - {fileID: 1976395286314425060}
+  - {fileID: 6624959379457088848}
   m_Father: {fileID: 2771171565306298209}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -515,11 +516,11 @@ MonoBehaviour:
     overrideTarget: 0
     target: {fileID: 571906985631281376}
     type: 9
-  - isFoldedOut: 1
+  - isFoldedOut: 0
     overrideTarget: 1
     target: {fileID: 1118518897117083240}
     type: 5
-  - isFoldedOut: 0
+  - isFoldedOut: 1
     overrideTarget: 0
     target: {fileID: 571906985631281376}
     type: 7
@@ -912,6 +913,42 @@ MonoBehaviour:
         - m_Target: {fileID: 1784754789729720497}
           m_TargetAssemblyTypeName: GamestateManagerProxy, Assembly-CSharp
           m_MethodName: RequestGameStateSwitchPrevious
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: SequenceBlackboardComponent, Assembly-CSharp
+          m_MethodName: SetBoolTrue
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: FinishedSequence
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: SnapshotPictureTakingComponent, Assembly-CSharp
+          m_MethodName: DoPunchOut
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: SnapshotOccluderComponent, Assembly-CSharp
+          m_MethodName: DeOcclude
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1481,11 +1518,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Sequences.SequenceComponent
   serializedDataForEditor:
-  - isFoldedOut: 0
+  - isFoldedOut: 1
     overrideTarget: 0
     target: {fileID: 571906985631281376}
     type: 7
-  - isFoldedOut: 1
+  - isFoldedOut: 0
     overrideTarget: 1
     target: {fileID: 2942100624319810841}
     type: 1
@@ -1861,6 +1898,42 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: SequenceBlackboardComponent, Assembly-CSharp
+          m_MethodName: SetBoolTrue
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: FinishedSequence
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: SnapshotPictureTakingComponent, Assembly-CSharp
+          m_MethodName: DoPunchOut
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: SnapshotOccluderComponent, Assembly-CSharp
+          m_MethodName: DeOcclude
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
     _ownerSeqComp: {fileID: 0}
     conditionStrings: []
     eventForConditionSucceed: []
@@ -1947,14 +2020,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9622642, g: 0.93556935, b: 0.83971167, a: 1}
+  m_Color: {r: 1, g: 0.9019608, b: 0.6627451, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: -6496161342142045740, guid: 500ff72182aaae3458727324c7a02f5a, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1963,7 +2036,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 9.32
 --- !u!1 &6667703267824567842
 GameObject:
   m_ObjectHideFlags: 0
@@ -2290,6 +2363,42 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: Sequences.SequenceComponent, Assembly-CSharp
+          m_MethodName: PlaySequence
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: SnapshotPictureTakingComponent, Assembly-CSharp
+          m_MethodName: DoPunchIn
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: SnapshotOccluderComponent, Assembly-CSharp
+          m_MethodName: Occlude
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
     _ownerSeqComp: {fileID: 0}
     conditionStrings: []
     eventForConditionSucceed: []
@@ -2376,6 +2485,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c34b9bc7a9549148a9a258f21319f4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GamestateManagerProxy
+--- !u!1 &7753039384624024684
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6624959379457088848}
+  m_Layer: 0
+  m_Name: Center
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6624959379457088848
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7753039384624024684}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -71.6284, y: 2.50562, z: 0}
+  m_LocalScale: {x: 0.2083333, y: 0.2083333, z: 0.2083333}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4397136249350249653}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8188945927515871998
 GameObject:
   m_ObjectHideFlags: 0

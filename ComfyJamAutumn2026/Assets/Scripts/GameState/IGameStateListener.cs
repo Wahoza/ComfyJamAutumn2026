@@ -15,6 +15,8 @@ public interface IGameStateListener
             return;
         }
         GameStateManager.Instance.Subscribe(this);
+        NotifyStateChange(GameStateManager.Instance.GetGameState(), null);
+
     }
 
 

@@ -86,7 +86,7 @@ namespace Sequences
         void OnQuitCompleteMoveToTransform() 
         {
             if(_ModTransform)
-                owner.transform.position = _ModTransform.position;
+                owner.transform.position = _vInitPosition + _effectCurve.Evaluate(1) * (_ModTransform.position - _vInitPosition);
         }
 
         void OnQuitCompleteMoveToVector()

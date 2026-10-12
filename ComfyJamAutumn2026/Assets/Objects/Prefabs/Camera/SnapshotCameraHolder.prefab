@@ -630,6 +630,10 @@ PrefabInstance:
       propertyPath: serializedEventSequenceItems.Array.data[2].invokedEvent.m_PersistentCalls.m_Calls.Array.data[4].m_Target
       value: 
       objectReference: {fileID: 1801962255784432540}
+    - target: {fileID: 6169285682793351989, guid: dd3f6cf55e77b2440aefb779a41e80fa, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6273927563384670734, guid: dd3f6cf55e77b2440aefb779a41e80fa, type: 3}
       propertyPath: serializedEventSequenceItems.Array.data[2].invokedEvent.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 

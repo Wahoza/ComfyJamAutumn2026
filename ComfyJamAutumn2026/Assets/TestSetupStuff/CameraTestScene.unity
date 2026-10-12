@@ -339,7 +339,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b90897757007da24287b42e544bb1eb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameStateManager
-  initialGameState: {fileID: 11400000, guid: 305ea43a731c7a442a1a5fb6eb16c33f, type: 2}
+  initialGameState: {fileID: 11400000, guid: b9cab1b7fce872a4eb53a45cfa5fb2cf, type: 2}
+  allGameStates: []
 --- !u!4 &774799857
 Transform:
   m_ObjectHideFlags: 0
@@ -982,30 +983,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: SnapshotCameraHolder
       objectReference: {fileID: 0}
-    - target: {fileID: 5023941916690173304, guid: 62a23414f8a113c488d8dd9c602927e6, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -6496161342142045740, guid: 500ff72182aaae3458727324c7a02f5a, type: 3}
-    - target: {fileID: 5023941916690173304, guid: 62a23414f8a113c488d8dd9c602927e6, type: 3}
-      propertyPath: m_Color.b
-      value: 0.6627451
-      objectReference: {fileID: 0}
-    - target: {fileID: 5023941916690173304, guid: 62a23414f8a113c488d8dd9c602927e6, type: 3}
-      propertyPath: m_Color.g
-      value: 0.9019608
-      objectReference: {fileID: 0}
-    - target: {fileID: 5023941916690173304, guid: 62a23414f8a113c488d8dd9c602927e6, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5023941916690173304, guid: 62a23414f8a113c488d8dd9c602927e6, type: 3}
-      propertyPath: m_PixelsPerUnitMultiplier
-      value: 9.32
-      objectReference: {fileID: 0}
-    - target: {fileID: 7352200121053089618, guid: 62a23414f8a113c488d8dd9c602927e6, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1026,6 +1003,10 @@ PrefabInstance:
     - target: {fileID: 590109692171942545, guid: 8e365ad4714bfec429e9b88cc780f70a, type: 3}
       propertyPath: '_boundMaps.Array.data[0]'
       value: CameraControll
+      objectReference: {fileID: 0}
+    - target: {fileID: 590109692171942545, guid: 8e365ad4714bfec429e9b88cc780f70a, type: 3}
+      propertyPath: '_boundMaps.Array.data[1]'
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 701111102852081282, guid: 8e365ad4714bfec429e9b88cc780f70a, type: 3}
       propertyPath: m_Name

@@ -5309,8 +5309,8 @@
     "m_ObjectId": "99e855bcee914a9bab623f731d15e0b7",
     "m_Title": "EmptyColorHeightDefinition",
     "m_Position": {
-        "x": 349.9998779296875,
-        "y": 148.0
+        "x": 350.0001525878906,
+        "y": 148.00006103515626
     }
 }
 
@@ -6929,7 +6929,7 @@
     "m_ObjectId": "d20876d2b8124a43a34c1681e4758bd9",
     "m_Title": "SquiggleColorHeightDetermination",
     "m_Position": {
-        "x": 513.9998779296875,
+        "x": 514.0001831054688,
         "y": -755.0
     }
 }

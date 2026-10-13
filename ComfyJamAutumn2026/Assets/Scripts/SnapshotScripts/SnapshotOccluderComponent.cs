@@ -6,7 +6,6 @@ public class SnapshotOccluderComponent : MonoBehaviour
 {
     [SerializeField] Image _occlusionHolder;
     [SerializeField] Material _occlusionMat;
-    [SerializeField] CanvasScaler _occlisionCanvas;
     [SerializeField] float _fOcclisionDuration;
     [SerializeField] float _fOcclisionOutDuration;
     [SerializeField] AnimationCurve _occlusionCurve;
@@ -21,14 +20,14 @@ public class SnapshotOccluderComponent : MonoBehaviour
     {
         get
         {
-            return -_occlisionCanvas.referenceResolution.y / 2 - 1;
+            return 0;
         }
     }
     float _filled
     {
         get
         {
-            return _occlisionCanvas.referenceResolution.y / 2 + 1;
+            return 1;
         }
     }
 

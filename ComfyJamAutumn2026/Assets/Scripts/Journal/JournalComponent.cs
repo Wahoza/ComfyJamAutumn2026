@@ -107,6 +107,7 @@ public class JournalComponent : MonoBehaviour
                 instancedRect.anchorMax = pageHolder.anchorMax;
 
                 instancedGO.GetComponent<PageComponent>().SetPageIndicator($"{iterator + 1} - {chaptername}");
+                instancedGO.GetComponent<PageComponent>().Initalize();
 
                 instancedGO.SetActive(false);
 

@@ -90,7 +90,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SnapshotOccluderComponent
   _occlusionHolder: {fileID: 4180591471157675615}
   _occlusionMat: {fileID: 2100000, guid: e9827cf4bd31fc7429e8020bacf56a2f, type: 2}
-  _occlisionCanvas: {fileID: 8928269379821480919}
   _fOcclisionDuration: 1
   _fOcclisionOutDuration: 0.4
   _occlusionCurve:
@@ -979,14 +978,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a6d6931b60c463429c471b1631e48a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShowTakenSnapshotComponent
---- !u!114 &8928269379821480919 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5220342775298961328, guid: dd3f6cf55e77b2440aefb779a41e80fa, type: 3}
-  m_PrefabInstance: {fileID: 3717149377454212199}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler

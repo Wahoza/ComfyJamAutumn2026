@@ -13,4 +13,24 @@ MonoBehaviour:
   m_Name: EncyclopediaObject
   m_EditorClassIdentifier: Assembly-CSharp::JournalChapterObject
   filledPagePrefabCondition:
-    _serializedList: []
+    _serializedList:
+    - Key: {fileID: 3013631015315512043, guid: 23d2684e87dfa76489d4e654fad54c37, type: 3}
+      Value: 
+    - Key: {fileID: 3013631015315512043, guid: 5a74336cbf4fa7b4391b1898ea321a7f, type: 3}
+      Value: 
+    - Key: {fileID: 3013631015315512043, guid: 75337e6b1a511ab4cb4272d447bcb4f9, type: 3}
+      Value: 
+    - Key: {fileID: 3013631015315512043, guid: c1b7f9a14301f054db77b19c5053c28c, type: 3}
+      Value: 
+    - Key: {fileID: 3013631015315512043, guid: ba8b520f5cb41f34ba0277d1651dba48, type: 3}
+      Value: 
+    - Key: {fileID: 3013631015315512043, guid: 02eefd48014f23d44be628895854436f, type: 3}
+      Value: 
+    - Key: {fileID: 3013631015315512043, guid: dd0397ffceaa2944983699bd57dfee09, type: 3}
+      Value: 
+    - Key: {fileID: 3013631015315512043, guid: c62fddc64fb39b34092f64c826a05c16, type: 3}
+      Value: 
+    - Key: {fileID: 3013631015315512043, guid: d18859fe11074d64e9eec0f475d94ba3, type: 3}
+      Value: 
+    - Key: {fileID: 3013631015315512043, guid: f6079995ad5f34843bf65ee6b395b978, type: 3}
+      Value: 

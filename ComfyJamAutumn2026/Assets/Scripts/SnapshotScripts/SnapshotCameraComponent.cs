@@ -40,6 +40,7 @@ public class SnapshotCameraComponent : MonoBehaviour
         StartCoroutine(SetUpCameraFromEnable());
     }
     IEnumerator SetUpCameraFromEnable() { 
+
         yield return null;
         SetUpCamera();
     }

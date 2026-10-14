@@ -6,6 +6,8 @@ public class DefaultGameState : IGameState
     public override void OnStateEnable()
     {
         base.OnStateEnable();
+
+        Cursor.visible = false;
     }
 
     public override void OnStateDisable()

@@ -9,4 +9,9 @@ public class PageComponent : MonoBehaviour
     {
         pageIndicator.text = text;
     }
+
+    public virtual void Initalize()
+    {
+
+    }
 }

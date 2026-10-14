@@ -136,6 +136,15 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""OpenJournal"",
+                    ""type"": ""Button"",
+                    ""id"": ""7c58f108-e8b1-466f-9583-ecb7c1408aff"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -378,6 +387,28 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""EnterPictureTakingMode"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0867fef8-03bc-468d-bdd5-2daa43258039"",
+                    ""path"": ""<Keyboard>/j"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OpenJournal"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5750e889-c90f-4a11-96ba-68679559bd9b"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OpenJournal"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -992,6 +1023,15 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CloseJournal"",
+                    ""type"": ""Button"",
+                    ""id"": ""2b6d7c64-154c-4da5-93b8-884b88b7a4f3"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -1410,6 +1450,28 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""XR"",
                     ""action"": ""TrackedDeviceOrientation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ab44314f-3a96-406b-8787-a03c27de7200"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CloseJournal"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dee47816-7f62-43bf-b78d-a992f92f428d"",
+                    ""path"": ""<Keyboard>/j"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CloseJournal"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1833,6 +1895,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_Player_Crouch = m_Player.FindAction("Crouch", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_EnterPictureTakingMode = m_Player.FindAction("EnterPictureTakingMode", throwIfNotFound: true);
+        m_Player_OpenJournal = m_Player.FindAction("OpenJournal", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1857,6 +1920,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_Journal_ScrollWheel = m_Journal.FindAction("ScrollWheel", throwIfNotFound: true);
         m_Journal_TrackedDevicePosition = m_Journal.FindAction("TrackedDevicePosition", throwIfNotFound: true);
         m_Journal_TrackedDeviceOrientation = m_Journal.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
+        m_Journal_CloseJournal = m_Journal.FindAction("CloseJournal", throwIfNotFound: true);
         // CameraControll
         m_CameraControll = asset.FindActionMap("CameraControll", throwIfNotFound: true);
         m_CameraControll_Point = m_CameraControll.FindAction("Point", throwIfNotFound: true);
@@ -1955,6 +2019,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Crouch;
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_EnterPictureTakingMode;
+    private readonly InputAction m_Player_OpenJournal;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -1986,6 +2051,10 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/EnterPictureTakingMode".
         /// </summary>
         public InputAction @EnterPictureTakingMode => m_Wrapper.m_Player_EnterPictureTakingMode;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/OpenJournal".
+        /// </summary>
+        public InputAction @OpenJournal => m_Wrapper.m_Player_OpenJournal;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -2027,6 +2096,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @EnterPictureTakingMode.started += instance.OnEnterPictureTakingMode;
             @EnterPictureTakingMode.performed += instance.OnEnterPictureTakingMode;
             @EnterPictureTakingMode.canceled += instance.OnEnterPictureTakingMode;
+            @OpenJournal.started += instance.OnOpenJournal;
+            @OpenJournal.performed += instance.OnOpenJournal;
+            @OpenJournal.canceled += instance.OnOpenJournal;
         }
 
         /// <summary>
@@ -2053,6 +2125,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @EnterPictureTakingMode.started -= instance.OnEnterPictureTakingMode;
             @EnterPictureTakingMode.performed -= instance.OnEnterPictureTakingMode;
             @EnterPictureTakingMode.canceled -= instance.OnEnterPictureTakingMode;
+            @OpenJournal.started -= instance.OnOpenJournal;
+            @OpenJournal.performed -= instance.OnOpenJournal;
+            @OpenJournal.canceled -= instance.OnOpenJournal;
         }
 
         /// <summary>
@@ -2295,6 +2370,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Journal_ScrollWheel;
     private readonly InputAction m_Journal_TrackedDevicePosition;
     private readonly InputAction m_Journal_TrackedDeviceOrientation;
+    private readonly InputAction m_Journal_CloseJournal;
     /// <summary>
     /// Provides access to input actions defined in input action map "Journal".
     /// </summary>
@@ -2346,6 +2422,10 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Journal/TrackedDeviceOrientation".
         /// </summary>
         public InputAction @TrackedDeviceOrientation => m_Wrapper.m_Journal_TrackedDeviceOrientation;
+        /// <summary>
+        /// Provides access to the underlying input action "Journal/CloseJournal".
+        /// </summary>
+        public InputAction @CloseJournal => m_Wrapper.m_Journal_CloseJournal;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -2402,6 +2482,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @TrackedDeviceOrientation.started += instance.OnTrackedDeviceOrientation;
             @TrackedDeviceOrientation.performed += instance.OnTrackedDeviceOrientation;
             @TrackedDeviceOrientation.canceled += instance.OnTrackedDeviceOrientation;
+            @CloseJournal.started += instance.OnCloseJournal;
+            @CloseJournal.performed += instance.OnCloseJournal;
+            @CloseJournal.canceled += instance.OnCloseJournal;
         }
 
         /// <summary>
@@ -2443,6 +2526,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @TrackedDeviceOrientation.started -= instance.OnTrackedDeviceOrientation;
             @TrackedDeviceOrientation.performed -= instance.OnTrackedDeviceOrientation;
             @TrackedDeviceOrientation.canceled -= instance.OnTrackedDeviceOrientation;
+            @CloseJournal.started -= instance.OnCloseJournal;
+            @CloseJournal.performed -= instance.OnCloseJournal;
+            @CloseJournal.canceled -= instance.OnCloseJournal;
         }
 
         /// <summary>
@@ -2808,6 +2894,13 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnEnterPictureTakingMode(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "OpenJournal" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnOpenJournal(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.
@@ -2964,6 +3057,13 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "CloseJournal" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnCloseJournal(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "CameraControll" which allows adding and removing callbacks.

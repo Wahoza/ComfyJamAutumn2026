@@ -161,7 +161,9 @@ public class SnapshotPictureTakingComponent : MonoBehaviour
     }
     void OnTakeImageInput(InputAction.CallbackContext callbackContext)
     {
-        _showTakenSnapshot.StartShowingImage(TakeImage());
+        var image = TakeImage();
+        var contained = SnapshotManager.Instance.TakeSnapshotAndAttemptForJournal(image);
+        _showTakenSnapshot.StartShowingImage(image, contained);
     }
     public void SetCurrentRenderTexture(RenderTexture currentTexture)
     {

@@ -23,14 +23,13 @@ public class ShowTakenSnapshotComponent : MonoBehaviour
     [Header("Gamestate Data")]
     [SerializeField] IGameState sequenceGameState;
 
-
-    public void StartShowingImage(SnapshotPictureData data)
+    public void StartShowingImage(SnapshotPictureData data, bool contained)
     {
         GameStateManager.Instance?.RequestGameStateSwitch(sequenceGameState);
 
         AdjustImageHolder(data.picture);
 
-        _blackboardComponent.AddToDictionary(_objectSaveableSequenceString, GetIsToBeSaved(data), true);
+        _blackboardComponent.AddToDictionary(_objectSaveableSequenceString, contained, true);
 
         _startingComponent.PlaySequence();
     }
@@ -76,8 +75,4 @@ public class ShowTakenSnapshotComponent : MonoBehaviour
         _imageHolder.texture = tex;
     }
 
-    private bool GetIsToBeSaved(SnapshotPictureData data)
-    {
-        return false;
-    }
 }

@@ -11,6 +11,7 @@ public class DraggableHandler : MonoBehaviour
     [SerializeField] RectTransform pageRight;
 
     [SerializeField] JournalComponent journal;
+    [SerializeField] GameObject draggableNavigation;
 
     public static DraggableHandler Instance;
 
@@ -47,6 +48,8 @@ public class DraggableHandler : MonoBehaviour
     {
         InputManager.InputActions.Journal.Point.performed += OnPoint;
         InputManager.InputActions.Journal.CloseJournal.performed += OnJournalClose;
+
+        draggableNavigation.gameObject.SetActive(false);
     }
     // Update is called once per frame
     private void Update()
@@ -77,6 +80,8 @@ public class DraggableHandler : MonoBehaviour
             OnDragCancel();
         }
 
+        draggableNavigation.gameObject.SetActive(true);
+
         currentDraggable.draggable = draggable;
         currentDraggable.originPage = draggable.transform.parent;
         currentDraggable.originPos = draggable.transform.localPosition;
@@ -87,9 +92,12 @@ public class DraggableHandler : MonoBehaviour
 
     void OnDragCancel()
     {
+        draggableNavigation.gameObject.SetActive(false);
+
 
         if (currentDraggable.draggable == null)
             return;
+
 
         bool isValidDrop = false;
 
@@ -175,7 +183,9 @@ public class DraggableHandler : MonoBehaviour
 
     void OnDragAbort()
     {
-        if(currentDraggable.draggable == null)
+        draggableNavigation.gameObject.SetActive(false);
+
+        if (currentDraggable.draggable == null)
             return;
 
         currentDraggable.draggable.transform.SetParent(currentDraggable.originPage);

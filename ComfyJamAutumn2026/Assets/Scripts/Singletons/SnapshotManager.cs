@@ -8,6 +8,8 @@ public class SnapshotManager : MonoBehaviour
 {
     private static SnapshotManager m_instance;
 
+    private List<PageComponentWithConditions> _pageWithConditionListeners;
+
     /// <summary>
     /// Instance of SnapshotManager. If SnapshotManager is not instanced, creates a new SnapshotManager.
     /// </summary>
@@ -45,6 +47,7 @@ public class SnapshotManager : MonoBehaviour
     public void Initialize()
     {
         _activeSnapshotableObjects = new List<SnapshotableObject>();
+        _pageWithConditionListeners = new();
     }
 
     private void Awake()
@@ -84,5 +87,30 @@ public class SnapshotManager : MonoBehaviour
     public List<SnapshotableObject> GetSnapshotableObjects()
     {
         return _activeSnapshotableObjects;
+    }
+
+    public bool TakeSnapshotAndAttemptForJournal(SnapshotPictureData data)
+    {
+        bool success = false;
+
+        foreach(var item in _pageWithConditionListeners)
+        {
+            if(item.DoPictureInsertion(data))
+                success = true;
+        }
+
+        return success;
+    }
+
+    public void RegisterPageWithCondition(PageComponentWithConditions page)
+    {
+        if (!_pageWithConditionListeners.Contains(page))
+            _pageWithConditionListeners.Add(page);
+    }
+
+    public void UnregisterPageWithCondition(PageComponentWithConditions page)
+    {
+        if (_pageWithConditionListeners.Contains(page))
+            _pageWithConditionListeners.Remove(page);
     }
 }

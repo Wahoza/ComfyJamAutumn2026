@@ -60,11 +60,11 @@ Material:
     - _Float: 1
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Renderheight: -272.6
-    - _SquggleSpeed: -0.32
-    - _SquiggleCount: 15.57
-    - _SquiggleHeight: 25.34
-    - _SquiggleWidth: 0.17
+    - _Renderheight: 0
+    - _SquggleSpeed: 0.19
+    - _SquiggleCount: 43.07
+    - _SquiggleHeight: 30.06
+    - _SquiggleWidth: -0
     - _Stencil: 0
     - _StencilComp: 8
     - _StencilOp: 0
@@ -73,7 +73,7 @@ Material:
     - _UIMaskSoftnessX: 1
     - _UIMaskSoftnessY: 1
     - _WaveCount: 0
-    - _heightFade: 14.6
+    - _heightFade: 0.02
     m_Colors:
     - White: {r: 1, g: 1, b: 1, a: 1}
     - _ClipRect: {r: 0, g: 0, b: 0, a: 0}

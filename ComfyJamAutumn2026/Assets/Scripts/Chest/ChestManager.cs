@@ -50,9 +50,13 @@ public class ChestManager : MonoBehaviour
         int val = 0;
         for (int i = 0; i < inputValues.Count; i++) 
         {
-            val += inputValues[i] * (int)Mathf.Pow(10, inputValues.Count - i);
+            val += inputValues[i] * (int)Mathf.Pow(10, inputValues.Count - i - 1);
         }
-        currentChest.CheckForCode(0);
+
+        if (currentChest.CheckForCode(val))
+        {
+            GameStateManager.Instance.RequestGameStateSwitchPrevious();
+        }
     }
     public void OnChestStart(ChestInteractable chest)
     {
@@ -71,11 +75,14 @@ public class ChestManager : MonoBehaviour
             numIndicator[i].text = inputValues[i].ToString();
         }
     }
-    public void QuitChestInteraction(InputAction.CallbackContext callbackContext)
+    public void QuitInteraction()
     {
-        Debug.Log("BOOB");
         if (GameStateManager.Instance.GetGameState() == chestGameState)
             GameStateManager.Instance.RequestGameStateSwitchPrevious();
+    }
+    public void QuitChestInteraction(InputAction.CallbackContext callbackContext)
+    {
+        QuitInteraction();
     }
     public void DecreaseValue(int index) 
     {

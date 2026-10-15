@@ -65,71 +65,71 @@ public class Editor_InputManager : Editor
                 isFoldedOut.Add(false);
             }
             isFoldedOut[i] = EditorGUILayout.Foldout(isFoldedOut[i], $"{i} - Gamestate: {name}");
-
-            if(!isFoldedOut[i] )
-                continue;
-
             SerializedProperty mappedSizeProp = mappedActionsSizeProp.GetArrayElementAtIndex(i);
 
-            EditorGUILayout.PropertyField(gamestateProp, new GUIContent("Gamestate Object"));
-
-            List<string> enalbedActions = new List<string>();
-
-            EditorGUI.indentLevel++;
-            EditorGUILayout.LabelField("Maps (Toggle True if Enabled during Gamestate)");
-            for(int mappedActionsIterator = 0; mappedActionsIterator < mappedSizeProp.intValue; mappedActionsIterator++)
+            if (isFoldedOut[i])
             {
-                enalbedActions.Add(gamestateInputActionsProp.GetArrayElementAtIndex(countToIndex + mappedActionsIterator).stringValue);
-            }
+                EditorGUILayout.PropertyField(gamestateProp, new GUIContent("Gamestate Object"));
 
-            Dictionary<string, bool> selectedActions = new Dictionary<string, bool>();
+                List<string> enalbedActions = new List<string>();
 
-            for (int mapIterator = 0; mapIterator < maps.Count; mapIterator++) 
-            {
-                string currentMapName = maps[mapIterator].name;
-                selectedActions.Add(currentMapName, false);
-
-                if (enalbedActions.Contains(maps[mapIterator].name))
+                EditorGUI.indentLevel++;
+                EditorGUILayout.LabelField("Maps (Toggle True if Enabled during Gamestate)");
+                for (int mappedActionsIterator = 0; mappedActionsIterator < mappedSizeProp.intValue; mappedActionsIterator++)
                 {
-                    selectedActions[currentMapName] = true;
+                    enalbedActions.Add(gamestateInputActionsProp.GetArrayElementAtIndex(countToIndex + mappedActionsIterator).stringValue);
                 }
 
-                selectedActions[currentMapName] = EditorGUILayout.Toggle($"Input Map: {currentMapName}", selectedActions[currentMapName]);
-            }
+                Dictionary<string, bool> selectedActions = new Dictionary<string, bool>();
 
-
-            for (int deletionIterator = 0; deletionIterator < mappedSizeProp.intValue; deletionIterator++)
-            {
-                gamestateInputActionsProp.DeleteArrayElementAtIndex(countToIndex);
-            }
-
-            gamestateInputActionsProp.serializedObject.ApplyModifiedProperties();
-
-            mappedSizeProp.intValue = 0;
-            //mappedSizeProp.serializedObject.ApplyModifiedProperties();
-
-            foreach (KeyValuePair<string, bool> pair in selectedActions)
-            {
-                if (pair.Value)
+                for (int mapIterator = 0; mapIterator < maps.Count; mapIterator++)
                 {
-                    ++mappedSizeProp.intValue;
-                    mappedSizeProp.serializedObject.ApplyModifiedProperties();
+                    string currentMapName = maps[mapIterator].name;
+                    selectedActions.Add(currentMapName, false);
 
-                    gamestateInputActionsProp.InsertArrayElementAtIndex(countToIndex);
-                    gamestateInputActionsProp.serializedObject.ApplyModifiedProperties();
+                    if (enalbedActions.Contains(maps[mapIterator].name))
+                    {
+                        selectedActions[currentMapName] = true;
+                    }
 
-                    gamestateInputActionsProp.GetArrayElementAtIndex(countToIndex).stringValue = pair.Key;
+                    selectedActions[currentMapName] = EditorGUILayout.Toggle($"Input Map: {currentMapName}", selectedActions[currentMapName]);
                 }
-            }
 
+
+                for (int deletionIterator = 0; deletionIterator < mappedSizeProp.intValue; deletionIterator++)
+                {
+                    gamestateInputActionsProp.DeleteArrayElementAtIndex(countToIndex);
+                }
+
+                gamestateInputActionsProp.serializedObject.ApplyModifiedProperties();
+
+                mappedSizeProp.intValue = 0;
+                //mappedSizeProp.serializedObject.ApplyModifiedProperties();
+
+                foreach (KeyValuePair<string, bool> pair in selectedActions)
+                {
+                    if (pair.Value)
+                    {
+                        mappedSizeProp.intValue++;
+                        mappedSizeProp.serializedObject.ApplyModifiedProperties();
+
+                        gamestateInputActionsProp.InsertArrayElementAtIndex(countToIndex);
+                        gamestateInputActionsProp.serializedObject.ApplyModifiedProperties();
+
+                        gamestateInputActionsProp.GetArrayElementAtIndex(countToIndex).stringValue = pair.Key;
+                    }
+                }
+                if (GUILayout.Button($"Delete {name} Mapping"))
+                {
+                    Delete(i);
+                }
+                EditorGUI.indentLevel--;
+
+            }
             countToIndex += mappedSizeProp.intValue;
 
-            if (GUILayout.Button($"Delete {name} Mapping"))
-            {
-                Delete(i);
-            }
 
-            EditorGUI.indentLevel--;
+
         }
 
         if(showContainedWarning)
@@ -140,13 +140,13 @@ public class Editor_InputManager : Editor
 
     public void AddNew(int index)
     {
-        gamestateListProp.InsertArrayElementAtIndex(index);
-        gamestateListProp.GetArrayElementAtIndex(index).objectReferenceValue = null;
+        gamestateListProp.InsertArrayElementAtIndex(0);
+        gamestateListProp.GetArrayElementAtIndex(0).objectReferenceValue = null;
         gamestateListProp.serializedObject.ApplyModifiedProperties();
 
-        isFoldedOut.Insert(index, true);
-        mappedActionsSizeProp.InsertArrayElementAtIndex(index);
-        mappedActionsSizeProp.GetArrayElementAtIndex(index).intValue = 0;
+        isFoldedOut.Insert(0, true);
+        mappedActionsSizeProp.InsertArrayElementAtIndex(0);
+        mappedActionsSizeProp.GetArrayElementAtIndex(0).intValue = 0;
         mappedActionsSizeProp.serializedObject.ApplyModifiedProperties();
     }
 

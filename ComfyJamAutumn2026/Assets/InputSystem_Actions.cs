@@ -1032,6 +1032,15 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""NavigateJournal"",
+                    ""type"": ""Value"",
+                    ""id"": ""45cc7d7c-0442-4a3e-8f38-348f1232e9bd"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -1474,6 +1483,61 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""action"": ""CloseJournal"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""b93bc2ba-79d8-48f0-9e7c-0c8a00ed5ca0"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NavigateJournal"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""e3f3549c-a9e6-47a5-a8d3-b224dc5401d6"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NavigateJournal"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""7de420f0-4f66-4f46-825a-cbb46f36a7f9"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NavigateJournal"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""4f4eb193-947c-4569-b39a-79b97b668488"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NavigateJournal"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""723eea22-c1bf-48b3-94d7-ab9abf59ef3e"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NavigateJournal"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         },
@@ -1921,6 +1985,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_Journal_TrackedDevicePosition = m_Journal.FindAction("TrackedDevicePosition", throwIfNotFound: true);
         m_Journal_TrackedDeviceOrientation = m_Journal.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
         m_Journal_CloseJournal = m_Journal.FindAction("CloseJournal", throwIfNotFound: true);
+        m_Journal_NavigateJournal = m_Journal.FindAction("NavigateJournal", throwIfNotFound: true);
         // CameraControll
         m_CameraControll = asset.FindActionMap("CameraControll", throwIfNotFound: true);
         m_CameraControll_Point = m_CameraControll.FindAction("Point", throwIfNotFound: true);
@@ -2371,6 +2436,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Journal_TrackedDevicePosition;
     private readonly InputAction m_Journal_TrackedDeviceOrientation;
     private readonly InputAction m_Journal_CloseJournal;
+    private readonly InputAction m_Journal_NavigateJournal;
     /// <summary>
     /// Provides access to input actions defined in input action map "Journal".
     /// </summary>
@@ -2426,6 +2492,10 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Journal/CloseJournal".
         /// </summary>
         public InputAction @CloseJournal => m_Wrapper.m_Journal_CloseJournal;
+        /// <summary>
+        /// Provides access to the underlying input action "Journal/NavigateJournal".
+        /// </summary>
+        public InputAction @NavigateJournal => m_Wrapper.m_Journal_NavigateJournal;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -2485,6 +2555,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @CloseJournal.started += instance.OnCloseJournal;
             @CloseJournal.performed += instance.OnCloseJournal;
             @CloseJournal.canceled += instance.OnCloseJournal;
+            @NavigateJournal.started += instance.OnNavigateJournal;
+            @NavigateJournal.performed += instance.OnNavigateJournal;
+            @NavigateJournal.canceled += instance.OnNavigateJournal;
         }
 
         /// <summary>
@@ -2529,6 +2602,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @CloseJournal.started -= instance.OnCloseJournal;
             @CloseJournal.performed -= instance.OnCloseJournal;
             @CloseJournal.canceled -= instance.OnCloseJournal;
+            @NavigateJournal.started -= instance.OnNavigateJournal;
+            @NavigateJournal.performed -= instance.OnNavigateJournal;
+            @NavigateJournal.canceled -= instance.OnNavigateJournal;
         }
 
         /// <summary>
@@ -3064,6 +3140,13 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnCloseJournal(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "NavigateJournal" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnNavigateJournal(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "CameraControll" which allows adding and removing callbacks.

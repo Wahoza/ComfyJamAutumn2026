@@ -118,6 +118,7 @@ public class DraggableHandler : MonoBehaviour
 
                     currentDraggable.draggable.transform.SetParent(submitLocation.transform);
                     currentDraggable.draggable.transform.position = submitLocation.submitPosition.position;
+                    currentDraggable.draggable.transform.rotation = submitLocation.submitPosition.rotation;
                     currentDraggable.draggable.transform.SetAsLastSibling();
 
                     currentDraggable.draggable.isSubmittedCorrectly = true;

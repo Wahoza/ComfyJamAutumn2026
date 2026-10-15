@@ -125,6 +125,14 @@ public class JournalComponent : MonoBehaviour
     }
 
     #region Page Selection
+    public void GoNextPageFromHover()
+    {
+        GoToNextPage(durationWithInformationDrag);
+    }
+    public void GoPreviousPageFromHover()
+    {
+        GoToPreviousPage(durationWithInformationDrag);
+    }
     public void GoToNextPage(float duration)
     {
         EndAnimationRoutine();

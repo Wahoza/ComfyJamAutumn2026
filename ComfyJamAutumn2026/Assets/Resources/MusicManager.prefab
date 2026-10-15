@@ -1,0 +1,82 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8665654433093661696
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4166166811693438464}
+  - component: {fileID: 6744903642911377408}
+  m_Layer: 0
+  m_Name: MusicManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4166166811693438464
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8665654433093661696}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6744903642911377408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8665654433093661696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4614428a8dc4b2bbff49dc11048a220, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MusicManager
+  _defaultMusic: {fileID: 8300000, guid: adc72c7000984691b799cf0bc7f26ff8, type: 3}
+  _tracks:
+  - Name: Paths
+    Music: {fileID: 8300000, guid: a1df40112f324e00950c5d11895608c8, type: 3}
+    Scenes:
+    - {fileID: 102900000, guid: 9c3bee922975cee4fb72f5001154fed6, type: 3}
+    ScenePaths:
+    - Assets/Scenes/Paths
+  - Name: Cabin and Picnic Table
+    Music: {fileID: 8300000, guid: a802cae9f9b24ed783b30a5089eb8354, type: 3}
+    Scenes:
+    - {fileID: 102900000, guid: 90221b0a26f04f54bbc3d288f8589057, type: 3}
+    - {fileID: 102900000, guid: 2497b05e3c6c7c0409541c79ebde360a, type: 3}
+    ScenePaths:
+    - Assets/Scenes/Rooms/CabinLevel.unity
+    - Assets/Scenes/Rooms/TableLevel.unity
+  - Name: Fountain
+    Music: {fileID: 8300000, guid: 3218075904db4b54a1ce45ddd69f0756, type: 3}
+    Scenes:
+    - {fileID: 102900000, guid: fde3554272e50994799656ae0ac5ccc3, type: 3}
+    ScenePaths:
+    - Assets/Scenes/Rooms/FountainLevel.unity
+  - Name: Viewpoint
+    Music: {fileID: 8300000, guid: 57693d93602f4b88896699e377c299f4, type: 3}
+    Scenes: []
+    ScenePaths: []
+  - Name: Clearing and Pond
+    Music: {fileID: 8300000, guid: adc72c7000984691b799cf0bc7f26ff8, type: 3}
+    Scenes:
+    - {fileID: 102900000, guid: 8c17ba19557688141a26d6bd3e959395, type: 3}
+    - {fileID: 102900000, guid: 1dd6f70e72b0a3441bad4ba5d4e35019, type: 3}
+    ScenePaths:
+    - Assets/Scenes/Rooms/ClearingLevel.unity
+    - Assets/Scenes/Rooms/PondLevel.unity
+  _volume: 0.7
+  _fadeDuration: 1.5

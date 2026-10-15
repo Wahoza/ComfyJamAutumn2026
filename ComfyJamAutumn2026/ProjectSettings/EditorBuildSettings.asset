@@ -8,6 +8,39 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/Scenes/Paths/NorthPath.unity
+    guid: e911cc792ce94fc43bf59cfb3a1ed9f4
+  - enabled: 1
+    path: Assets/Scenes/Paths/WestPath.unity
+    guid: b7e444f5c32ce6c4cbbbcedcc2480242
+  - enabled: 1
+    path: Assets/Scenes/Rooms/PondLevel.unity
+    guid: 1dd6f70e72b0a3441bad4ba5d4e35019
+  - enabled: 1
+    path: Assets/Scenes/Rooms/CabinLevel.unity
+    guid: 90221b0a26f04f54bbc3d288f8589057
+  - enabled: 1
+    path: Assets/Scenes/Rooms/ClearingLevel.unity
+    guid: 8c17ba19557688141a26d6bd3e959395
+  - enabled: 1
+    path: Assets/Scenes/Paths/MiddleWest.unity
+    guid: 5b4fed3b156bfec42b287f604f654bd2
+  - enabled: 1
+    path: Assets/Scenes/Paths/MiddleEast.unity
+    guid: a6af01b50a75c4240a4443a5c3b216cb
+  - enabled: 1
+    path: Assets/Scenes/Rooms/FountainLevel.unity
+    guid: fde3554272e50994799656ae0ac5ccc3
+  - enabled: 1
+    path: Assets/Scenes/Paths/SouthPath.unity
+    guid: 81702623f6821c647b459aaa397d4ac0
+  - enabled: 1
+    path: Assets/Scenes/Paths/EastPath.unity
+    guid: cf231496ad2cc4a47a9d5e9aa2e7a70a
+  - enabled: 1
+    path: Assets/Scenes/Rooms/TableLevel.unity
+    guid: 2497b05e3c6c7c0409541c79ebde360a
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

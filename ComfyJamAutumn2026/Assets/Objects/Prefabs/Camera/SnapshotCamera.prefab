@@ -662,7 +662,7 @@ MonoBehaviour:
   _imageFilterMode: 0
   _cameraPunchStrength: 1.3
   _snapshotCameraPunchStrength: -0.58
-  _cameraPunchInDuration: 0.04
+  _cameraPunchInDuration: 0.08
   _cameraPunchOutDuration: 0.11
   _cameraPunchInCurve:
     serializedVersion: 2
@@ -670,26 +670,17 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 0
-      outSlope: 0
+      inSlope: 2
+      outSlope: 2
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.68891543
-      value: 0.23821688
-      inSlope: 1.1631286
-      outSlope: 1.1631286
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 2
-      outSlope: 2
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
       weightedMode: 0
       inWeight: 0

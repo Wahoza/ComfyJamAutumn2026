@@ -45,6 +45,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8074690313147181846}
   - component: {fileID: 5988212681439219015}
+  - component: {fileID: 8912331323879956955}
   m_Layer: 0
   m_Name: DraggableSubmitArea
   m_TagString: Untagged
@@ -81,6 +82,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5220570103476054913}
   m_CullTransparentMesh: 1
+--- !u!114 &8912331323879956955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5220570103476054913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cbf67fdaa2366d48ad021b12c1965de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DraggableSubmitAreaComponent
+  nameKey: 
+  submitPosition: {fileID: 7302561847383551046}
 --- !u!1001 &3702484718691440905
 PrefabInstance:
   m_ObjectHideFlags: 0

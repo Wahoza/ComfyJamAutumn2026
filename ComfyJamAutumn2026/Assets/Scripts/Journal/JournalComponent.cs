@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using static UnityEditor.PlayerSettings;
 
@@ -42,7 +43,7 @@ public class JournalComponent : MonoBehaviour
     [SerializeField] RectTransform rightPageTarget;
     [SerializeField] RectTransform rightPageOrigin;
 
-    [SerializeField] float duration;
+    [SerializeField] float durationFromNavigationInput;
     [SerializeField] float durationWithInformationDrag;
 
     [SerializeField] AnimationCurve pageAnimCurve;
@@ -56,6 +57,7 @@ public class JournalComponent : MonoBehaviour
     private int flipDirection = 0;
 
     List<GameObject> _shownPages = new();
+    List<int> _currentPages = new();
     void Start()
     {
         SetupJournal();
@@ -75,8 +77,10 @@ public class JournalComponent : MonoBehaviour
         }
         ShowPagesAt(initSelectedTab, 0);
 
-        rightButton.onClick.AddListener(GoToNextPage);
-        leftButton.onClick.AddListener(GoToPreviousPage);
+        rightButton.onClick.AddListener(() => GoToNextPage(durationFromNavigationInput));
+        leftButton.onClick.AddListener(() => GoToPreviousPage(durationFromNavigationInput));
+
+        InputManager.InputActions.Journal.NavigateJournal.performed += OnNavigationInput;
 
         foreach(var item in journalTabChapterBookmarks)
         {
@@ -121,7 +125,7 @@ public class JournalComponent : MonoBehaviour
     }
 
     #region Page Selection
-    public void GoToNextPage()
+    public void GoToNextPage(float duration)
     {
         EndAnimationRoutine();
 
@@ -142,12 +146,16 @@ public class JournalComponent : MonoBehaviour
         _currentChapter.instancedPages[_iIndex + 2].gameObject.SetActive(true);
         _shownPages.Add(_currentChapter.instancedPages[_iIndex + 2]);
 
+        _currentPages = new() { _iIndex + 2 };
+
         if (_currentChapter.instancedPages.Count > _iIndex + 3)
         {
             _currentChapter.instancedPages[_iIndex + 3].gameObject.SetActive(true);
 
             _shownPages.Add(_currentChapter.instancedPages[_iIndex + 3]);
+            _currentPages.Add(_iIndex + 3);
         }
+
 
         flipDirection = 1;
         pageFlippingRoutine = StartCoroutine(GoToNextPageRoutine(duration));
@@ -212,7 +220,7 @@ public class JournalComponent : MonoBehaviour
         flipDirection = 0;
         ShowPagesAt(_currentChapter.name, _iIndex);
     }
-    public void GoToPreviousPage()
+    public void GoToPreviousPage(float duration)
     {
         EndAnimationRoutine();
 
@@ -234,6 +242,8 @@ public class JournalComponent : MonoBehaviour
 
         _currentChapter.instancedPages[_iIndex - 1].SetActive(true);
         //_currentData.instancedPages[_iIndex - 1].transform.parent = rightPageAnimationHolder;
+
+        _currentPages = new() { _iIndex - 1, _iIndex - 2 };
 
         flipDirection = -1;
         pageFlippingRoutine = StartCoroutine(GoPreviousPageRoutine(duration));
@@ -312,12 +322,14 @@ public class JournalComponent : MonoBehaviour
             {
                 _shownPages.Add(instancedJournalData[chapter].instancedPages[page]);
                 instancedJournalData[chapter].instancedPages[page].transform.SetParent(leftPageHolder);
+                _currentPages = new() { page };
             }
 
             if (page + 1 < instancedJournalData[chapter].instancedPages.Count)
             {
                 _shownPages.Add(instancedJournalData[chapter].instancedPages[page + 1]);
                 instancedJournalData[chapter].instancedPages[page + 1].transform.SetParent(rightPageHolder);
+                _currentPages.Add(page + 1);
             }
         }
         foreach (var newPage in _shownPages)
@@ -329,6 +341,36 @@ public class JournalComponent : MonoBehaviour
         _iIndex = page;
 
         DetermineEnabledButtons();
+    }
+
+    public void OnNavigationInput(InputAction.CallbackContext ctx)
+    {
+        var dir = ctx.ReadValue<Vector2>();
+        if(dir.x > 0)
+        {
+            GoToNextPage(durationFromNavigationInput);
+        }
+        else
+        {
+            GoToPreviousPage(durationFromNavigationInput);
+        }
+    }
+
+    public (Transform, Transform) GetCurrentPages()
+    {
+        (Transform, Transform) returnVal = (null, null);
+
+        if(_currentPages.Count > 0)
+        {
+            returnVal.Item1 = _currentChapter.instancedPages[_currentPages[0]].transform;
+        }
+
+        if(_currentPages.Count > 1)
+        {
+            returnVal.Item2 = _currentChapter.instancedPages[_currentPages[1]].transform;
+        }
+
+        return returnVal;
     }
     #endregion
 

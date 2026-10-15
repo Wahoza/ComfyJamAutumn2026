@@ -269,6 +269,7 @@ MonoBehaviour:
         conditionName: Plant2
         imageHolder: {fileID: 3257762732901916540}
         targetSize: {fileID: 7978417185141830076}
+        adjustment: 2
 --- !u!224 &3623337498105133675 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2086029633106832095, guid: 03f3c928930b9a34faccfae1e7cdddc5, type: 3}

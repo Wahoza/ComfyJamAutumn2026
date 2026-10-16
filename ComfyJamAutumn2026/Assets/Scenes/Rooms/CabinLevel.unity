@@ -1740,7 +1740,7 @@ PrefabInstance:
     - target: {fileID: 5781393682626209734, guid: 6867120d0395bba4eba67811c9cb5b2a, type: 3}
       propertyPath: returnedItem
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 275213167602563452, guid: 53beb91772e533f438fd0485e7affd7e, type: 3}
     - target: {fileID: 5892916774890007741, guid: 6867120d0395bba4eba67811c9cb5b2a, type: 3}
       propertyPath: m_Name
       value: Chest

@@ -141,6 +141,7 @@ public class InputManager : MonoBehaviour, IGameStateListener
         {
             if (map != null)
             {
+                Debug.Log(map.name);
                 map.Enable();
             }
             else

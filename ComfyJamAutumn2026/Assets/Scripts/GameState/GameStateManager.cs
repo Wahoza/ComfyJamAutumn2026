@@ -47,6 +47,10 @@ public class GameStateManager : MonoBehaviour
 
             RequestGameStateSwitch(initialGameState);
         }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
     private void OnApplicationQuit()
     {

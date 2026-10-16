@@ -145,6 +145,33 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DropItem"",
+                    ""type"": ""Button"",
+                    ""id"": ""a94609d7-00cb-4a2e-a01d-51cb7033f864"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SelectItem"",
+                    ""type"": ""Button"",
+                    ""id"": ""b9c50e97-5d22-4e46-9af4-56879178a4fa"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CycleItem"",
+                    ""type"": ""Value"",
+                    ""id"": ""852ae9fd-1d2b-46ed-ab4d-381d73162e99"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -411,6 +438,105 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""action"": ""OpenJournal"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5bb06b52-7e29-46c3-bbe0-4bc2706862c5"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""DropItem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""150cf249-657b-4c27-8e61-f75c9da25a41"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""DropItem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""03f1c313-4dc3-4c1d-9478-9798d3a8103e"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""SelectItem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b9248ddd-8920-4b7b-94d8-c09d0af27275"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""SelectItem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5c806e02-e520-442d-909b-4f1f23e67007"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""SelectItem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5dbaccbc-1323-4214-be92-4aad637129d4"",
+                    ""path"": ""<Mouse>/scroll/y"",
+                    ""interactions"": """",
+                    ""processors"": ""Invert"",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""CycleItem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Shoulders"",
+                    ""id"": ""18d26c82-2730-4df0-9a96-7799e5399154"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CycleItem"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""061b1b78-c80b-4ffb-80e7-b108aff3f63a"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""CycleItem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""2cb22e8c-395a-435b-96e6-578bd4295b44"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""CycleItem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         },
@@ -1960,6 +2086,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_EnterPictureTakingMode = m_Player.FindAction("EnterPictureTakingMode", throwIfNotFound: true);
         m_Player_OpenJournal = m_Player.FindAction("OpenJournal", throwIfNotFound: true);
+        m_Player_DropItem = m_Player.FindAction("DropItem", throwIfNotFound: true);
+        m_Player_SelectItem = m_Player.FindAction("SelectItem", throwIfNotFound: true);
+        m_Player_CycleItem = m_Player.FindAction("CycleItem", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -2085,6 +2214,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_EnterPictureTakingMode;
     private readonly InputAction m_Player_OpenJournal;
+    private readonly InputAction m_Player_DropItem;
+    private readonly InputAction m_Player_SelectItem;
+    private readonly InputAction m_Player_CycleItem;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -2120,6 +2252,18 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/OpenJournal".
         /// </summary>
         public InputAction @OpenJournal => m_Wrapper.m_Player_OpenJournal;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/DropItem".
+        /// </summary>
+        public InputAction @DropItem => m_Wrapper.m_Player_DropItem;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/SelectItem".
+        /// </summary>
+        public InputAction @SelectItem => m_Wrapper.m_Player_SelectItem;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/CycleItem".
+        /// </summary>
+        public InputAction @CycleItem => m_Wrapper.m_Player_CycleItem;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -2164,6 +2308,15 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @OpenJournal.started += instance.OnOpenJournal;
             @OpenJournal.performed += instance.OnOpenJournal;
             @OpenJournal.canceled += instance.OnOpenJournal;
+            @DropItem.started += instance.OnDropItem;
+            @DropItem.performed += instance.OnDropItem;
+            @DropItem.canceled += instance.OnDropItem;
+            @SelectItem.started += instance.OnSelectItem;
+            @SelectItem.performed += instance.OnSelectItem;
+            @SelectItem.canceled += instance.OnSelectItem;
+            @CycleItem.started += instance.OnCycleItem;
+            @CycleItem.performed += instance.OnCycleItem;
+            @CycleItem.canceled += instance.OnCycleItem;
         }
 
         /// <summary>
@@ -2193,6 +2346,15 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @OpenJournal.started -= instance.OnOpenJournal;
             @OpenJournal.performed -= instance.OnOpenJournal;
             @OpenJournal.canceled -= instance.OnOpenJournal;
+            @DropItem.started -= instance.OnDropItem;
+            @DropItem.performed -= instance.OnDropItem;
+            @DropItem.canceled -= instance.OnDropItem;
+            @SelectItem.started -= instance.OnSelectItem;
+            @SelectItem.performed -= instance.OnSelectItem;
+            @SelectItem.canceled -= instance.OnSelectItem;
+            @CycleItem.started -= instance.OnCycleItem;
+            @CycleItem.performed -= instance.OnCycleItem;
+            @CycleItem.canceled -= instance.OnCycleItem;
         }
 
         /// <summary>
@@ -2977,6 +3139,27 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnOpenJournal(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "DropItem" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnDropItem(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "SelectItem" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSelectItem(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "CycleItem" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnCycleItem(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.

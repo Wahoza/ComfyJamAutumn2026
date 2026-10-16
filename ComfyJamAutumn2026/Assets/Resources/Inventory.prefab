@@ -1,0 +1,84 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5484157492941618448
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3523047056492270131}
+  - component: {fileID: 2702130227074359568}
+  - component: {fileID: 5224938299407396917}
+  m_Layer: 0
+  m_Name: Inventory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3523047056492270131
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5484157492941618448}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2702130227074359568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5484157492941618448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 023bbf0c811643a1a19dac8331c73945, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::Inventory
+  _slotCount: 3
+  _pickupRange: 1.2
+  _worldItemPrefab: {fileID: 7594636674153388743, guid: aab495d0c23d4c7b815a99ee7e562691, type: 3}
+  _dropOffset: {x: 0, y: -0.5}
+--- !u!114 &5224938299407396917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5484157492941618448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44e34a24c7f941f8b40df3df2be841f1, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::InventoryHUD
+  _slotSprite: {fileID: 5572282137089439061, guid: 4aa8910c1d3f4edc972d59282b417703, type: 3}
+  _selectedSlotSprite: {fileID: 2793990779836870358, guid: 4aa8910c1d3f4edc972d59282b417703, type: 3}
+  _font: {fileID: 11400000, guid: ca2c9fefb9522014cb5807c94a413710, type: 2}
+  _textColor: {r: 1, g: 0.945, b: 0.86, a: 1}
+  _textShadowColor: {r: 0.365, g: 0.204, b: 0.255, a: 1}
+  _referenceResolution: {x: 960, y: 540}
+  _slotSpacing: 5
+  _bottomMargin: 8
+  _iconSize: 32
+  _selectedRaise: 4
+  _sortingOrder: -1
+  _slotNumberSize: 8
+  _itemNameSize: 16
+  _promptSize: 16
+  _pickupPrompt: '[E] Pick up {item}'
+  _inventoryFullPrompt: Hands full
+  _promptGap: 2
+  _hiddenInGameStates:
+  - {fileID: 11400000, guid: 305ea43a731c7a442a1a5fb6eb16c33f, type: 2}
+  - {fileID: 11400000, guid: fc4d3d7c04397614f947db33f38e3842, type: 2}
+  - {fileID: 11400000, guid: 91f2b712963891c48bf2cf91b0f1903a, type: 2}

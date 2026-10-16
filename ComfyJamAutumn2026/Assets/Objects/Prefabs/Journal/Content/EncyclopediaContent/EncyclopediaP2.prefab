@@ -406,7 +406,7 @@ MonoBehaviour:
     _serializedList:
     - Key: {fileID: 1651429122238017923}
       Value:
-        conditionName: Frog
+        conditionName: Frogs
         imageHolder: {fileID: 790846831032869010}
         targetSize: {fileID: 5293219236203384402}
         adjustment: 2

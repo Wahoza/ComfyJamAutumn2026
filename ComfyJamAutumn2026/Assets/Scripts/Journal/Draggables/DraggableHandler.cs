@@ -121,6 +121,8 @@ public class DraggableHandler : MonoBehaviour
                     currentDraggable.draggable.transform.rotation = submitLocation.submitPosition.rotation;
                     currentDraggable.draggable.transform.SetAsLastSibling();
 
+                    Blackboard.Instance.SetJournalDictBool(currentDraggable.draggable.nameKey, true);
+
                     currentDraggable.draggable.isSubmittedCorrectly = true;
                     currentDraggable.draggable = null;
 

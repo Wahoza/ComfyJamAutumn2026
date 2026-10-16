@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Blackboard : MonoBehaviour
 {
@@ -7,6 +8,9 @@ public class Blackboard : MonoBehaviour
 
     Dictionary<int, int> dialogueProgressionDict= new Dictionary<int, int>(); //what conversation should each npc start with
     Dictionary<int, bool> requirementDict = new Dictionary<int, bool>(); //checks if conversation is unlocked (quest complete)
+
+    Dictionary<string, bool> unlockedFromJournalDict = new Dictionary<string, bool>(); //checks for dragged and properly set words in journal
+    public UnityEvent onJournalEntryUpdate = new(); //called when Journal dictionary changes
 
     #region SignletonHandling
     private void Awake()
@@ -20,6 +24,10 @@ public class Blackboard : MonoBehaviour
             Instance = this;
 
             DontDestroyOnLoad(Instance);
+        }
+        else
+        {
+            Destroy(gameObject);
         }
     }
     private void OnApplicationQuit()
@@ -58,6 +66,24 @@ public class Blackboard : MonoBehaviour
     public bool TryGetReqDict(int key)
     {
         return requirementDict.TryGetValue(key, out bool value) && value;
+    }
+
+    #endregion
+
+    #region RequirementFromJournalHandling
+
+    public bool GetIsUnlockedFromJournalDict(string key)
+    {
+        return unlockedFromJournalDict.ContainsKey(key) ? unlockedFromJournalDict[key] : false;
+    }
+    public void SetJournalDictBool(string key, bool value)
+    {
+        if(!unlockedFromJournalDict.ContainsKey(key))
+            unlockedFromJournalDict.Add(key, value);
+
+        unlockedFromJournalDict[key] = value;
+
+        onJournalEntryUpdate.Invoke();
     }
 
     #endregion

@@ -26989,7 +26989,6 @@ GameObject:
   - component: {fileID: 1737851237}
   - component: {fileID: 1737851236}
   - component: {fileID: 1737851235}
-  - component: {fileID: 1737851240}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -27161,36 +27160,6 @@ Transform:
   - {fileID: 1353975088}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1737851240
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1737851234}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c365cfe3b2e4904185f50bb294a37b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::OnMultipleEntriesChange
-  conditions:
-  - Flowers
-  - Die
-  broadcast:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1979361811}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &1737938856
 GameObject:
   m_ObjectHideFlags: 0

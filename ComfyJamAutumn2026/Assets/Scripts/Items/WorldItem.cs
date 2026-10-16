@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Text;
 using UnityEngine;
 
 /// <summary>
@@ -52,7 +51,7 @@ public class WorldItem : MonoBehaviour
     private void Awake()
     {
         // A placed item sits at the same spot in the hierarchy every time its room loads
-        Id = GetHierarchyPath();
+        Id = HierarchyId.Of(transform);
         ApplySprite();
     }
 
@@ -91,15 +90,6 @@ public class WorldItem : MonoBehaviour
     {
         if (_renderer != null && _item != null && _item.WorldSprite != null)
             _renderer.sprite = _item.WorldSprite;
-    }
-
-    private string GetHierarchyPath()
-    {
-        StringBuilder path = new();
-        for (Transform current = transform; current != null; current = current.parent)
-            path.Insert(0, $"/{current.name}#{current.GetSiblingIndex()}");
-
-        return gameObject.scene.path + path;
     }
     #endregion
 

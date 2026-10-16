@@ -68,8 +68,10 @@ MonoBehaviour:
     - Assets/Scenes/Rooms/FountainLevel.unity
   - Name: Viewpoint
     Music: {fileID: 8300000, guid: 57693d93602f4b88896699e377c299f4, type: 3}
-    Scenes: []
-    ScenePaths: []
+    Scenes:
+    - {fileID: 102900000, guid: 74822bc3071f810459f7bd006ccf5a06, type: 3}
+    ScenePaths:
+    - Assets/Scenes/Rooms/Viewport.unity
   - Name: Clearing and Pond
     Music: {fileID: 8300000, guid: adc72c7000984691b799cf0bc7f26ff8, type: 3}
     Scenes:

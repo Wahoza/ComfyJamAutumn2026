@@ -25,8 +25,18 @@ public class GameStateManager : MonoBehaviour
     private List<IGameStateListener> _listeners;
 
     //Dzoi added this
+    /// <summary>
+    /// Finds a Game State by its asset name (DialogueGameState for Dialogue), so the order of All Game States doesn't matter.
+    /// </summary>
     public IGameState GetGameStateByType(GameStateType type) {
-        return allGameStates[((int)type)];
+        foreach (IGameState state in allGameStates)
+        {
+            if (state != null && state.name.StartsWith(type.ToString(), System.StringComparison.OrdinalIgnoreCase))
+                return state;
+        }
+
+        Debug.LogError($"[GameStateManager] No Game State named after '{type}' in All Game States.", this);
+        return null;
     }
 
 

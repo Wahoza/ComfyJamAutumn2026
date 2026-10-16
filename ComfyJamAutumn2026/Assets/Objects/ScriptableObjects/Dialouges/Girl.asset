@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 656b9d854d33eb04d997df4e263e63ce, type: 3}
+  m_Name: Girl
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueProfileSO
+  key: 0
+  conversations:
+  - requirementId: -1
+    sentences:
+    - I have something to show you, but you have to earn it!
+    - I want to see something that has potentional to become amazing...
+  - requirementId: 0
+    sentences:
+    - Your brother gave me this scrap of paper...
+    - I wonder what these numbers and symbol mean...

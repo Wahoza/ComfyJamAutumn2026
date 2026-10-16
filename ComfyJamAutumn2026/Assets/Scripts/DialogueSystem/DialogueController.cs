@@ -6,7 +6,6 @@ using UnityEngine;
 public class DialogueController : MonoBehaviour, IInteractable
 {
     [SerializeField] DialogueProfileSO profile;
-    [SerializeField] DialogueWindow window;
 
     Conversation currentConversation;
 
@@ -27,6 +26,12 @@ public class DialogueController : MonoBehaviour, IInteractable
     //Player should call this ontriggerenter2d when near an object tagged dialogue or smth and if correct key pressed
     public void Interact()
     {
+        //the window is kept from the scene the game started in, without it the player would get stuck in the dialogue state
+        if (DialogueWindow.Instance == null)
+        {
+            Debug.LogError("[DialogueController] No DialogueWindow loaded. Put the dialogue canvas in the scene the game starts in.", this);
+            return;
+        }
         if (currentConversation == null)
         {
             StartConversation();
@@ -39,7 +44,7 @@ public class DialogueController : MonoBehaviour, IInteractable
     }
     //display the correct sentence
     void ShowDialogue() {
-        window.NextLine(currentConversation.sentences[currentSentenceIndex++]);
+        DialogueWindow.Instance.NextLine(currentConversation.sentences[currentSentenceIndex++]);
     }
     //firstly gets the conversation it should start displaying, then if it is locked it returns to the last conversation had
     void StartConversation() {
@@ -49,14 +54,14 @@ public class DialogueController : MonoBehaviour, IInteractable
         if (currentConversation.requirementId!=-1 && Blackboard.Instance.TryGetReqDict(currentConversation.requirementId)==false) {
             currentConversation = profile.Conversations[--currentConversationIndex];
         }
-        window.Show(transform);
+        DialogueWindow.Instance.Show(transform);
     }
     //closes the window and increments the conversationIndex
     void EndConversation() {
         currentConversationIndex = Mathf.Min(currentConversationIndex + 1, profile.Conversations.Count - 1);
         Blackboard.Instance.UpdateDialogueDict(profile.Key, currentConversationIndex);
         currentConversation = null;
-        window.Close();
+        DialogueWindow.Instance.Close();
         GameStateManager.Instance.RequestGameStateSwitch(GameStateManager.Instance.GetGameStateByType(GameStateType.Default));
     }
 }

@@ -3,7 +3,20 @@ using UnityEngine;
 
 public class Blackboard : MonoBehaviour
 {
-    public static Blackboard Instance { get; private set; }
+    private static Blackboard m_instance;
+
+    /// <summary>
+    /// Instance of Blackboard. Created when first needed if no scene has one, so dialogue works in every room.
+    /// </summary>
+    public static Blackboard Instance
+    {
+        get
+        {
+            if (m_instance == null)
+                new GameObject("Blackboard").AddComponent<Blackboard>();
+            return m_instance;
+        }
+    }
 
     Dictionary<int, int> dialogueProgressionDict= new Dictionary<int, int>(); //what conversation should each npc start with
     Dictionary<int, bool> requirementDict = new Dictionary<int, bool>(); //checks if conversation is unlocked (quest complete)
@@ -15,17 +28,17 @@ public class Blackboard : MonoBehaviour
     }
     private void Initailize()
     {
-        if (Instance == null)
+        if (m_instance == null)
         {
-            Instance = this;
+            m_instance = this;
 
-            DontDestroyOnLoad(Instance);
+            DontDestroyOnLoad(m_instance);
         }
     }
     private void OnApplicationQuit()
     {
-        if (Instance != null)
-            Destroy(Instance);
+        if (m_instance != null)
+            Destroy(m_instance);
     }
     #endregion
 

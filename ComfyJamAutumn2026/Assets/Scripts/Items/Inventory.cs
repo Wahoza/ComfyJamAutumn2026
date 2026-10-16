@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 /// Singleton that holds the items the player carries, one item per slot. Created at startup from the Inventory prefab in Resources
 /// and kept between rooms. Interact (E) picks up the closest item in reach, DropItem (Q) drops the selected item at the player's feet,
 /// SelectItem (1-3) and CycleItem (mouse wheel) choose the selected slot.
-/// Rooms remember which items were taken from them and which were dropped in them.
+/// Rooms remember which items were taken from them, which were dropped in them, and which ItemReactions already happened.
 /// </summary>
 public class Inventory : MonoBehaviour
 {
@@ -51,9 +51,11 @@ public class Inventory : MonoBehaviour
     private ItemData[] _slots;
     private int _selectedSlot;
     private Transform _player;
+    private PlayerMovement _playerMovement;
     private int _dropCount;
     private readonly List<DroppedItem> _droppedItems = new();
     private readonly HashSet<string> _takenItemIds = new();
+    private readonly HashSet<string> _doneReactionIds = new();
 
     /// <summary>
     /// Called when an item is added or removed, or another slot is selected.
@@ -67,6 +69,11 @@ public class Inventory : MonoBehaviour
     /// True while there is a player in the loaded rooms.
     /// </summary>
     public bool HasPlayer => _player != null;
+
+    /// <summary>
+    /// The player in the loaded rooms, or null if there is none.
+    /// </summary>
+    public Transform Player => _player;
 
     /// <summary>
     /// Item the player would pick up with Interact right now, or null if none is in reach.
@@ -178,8 +185,9 @@ public class Inventory : MonoBehaviour
     {
         InputSystem_Actions actions = InputManager.InputActions;
 
-        // The Player map is only on while the player walks around, so nothing is picked up during dialogue, the journal or room transitions
-        if (!FindPlayer() || actions == null || !actions.Player.enabled)
+        // Only while the player can walk around, so nothing is picked up during dialogue, the journal or room transitions.
+        // The Player map stays on during dialogue so Interact can advance it, movement being on is what tells walking around apart
+        if (!FindPlayer() || !_playerMovement.enabled || actions == null || !actions.Player.enabled)
         {
             Target = null;
             return;
@@ -208,8 +216,8 @@ public class Inventory : MonoBehaviour
     {
         if (_player == null)
         {
-            PlayerMovement player = FindAnyObjectByType<PlayerMovement>();
-            _player = player != null ? player.transform : null;
+            _playerMovement = FindAnyObjectByType<PlayerMovement>();
+            _player = _playerMovement != null ? _playerMovement.transform : null;
         }
         return _player != null;
     }
@@ -311,6 +319,19 @@ public class Inventory : MonoBehaviour
     public bool WasTaken(string itemId)
     {
         return _takenItemIds.Contains(itemId);
+    }
+
+    /// <summary>
+    /// Remembers that an ItemReaction happened, so it stays that way when its room loads again.
+    /// </summary>
+    public void MarkReactionDone(string reactionId)
+    {
+        _doneReactionIds.Add(reactionId);
+    }
+
+    public bool IsReactionDone(string reactionId)
+    {
+        return _doneReactionIds.Contains(reactionId);
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)

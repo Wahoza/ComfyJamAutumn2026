@@ -10,25 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 656b9d854d33eb04d997df4e263e63ce, type: 3}
-  m_Name: TestNPC
+  m_Name: Grandma
   m_EditorClassIdentifier: Assembly-CSharp::DialogueProfileSO
   key: 0
   conversations:
   - requirementId: -1
     sentences:
-    - Test1
-    - Test2
-    - Test3
-  - requirementId: -1
+    - If you look closely, you will sometimes see sparks in the forest
+    - ' they indicate the presence of extraordinary creatures, but ones that are
+      too fast to be seen !'
+  - requirementId: 2
     sentences:
-    - Test4
-    - Test5
-    - Test6
-    - Test7
-    - Test8
-  - requirementId: -1
-    sentences:
-    - Test9
-  - requirementId: 0
-    sentences:
-    - Test10
+    - So, did you see the sparks? Or even some of them? Wonderful!

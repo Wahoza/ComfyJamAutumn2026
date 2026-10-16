@@ -311,7 +311,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 590109692171942545, guid: 8e365ad4714bfec429e9b88cc780f70a, type: 3}
       propertyPath: '_boundMaps.Array.data[1]'
-      value: DialogueControll
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 590109692171942545, guid: 8e365ad4714bfec429e9b88cc780f70a, type: 3}
       propertyPath: '_boundMaps.Array.data[2]'

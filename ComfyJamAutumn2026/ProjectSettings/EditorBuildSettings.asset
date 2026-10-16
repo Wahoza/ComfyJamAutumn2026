@@ -41,6 +41,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Rooms/TableLevel.unity
     guid: 2497b05e3c6c7c0409541c79ebde360a
+  - enabled: 1
+    path: Assets/Scenes/Rooms/Cave.unity
+    guid: 38960ceaa09cc6645a91c2f87d07db6f
+  - enabled: 1
+    path: Assets/Settings/Scenes/URP2DSceneTemplate.unity
+    guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Rooms/Viewport.unity
+    guid: 74822bc3071f810459f7bd006ccf5a06
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

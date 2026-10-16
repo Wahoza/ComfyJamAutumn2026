@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class ChestInteractable : MonoBehaviour, IInteractable
 {
-    [SerializeField] int code;
+    [SerializeField] public int code;
+    [SerializeField] public string uID;
     [SerializeField] GameObject returnedItem;
     [SerializeField] Transform returnedItemPosition;
     [SerializeField] Sprite openedSprite;
@@ -11,7 +12,7 @@ public class ChestInteractable : MonoBehaviour, IInteractable
 
     void Start()
     {
-        if (ChestManager.Instance.GetIsCompleted(gameObject))
+        if (ChestManager.Instance.GetIsCompleted(this))
         {
             OnSuccessfulInput();
         }
@@ -35,6 +36,7 @@ public class ChestInteractable : MonoBehaviour, IInteractable
     private void OnSuccessfulInput()
     {
         completed = true;
+        ChestManager.Instance.SetIsCompleted(this);
 
         if(returnedItem != null)
         {

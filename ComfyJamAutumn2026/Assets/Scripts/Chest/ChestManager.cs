@@ -11,7 +11,7 @@ public class ChestManager : MonoBehaviour
     [HideInInspector] public List<int> inputValues = new List<int>() { 0, 0, 0, 0 };
 
     [HideInInspector] public static ChestManager Instance;
-    [HideInInspector] public List<GameObject> completedChests;
+    [HideInInspector] public List<string> completedChests;
     [HideInInspector] public ChestInteractable currentChest;
     [SerializeField] IGameState chestGameState;
 
@@ -20,11 +20,12 @@ public class ChestManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            completedChests = new List<GameObject>();
+            completedChests = new List<string>();
         }
         else
         {
             Destroy(gameObject);
+            return;
         }
 
         DontDestroyOnLoad(gameObject);
@@ -33,17 +34,14 @@ public class ChestManager : MonoBehaviour
     {
         InputManager.InputActions.UI.QuitChest.performed += QuitChestInteraction;
     }
-    private void Update()
+
+    public bool GetIsCompleted(ChestInteractable chest)
     {
-        Debug.Log(GameStateManager.Instance.GetGameState().name);
+        return completedChests.Contains($"{chest.code}{chest.uID}");
     }
-    public bool GetIsCompleted(GameObject chest)
+    public void SetIsCompleted(ChestInteractable chest)
     {
-        return completedChests.Contains(chest);
-    }
-    public void SetIsCompleted(GameObject chest)
-    {
-        completedChests.Add(chest);
+        completedChests.Add($"{chest.code}{chest.uID}");
     }
     public void OnSubmit()
     {

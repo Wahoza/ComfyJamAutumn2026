@@ -95,8 +95,11 @@ public class SnapshotManager : MonoBehaviour
 
         foreach(var item in _pageWithConditionListeners)
         {
-            if(item.DoPictureInsertion(data))
+            if (item.DoPictureInsertion(data))
+            {
+                Blackboard.Instance.SetPhotographDictValue(item.name, true);
                 success = true;
+            }
         }
 
         return success;

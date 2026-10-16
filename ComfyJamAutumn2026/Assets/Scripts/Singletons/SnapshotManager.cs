@@ -97,7 +97,6 @@ public class SnapshotManager : MonoBehaviour
         {
             if (item.DoPictureInsertion(data))
             {
-                Blackboard.Instance.SetPhotographDictValue(item.name, true);
                 success = true;
             }
         }

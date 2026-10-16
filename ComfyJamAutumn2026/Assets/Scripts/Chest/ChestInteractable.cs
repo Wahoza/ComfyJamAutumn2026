@@ -9,6 +9,7 @@ public class ChestInteractable : MonoBehaviour, IInteractable
     [SerializeField] Sprite openedSprite;
 
     private bool completed = false;
+    [SerializeField]  private bool autoComplete = false;
 
     void Start()
     {
@@ -19,8 +20,11 @@ public class ChestInteractable : MonoBehaviour, IInteractable
     }
     public void Interact()
     {
-        if(!completed)
+        if(!completed && !autoComplete)
             ChestManager.Instance.OnChestStart(this);
+        if (completed && autoComplete)
+            OnSuccessfulInput();
+
     }
 
     public bool CheckForCode(int input)

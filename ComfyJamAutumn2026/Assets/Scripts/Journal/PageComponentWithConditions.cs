@@ -41,6 +41,8 @@ public class PageComponentWithConditions : PageComponent
         {
             if(pictureData.capturedItems.Exists((item) => item.name == condition.Value.conditionName))
             {
+                Blackboard.Instance.SetPhotographDictValue(condition.Value.conditionName, true);
+
                 condition.Key.gameObject.SetActive(true);
 
                 AdjustImageHolder(pictureData.picture, condition.Value.targetSize, condition.Value.imageHolder, condition.Value.adjustment);

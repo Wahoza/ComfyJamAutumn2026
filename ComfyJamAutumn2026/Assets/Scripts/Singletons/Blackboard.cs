@@ -23,7 +23,7 @@ public class Blackboard : MonoBehaviour
     Dictionary<int, bool> requirementDict = new Dictionary<int, bool>(); //checks if conversation is unlocked (quest complete)
 
     Dictionary<string, bool> environmentChangeFromJournalDict = new Dictionary<string, bool>(); //checks for dragged and properly set words in journal
-    [HideInInspector] public UnityEvent onJournalEnvironmentUpdate = new(); //called when Journal dictionary changes
+    [HideInInspector] public UnityEvent onJournalUpdate = new(); //called when Journal dictionary changes
 
     Dictionary<string, bool> photographDict = new Dictionary<string, bool>(); //checks for photographed items
 
@@ -98,7 +98,7 @@ public class Blackboard : MonoBehaviour
 
         environmentChangeFromJournalDict[key] = value;
 
-        onJournalEnvironmentUpdate.Invoke();
+        onJournalUpdate.Invoke();
     }
 
     public void SetPhotographDictValue(string key, bool value)
@@ -107,9 +107,11 @@ public class Blackboard : MonoBehaviour
             photographDict.Add(key, value);
 
         else photographDict[key] = value;
+
+        onJournalUpdate.Invoke();
     }
 
-    public bool GetPhotographDictValue(string key, bool value)
+    public bool GetPhotographDictValue(string key)
     {
         return photographDict.ContainsKey(key) ? photographDict[key] : false;
 

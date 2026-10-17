@@ -5207,6 +5207,10 @@ PrefabInstance:
       propertyPath: autoComplete
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5781393682626209734, guid: 6867120d0395bba4eba67811c9cb5b2a, type: 3}
+      propertyPath: returnedItem
+      value: 
+      objectReference: {fileID: 1963314393473456705, guid: d11d4a93dadfef149b10ba9f42177558, type: 3}
     - target: {fileID: 5892916774890007741, guid: 6867120d0395bba4eba67811c9cb5b2a, type: 3}
       propertyPath: m_Name
       value: Chest

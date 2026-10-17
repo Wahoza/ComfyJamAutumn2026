@@ -359,7 +359,7 @@ MonoBehaviour:
     Interact: Left Mouse
 
     Close
-    Journal: J
+    Journal: Q
 
 '
   m_isRightToLeft: 0

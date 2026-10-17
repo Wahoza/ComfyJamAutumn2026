@@ -1644,7 +1644,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""dee47816-7f62-43bf-b78d-a992f92f428d"",
-                    ""path"": ""<Keyboard>/j"",
+                    ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

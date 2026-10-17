@@ -209,8 +209,10 @@ MonoBehaviour:
 
     Interact: E
 
-    Switch
-    To Camera: Right Mouse
+    Drop:
+    Q
+
+    Switch To Camera: Right Mouse
 
     Open Journal: J'
   m_isRightToLeft: 0

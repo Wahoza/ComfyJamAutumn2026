@@ -34,8 +34,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 38, y: 0}
-  m_SizeDelta: {x: 686.6, y: 362.8}
+  m_AnchoredPosition: {x: -1.0067, y: 0}
+  m_SizeDelta: {x: 608.5867, y: 362.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4190711640110331380
 CanvasRenderer:
@@ -65,14 +65,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Take pictures of impotant seeming things in your surroundings
-
-
-    It
-    may add an entry to the journal!
-
-
-'
+  m_text: Make sure to talk to the other characters (E), they may have important
+    things to tell you.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ca2c9fefb9522014cb5807c94a413710, type: 2}
   m_sharedMaterial: {fileID: -5580453078422639980, guid: ca2c9fefb9522014cb5807c94a413710, type: 2}
@@ -209,7 +203,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: <u>Taking Pictures
+  m_text: <u>Exploration
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ca2c9fefb9522014cb5807c94a413710, type: 2}
   m_sharedMaterial: {fileID: -5580453078422639980, guid: ca2c9fefb9522014cb5807c94a413710, type: 2}

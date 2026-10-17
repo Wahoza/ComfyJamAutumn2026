@@ -75,8 +75,8 @@ public class Blackboard : MonoBehaviour
     }
     public void UpdateReqDict(int key, bool value)
     {
-        if (requirementDict.ContainsKey(key))
-            requirementDict[key] = value;
+        // A requirement can be completed before the room of the NPC that asks for it has been visited
+        requirementDict[key] = value;
     }
     public bool TryGetReqDict(int key)
     {

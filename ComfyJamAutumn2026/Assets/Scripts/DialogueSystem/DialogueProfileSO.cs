@@ -9,6 +9,8 @@ using UnityEngine;
 [System.Serializable]
 public class Conversation {
     public int requirementId; //check blackboard dict to see if task is completed and show new dialogue. -1==auto show new dialogue
+    [Tooltip("Also unlocked once the player has photographed any of these (snapshot names, like Egg). Leave empty if only the requirement unlocks it.")]
+    public List<string> unlockedByPhotos;
     public List<string> sentences;
 }
 

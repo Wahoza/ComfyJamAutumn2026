@@ -29,14 +29,28 @@ public class GameStateManager : MonoBehaviour
     /// Finds a Game State by its asset name (DialogueGameState for Dialogue), so the order of All Game States doesn't matter.
     /// </summary>
     public IGameState GetGameStateByType(GameStateType type) {
-        foreach (IGameState state in allGameStates)
-        {
-            if (state != null && state.name.StartsWith(type.ToString(), System.StringComparison.OrdinalIgnoreCase))
-                return state;
-        }
+        if (TryGetGameStateByType(type, out IGameState state))
+            return state;
 
         Debug.LogError($"[GameStateManager] No Game State named after '{type}' in All Game States.", this);
         return null;
+    }
+
+    /// <summary>
+    /// Like GetGameStateByType, but quietly returns false when All Game States has no such state, like in a room played on its own.
+    /// </summary>
+    public bool TryGetGameStateByType(GameStateType type, out IGameState gameState) {
+        foreach (IGameState state in allGameStates)
+        {
+            if (state != null && state.name.StartsWith(type.ToString(), System.StringComparison.OrdinalIgnoreCase))
+            {
+                gameState = state;
+                return true;
+            }
+        }
+
+        gameState = null;
+        return false;
     }
 
 

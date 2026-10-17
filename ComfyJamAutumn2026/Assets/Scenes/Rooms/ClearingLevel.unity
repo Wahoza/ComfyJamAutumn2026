@@ -10563,12 +10563,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemReaction
   _item: {fileID: 11400000, guid: 3ac6772d33ed4922bd4cc71142b2667d, type: 2}
   _itemRange: 2
-  _playerLeaveDistance: 0
   _effect: 0
   _target: {fileID: 120973606}
   _newSprite: {fileID: 0}
   _fadeDuration: 0.6
   _hint: {fileID: 1843840065}
+  _completesRequirement: -1
 --- !u!4 &703877097
 Transform:
   m_ObjectHideFlags: 0

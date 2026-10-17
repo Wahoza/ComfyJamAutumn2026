@@ -12,8 +12,11 @@ public class ItemData : ScriptableObject
     [SerializeField] Sprite _icon;
     [Tooltip("Picture shown while the item lies in the world. Leave empty to use the Icon.")]
     [SerializeField] Sprite _worldSprite;
+    [Tooltip("How far the player has to walk away from an object before it reacts to this item lying near it. 0 makes it react as soon as the item lands.")]
+    [SerializeField] float _playerLeaveDistance;
 
     public string DisplayName => string.IsNullOrWhiteSpace(_displayName) ? name : _displayName.Trim();
     public Sprite Icon => _icon != null ? _icon : _worldSprite;
     public Sprite WorldSprite => _worldSprite != null ? _worldSprite : _icon;
+    public float PlayerLeaveDistance => _playerLeaveDistance;
 }

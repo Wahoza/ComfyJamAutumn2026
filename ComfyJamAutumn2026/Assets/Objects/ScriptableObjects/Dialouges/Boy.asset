@@ -15,9 +15,11 @@ MonoBehaviour:
   key: 0
   conversations:
   - requirementId: -1
+    unlockedByPhotos: []
     sentences:
     - " I don\u2019t like blue, I wish those flowers were purple instead..."
   - requirementId: 1
+    unlockedByPhotos: []
     sentences:
     - 'By the way, did you know there''s a chest next to the picnic table? If I were
       you, I''d go check it using this code: "1 8 2 4"'

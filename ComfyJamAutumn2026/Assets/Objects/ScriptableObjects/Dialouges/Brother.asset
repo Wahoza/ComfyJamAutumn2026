@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 656b9d854d33eb04d997df4e263e63ce, type: 3}
   m_Name: Brother
   m_EditorClassIdentifier: Assembly-CSharp::DialogueProfileSO
-  key: 0
+  key: 1
   conversations:
   - requirementId: -1
+    unlockedByPhotos: []
     sentences:
     - Yay! You found me!

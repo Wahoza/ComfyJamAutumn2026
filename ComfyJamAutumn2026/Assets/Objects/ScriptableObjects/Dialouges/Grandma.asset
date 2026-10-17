@@ -12,13 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 656b9d854d33eb04d997df4e263e63ce, type: 3}
   m_Name: Grandma
   m_EditorClassIdentifier: Assembly-CSharp::DialogueProfileSO
-  key: 0
+  key: 3
   conversations:
   - requirementId: -1
+    unlockedByPhotos: []
     sentences:
     - If you look closely, you will sometimes see sparks in the forest
     - ' they indicate the presence of extraordinary creatures, but ones that are
       too fast to be seen !'
   - requirementId: 2
+    unlockedByPhotos:
+    - Butterfly
+    - Frogs
+    - Ladybug
     sentences:
     - So, did you see the sparks? Or even some of them? Wonderful!

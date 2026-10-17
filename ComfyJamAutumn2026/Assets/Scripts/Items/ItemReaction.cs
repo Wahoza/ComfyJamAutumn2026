@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// Makes an object react to an item lying near it. Appear brings an animal out while the item lies there,
 /// and it leaves again when the item is picked up. Change Sprite and Disappear happen once and stay, and the room remembers them.
-/// Any reaction can wait until the player has walked away.
+/// An item with a Player Leave Distance makes the reaction wait until the player has walked that far away.
 /// </summary>
 public class ItemReaction : MonoBehaviour
 {
@@ -22,10 +22,8 @@ public class ItemReaction : MonoBehaviour
     [Header("Trigger")]
     [Tooltip("Item that sets off the reaction.")]
     [SerializeField] ItemData _item;
-    [Tooltip("How close to this object the item has to lie.")]
+    [Tooltip("How close to this object the item has to lie. How far the player has to walk away first is set on the item.")]
     [SerializeField] float _itemRange = 1.5f;
-    [Tooltip("How far from this object the player has to walk before the reaction happens. 0 makes it happen as soon as the item lands.")]
-    [SerializeField] float _playerLeaveDistance;
 
     [Header("Effect")]
     [Tooltip("Appear: shows up while the item lies near it, leaves when it is picked up. Change Sprite: switches to the New Sprite for good. Disappear: fades out for good.")]
@@ -38,6 +36,10 @@ public class ItemReaction : MonoBehaviour
     [SerializeField] float _fadeDuration = 0.6f;
     [Tooltip("Shown while the reaction hasn't happened, like sparkles marking the spot. Optional.")]
     [SerializeField] GameObject _hint;
+
+    [Header("Dialogue")]
+    [Tooltip("Requirement Id of an NPC conversation this reaction unlocks when it happens. -1 unlocks nothing.")]
+    [SerializeField] int _completesRequirement = -1;
 
     private string _id;
     private bool _active;
@@ -77,6 +79,8 @@ public class ItemReaction : MonoBehaviour
         {
             if (_effect != Effect.Appear)
                 Inventory.Instance.MarkReactionDone(_id);
+            if (_completesRequirement >= 0)
+                Blackboard.Instance.UpdateReqDict(_completesRequirement, true);
             SetActive(true, true);
         }
         else if (_active && _effect == Effect.Appear && !itemNearby)
@@ -98,11 +102,12 @@ public class ItemReaction : MonoBehaviour
 
     private bool IsPlayerFarEnough()
     {
-        if (_playerLeaveDistance <= 0f)
+        float leaveDistance = _item.PlayerLeaveDistance;
+        if (leaveDistance <= 0f)
             return true;
 
         Transform player = Inventory.Instance.Player;
-        return player != null && Vector2.Distance(player.position, transform.position) >= _playerLeaveDistance;
+        return player != null && Vector2.Distance(player.position, transform.position) >= leaveDistance;
     }
 
     private void SetActive(bool active, bool animate)
@@ -218,10 +223,10 @@ public class ItemReaction : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, _itemRange);
 
         // How far the player has to walk away
-        if (_playerLeaveDistance > 0f)
+        if (_item != null && _item.PlayerLeaveDistance > 0f)
         {
             Gizmos.color = new Color(0.4f, 0.75f, 1f);
-            Gizmos.DrawWireSphere(transform.position, _playerLeaveDistance);
+            Gizmos.DrawWireSphere(transform.position, _item.PlayerLeaveDistance);
         }
     }
     #endregion

@@ -156,7 +156,8 @@ public class InputManager : MonoBehaviour, IGameStateListener
 
     public void NotifyStateChange(IGameState newState, IGameState oldState)
     {
-        if (_gamestateMaps.ContainsKey(newState))
+        // The state is null when there was no previous state to go back to, and a dictionary can't look up null
+        if (newState != null && _gamestateMaps.ContainsKey(newState))
         {
             SwitchToActionMapFromName(_gamestateMaps[newState]);
         }

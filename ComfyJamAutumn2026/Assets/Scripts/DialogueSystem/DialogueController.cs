@@ -26,10 +26,10 @@ public class DialogueController : MonoBehaviour, IInteractable
     //Player should call this ontriggerenter2d when near an object tagged dialogue or smth and if correct key pressed
     public void Interact()
     {
-        //the window is kept from the scene the game started in, without it the player would get stuck in the dialogue state
+        //the window is loaded from Resources when the game starts, without it the player would get stuck in the dialogue state
         if (DialogueWindow.Instance == null)
         {
-            Debug.LogError("[DialogueController] No DialogueWindow loaded. Put the dialogue canvas in the scene the game starts in.", this);
+            Debug.LogError("[DialogueController] No DialogueWindow loaded. Is the DialogueCanvas prefab still in a Resources folder?", this);
             return;
         }
         if (currentConversation == null)
@@ -48,13 +48,27 @@ public class DialogueController : MonoBehaviour, IInteractable
     }
     //firstly gets the conversation it should start displaying, then if it is locked it returns to the last conversation had
     void StartConversation() {
-        GameStateManager.Instance.RequestGameStateSwitch(GameStateManager.Instance.GetGameStateByType(GameStateType.Dialogue));
+        //a room played on its own only knows the Default state, talking still works there but the player isn't held in place
+        if (GameStateManager.Instance.TryGetGameStateByType(GameStateType.Dialogue, out IGameState dialogueState))
+            GameStateManager.Instance.RequestGameStateSwitch(dialogueState);
         currentSentenceIndex = 0;
         currentConversation = profile.Conversations[currentConversationIndex];
-        if (currentConversation.requirementId!=-1 && Blackboard.Instance.TryGetReqDict(currentConversation.requirementId)==false) {
+        if (!IsUnlocked(currentConversation)) {
             currentConversation = profile.Conversations[--currentConversationIndex];
         }
         DialogueWindow.Instance.Show(transform);
+    }
+    //a conversation is unlocked by its requirement or by any of its photos being in the journal
+    bool IsUnlocked(Conversation conversation) {
+        if (conversation.requirementId == -1 || Blackboard.Instance.TryGetReqDict(conversation.requirementId))
+            return true;
+        if (conversation.unlockedByPhotos != null) {
+            foreach (string photo in conversation.unlockedByPhotos) {
+                if (Blackboard.Instance.GetPhotographDictValue(photo))
+                    return true;
+            }
+        }
+        return false;
     }
     //closes the window and increments the conversationIndex
     void EndConversation() {

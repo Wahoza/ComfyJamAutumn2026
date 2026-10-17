@@ -12,13 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 656b9d854d33eb04d997df4e263e63ce, type: 3}
   m_Name: Girl
   m_EditorClassIdentifier: Assembly-CSharp::DialogueProfileSO
-  key: 0
+  key: 2
   conversations:
   - requirementId: -1
+    unlockedByPhotos: []
     sentences:
     - I have something to show you, but you have to earn it!
     - I want to see something that has potentional to become amazing...
   - requirementId: 0
+    unlockedByPhotos:
+    - Egg
     sentences:
     - Your brother gave me this scrap of paper...
     - I wonder what these numbers and symbol mean...

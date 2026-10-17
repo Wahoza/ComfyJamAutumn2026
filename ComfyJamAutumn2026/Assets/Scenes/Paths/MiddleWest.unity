@@ -17678,6 +17678,7 @@ GameObject:
   - component: {fileID: 1250897567}
   - component: {fileID: 1250897568}
   - component: {fileID: 1836503816}
+  - component: {fileID: 1836503817}
   m_Layer: 0
   m_Name: boy_npc__0
   m_TagString: Untagged
@@ -32220,6 +32221,28 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.133, y: 0.1085}
   m_EdgeRadius: 0
+--- !u!95 &1836503817
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1250897565}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4ebd54765df5e5f4ea143df9a0fff9b2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1837539124
 GameObject:
   m_ObjectHideFlags: 0

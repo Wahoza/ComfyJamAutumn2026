@@ -166,6 +166,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -173,10 +186,10 @@ TextureImporter:
       name: boy_npc__0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 136
-        width: 33
-        height: 33
+        x: 4
+        y: 137
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -195,10 +208,10 @@ TextureImporter:
       name: boy_npc__1
       rect:
         serializedVersion: 2
-        x: 33
-        y: 136
-        width: 33
-        height: 33
+        x: 36
+        y: 137
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -217,10 +230,10 @@ TextureImporter:
       name: boy_npc__2
       rect:
         serializedVersion: 2
-        x: 66
-        y: 136
-        width: 33
-        height: 33
+        x: 68
+        y: 137
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -239,10 +252,10 @@ TextureImporter:
       name: boy_npc__3
       rect:
         serializedVersion: 2
-        x: 99
-        y: 136
-        width: 33
-        height: 33
+        x: 100
+        y: 137
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -261,10 +274,10 @@ TextureImporter:
       name: boy_npc__4
       rect:
         serializedVersion: 2
-        x: 0
-        y: 103
-        width: 33
-        height: 33
+        x: 4
+        y: 105
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -283,10 +296,10 @@ TextureImporter:
       name: boy_npc__5
       rect:
         serializedVersion: 2
-        x: 33
-        y: 103
-        width: 33
-        height: 33
+        x: 36
+        y: 105
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -305,10 +318,10 @@ TextureImporter:
       name: boy_npc__6
       rect:
         serializedVersion: 2
-        x: 66
-        y: 103
-        width: 33
-        height: 33
+        x: 68
+        y: 105
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -327,10 +340,10 @@ TextureImporter:
       name: boy_npc__7
       rect:
         serializedVersion: 2
-        x: 99
-        y: 103
-        width: 33
-        height: 33
+        x: 100
+        y: 105
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -349,10 +362,10 @@ TextureImporter:
       name: boy_npc__8
       rect:
         serializedVersion: 2
-        x: 0
-        y: 70
-        width: 33
-        height: 33
+        x: 4
+        y: 73
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -371,10 +384,10 @@ TextureImporter:
       name: boy_npc__9
       rect:
         serializedVersion: 2
-        x: 33
-        y: 70
-        width: 33
-        height: 33
+        x: 36
+        y: 73
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -393,10 +406,10 @@ TextureImporter:
       name: boy_npc__10
       rect:
         serializedVersion: 2
-        x: 66
-        y: 70
-        width: 33
-        height: 33
+        x: 68
+        y: 73
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -415,10 +428,10 @@ TextureImporter:
       name: boy_npc__11
       rect:
         serializedVersion: 2
-        x: 99
-        y: 70
-        width: 33
-        height: 33
+        x: 100
+        y: 73
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -437,10 +450,10 @@ TextureImporter:
       name: boy_npc__12
       rect:
         serializedVersion: 2
-        x: 0
-        y: 37
-        width: 33
-        height: 33
+        x: 4
+        y: 41
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -459,10 +472,10 @@ TextureImporter:
       name: boy_npc__13
       rect:
         serializedVersion: 2
-        x: 33
-        y: 37
-        width: 33
-        height: 33
+        x: 36
+        y: 41
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -481,10 +494,10 @@ TextureImporter:
       name: boy_npc__14
       rect:
         serializedVersion: 2
-        x: 66
-        y: 37
-        width: 33
-        height: 33
+        x: 68
+        y: 41
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -503,10 +516,10 @@ TextureImporter:
       name: boy_npc__15
       rect:
         serializedVersion: 2
-        x: 99
-        y: 37
-        width: 33
-        height: 33
+        x: 100
+        y: 41
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -525,10 +538,10 @@ TextureImporter:
       name: boy_npc__16
       rect:
         serializedVersion: 2
-        x: 0
-        y: 4
-        width: 33
-        height: 33
+        x: 4
+        y: 9
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -547,10 +560,10 @@ TextureImporter:
       name: boy_npc__17
       rect:
         serializedVersion: 2
-        x: 33
-        y: 4
-        width: 33
-        height: 33
+        x: 36
+        y: 9
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -569,10 +582,10 @@ TextureImporter:
       name: boy_npc__18
       rect:
         serializedVersion: 2
-        x: 66
-        y: 4
-        width: 33
-        height: 33
+        x: 68
+        y: 9
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -591,10 +604,10 @@ TextureImporter:
       name: boy_npc__19
       rect:
         serializedVersion: 2
-        x: 99
-        y: 4
-        width: 33
-        height: 33
+        x: 100
+        y: 9
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -623,7 +636,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":4.0,"y":5.0},"gridSpriteSize":{"x":33.0,"y":33.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":32.0,"y":32.0},"gridSpriteOffset":{"x":4.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       boy_npc__0: -2537272487773676218
       boy_npc__1: -4641591374758542475

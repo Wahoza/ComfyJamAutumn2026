@@ -188,7 +188,7 @@ MonoBehaviour:
   uID: 
   returnedItem: {fileID: 0}
   returnedItemPosition: {fileID: 4176228110812385528}
-  openedSprite: {fileID: -6834524911116659543, guid: b58a45134619c914da5a813397143aec, type: 3}
+  openedSprite: {fileID: -9115607073329045478, guid: 9cd671e53d981c6418747b93a62a2b84, type: 3}
   autoComplete: 0
 --- !u!61 &5418059025685333961
 BoxCollider2D:

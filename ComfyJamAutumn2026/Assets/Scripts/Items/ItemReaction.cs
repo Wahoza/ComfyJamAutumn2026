@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 /// <summary>
 /// Makes an object react to an item lying near it. Appear brings an animal out while the item lies there,
@@ -18,6 +19,8 @@ public class ItemReaction : MonoBehaviour
         /// <summary>Fades out until it is invisible, for good.</summary>
         Disappear
     }
+    public UnityEvent onEffectProc;
+    public UnityEvent onEffectEnd;
 
     [Header("Trigger")]
     [Tooltip("Item that sets off the reaction.")]
@@ -65,8 +68,8 @@ public class ItemReaction : MonoBehaviour
         CollectParts();
 
         // Change Sprite and Disappear may have happened on an earlier visit, Appear only depends on the item lying there now
-        bool happenedBefore = _effect != Effect.Appear && Inventory.Instance != null && Inventory.Instance.IsReactionDone(_id);
-        SetActive(happenedBefore, false);
+        bool happenedBefore = Inventory.Instance != null && Inventory.Instance.IsReactionDone(_id);
+        SetActive(happenedBefore, _effect == Effect.Appear);
     }
 
     private void Update()
@@ -77,16 +80,20 @@ public class ItemReaction : MonoBehaviour
         bool itemNearby = IsItemNearby();
         if (!_active && itemNearby && IsPlayerFarEnough())
         {
-            if (_effect != Effect.Appear)
+            //if (_effect != Effect.Appear)
                 Inventory.Instance.MarkReactionDone(_id);
             if (_completesRequirement >= 0)
                 Blackboard.Instance.UpdateReqDict(_completesRequirement, true);
+
+            onEffectProc.Invoke();
+
             SetActive(true, true);
         }
         else if (_active && _effect == Effect.Appear && !itemNearby)
         {
+            onEffectEnd.Invoke();
             // The animal leaves with the item
-            SetActive(false, true);
+            //SetActive(false, true);
         }
     }
 

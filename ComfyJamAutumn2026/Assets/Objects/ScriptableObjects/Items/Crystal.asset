@@ -15,4 +15,4 @@ MonoBehaviour:
   _displayName: Invisibility Stone
   _icon: {fileID: 21300000, guid: 0cee09c9490c43f3b63e7d8437aca157, type: 3}
   _worldSprite: {fileID: 0}
-  _playerLeaveDistance: 10
+  _playerLeaveDistance: 0.5

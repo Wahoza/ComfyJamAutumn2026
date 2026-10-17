@@ -15,4 +15,4 @@ MonoBehaviour:
   _displayName: Color Change Stone
   _icon: {fileID: 21300000, guid: fc7ba3d1fdc6401491cf0265865f0241, type: 3}
   _worldSprite: {fileID: 0}
-  _playerLeaveDistance: 10
+  _playerLeaveDistance: 0.5

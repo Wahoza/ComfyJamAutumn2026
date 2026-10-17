@@ -18,6 +18,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Note_Butterfly
       objectReference: {fileID: 0}
+    - target: {fileID: 3197546399921163278, guid: 53beb91772e533f438fd0485e7affd7e, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4156137261947845953, guid: 53beb91772e533f438fd0485e7affd7e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

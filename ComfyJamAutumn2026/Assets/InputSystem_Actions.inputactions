@@ -1958,7 +1958,7 @@
             "id": "195aa6f0-92fb-4f1c-a37e-3e0db5182c82",
             "actions": [
                 {
-                    "name": "New action",
+                    "name": "ProgressDialogue",
                     "type": "Button",
                     "id": "7d19a9b5-94ac-4666-8cb2-64a84bbd2ff7",
                     "expectedControlType": "",
@@ -1971,11 +1971,22 @@
                 {
                     "name": "",
                     "id": "80bc2d9a-ef7d-4637-a8bc-475e7fbc5489",
-                    "path": "",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "ProgressDialogue",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "aa0fdf30-ea73-4dbf-878e-b5b5c72fdaad",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ProgressDialogue",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

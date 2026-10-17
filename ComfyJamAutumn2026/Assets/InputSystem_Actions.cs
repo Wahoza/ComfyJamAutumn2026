@@ -2044,7 +2044,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             ""id"": ""195aa6f0-92fb-4f1c-a37e-3e0db5182c82"",
             ""actions"": [
                 {
-                    ""name"": ""New action"",
+                    ""name"": ""ProgressDialogue"",
                     ""type"": ""Button"",
                     ""id"": ""7d19a9b5-94ac-4666-8cb2-64a84bbd2ff7"",
                     ""expectedControlType"": """",
@@ -2057,11 +2057,22 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""80bc2d9a-ef7d-4637-a8bc-475e7fbc5489"",
-                    ""path"": """",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""New action"",
+                    ""action"": ""ProgressDialogue"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""aa0fdf30-ea73-4dbf-878e-b5b5c72fdaad"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ProgressDialogue"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -2177,7 +2188,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_CameraControll_ExitCameraState = m_CameraControll.FindAction("ExitCameraState", throwIfNotFound: true);
         // DialogueControll
         m_DialogueControll = asset.FindActionMap("DialogueControll", throwIfNotFound: true);
-        m_DialogueControll_Newaction = m_DialogueControll.FindAction("New action", throwIfNotFound: true);
+        m_DialogueControll_ProgressDialogue = m_DialogueControll.FindAction("ProgressDialogue", throwIfNotFound: true);
     }
 
     ~@InputSystem_Actions()
@@ -2998,7 +3009,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     // DialogueControll
     private readonly InputActionMap m_DialogueControll;
     private List<IDialogueControllActions> m_DialogueControllActionsCallbackInterfaces = new List<IDialogueControllActions>();
-    private readonly InputAction m_DialogueControll_Newaction;
+    private readonly InputAction m_DialogueControll_ProgressDialogue;
     /// <summary>
     /// Provides access to input actions defined in input action map "DialogueControll".
     /// </summary>
@@ -3011,9 +3022,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// </summary>
         public DialogueControllActions(@InputSystem_Actions wrapper) { m_Wrapper = wrapper; }
         /// <summary>
-        /// Provides access to the underlying input action "DialogueControll/Newaction".
+        /// Provides access to the underlying input action "DialogueControll/ProgressDialogue".
         /// </summary>
-        public InputAction @Newaction => m_Wrapper.m_DialogueControll_Newaction;
+        public InputAction @ProgressDialogue => m_Wrapper.m_DialogueControll_ProgressDialogue;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -3040,9 +3051,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_DialogueControllActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_DialogueControllActionsCallbackInterfaces.Add(instance);
-            @Newaction.started += instance.OnNewaction;
-            @Newaction.performed += instance.OnNewaction;
-            @Newaction.canceled += instance.OnNewaction;
+            @ProgressDialogue.started += instance.OnProgressDialogue;
+            @ProgressDialogue.performed += instance.OnProgressDialogue;
+            @ProgressDialogue.canceled += instance.OnProgressDialogue;
         }
 
         /// <summary>
@@ -3054,9 +3065,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="DialogueControllActions" />
         private void UnregisterCallbacks(IDialogueControllActions instance)
         {
-            @Newaction.started -= instance.OnNewaction;
-            @Newaction.performed -= instance.OnNewaction;
-            @Newaction.canceled -= instance.OnNewaction;
+            @ProgressDialogue.started -= instance.OnProgressDialogue;
+            @ProgressDialogue.performed -= instance.OnProgressDialogue;
+            @ProgressDialogue.canceled -= instance.OnProgressDialogue;
         }
 
         /// <summary>
@@ -3447,11 +3458,11 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     public interface IDialogueControllActions
     {
         /// <summary>
-        /// Method invoked when associated input action "New action" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "ProgressDialogue" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnNewaction(InputAction.CallbackContext context);
+        void OnProgressDialogue(InputAction.CallbackContext context);
     }
 }

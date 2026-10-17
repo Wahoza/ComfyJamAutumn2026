@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 
 //Script that controlls dialogue of a npc
@@ -12,6 +13,7 @@ public class DialogueController : MonoBehaviour, IInteractable
     int currentConversationIndex;
     int currentSentenceIndex;
 
+    private bool listeningToInput = false;
     //when scene starts we initialize blackboard if its empty and read the value it stores
     private void Start()
     {
@@ -23,6 +25,15 @@ public class DialogueController : MonoBehaviour, IInteractable
         }
     }
 
+    void ProgressConversation(InputAction.CallbackContext ctx)
+    {
+        if (currentSentenceIndex >= currentConversation.sentences.Count)
+        {
+            EndConversation();
+            return;
+        }
+        ShowDialogue();
+    }
     //Player should call this ontriggerenter2d when near an object tagged dialogue or smth and if correct key pressed
     public void Interact()
     {
@@ -35,9 +46,18 @@ public class DialogueController : MonoBehaviour, IInteractable
         if (currentConversation == null)
         {
             StartConversation();
+
+            InputManager.InputActions.DialogueControll.ProgressDialogue.performed += ProgressConversation;
+            listeningToInput = true;
         }
         if (currentSentenceIndex >= currentConversation.sentences.Count) { 
             EndConversation();
+
+            if (listeningToInput)
+            {
+                listeningToInput = false;
+                InputManager.InputActions.DialogueControll.ProgressDialogue.performed -= ProgressConversation;
+            }
             return;
         }
         ShowDialogue();
@@ -76,6 +96,16 @@ public class DialogueController : MonoBehaviour, IInteractable
         Blackboard.Instance.UpdateDialogueDict(profile.Key, currentConversationIndex);
         currentConversation = null;
         DialogueWindow.Instance.Close();
-        GameStateManager.Instance.RequestGameStateSwitch(GameStateManager.Instance.GetGameStateByType(GameStateType.Default));
+        GameStateManager.Instance.RequestGameStateSwitchPrevious();
+    }
+
+    void OnDestroy()
+    {
+        if (listeningToInput)
+        {
+            listeningToInput = false;
+            InputManager.InputActions.DialogueControll.ProgressDialogue.performed -= ProgressConversation;
+        }
+        return;
     }
 }

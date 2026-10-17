@@ -86,6 +86,7 @@ namespace Sequences
             yield return null;
         }
 
+#if UNITY_EDITOR
         public static void DrawGUI(SerializedProperty serializedObject, SequenceEnumAlloc.SequenceType type)
         {
             SerializedProperty unityEventProp = serializedObject.FindPropertyRelative("invokedEvent");
@@ -176,16 +177,16 @@ namespace Sequences
 
             }
         }
-        public void SetOwnerComponent(SequenceComponent component)
-        {
-            _ownerSeqComp = component;
-        }
 
         public static void DefaultInitialize(SerializedProperty serializedObject, SequenceEnumAlloc.SequenceType type)
         {
             
         }
-
+#endif
+        public void SetOwnerComponent(SequenceComponent component)
+        {
+            _ownerSeqComp = component;
+        }
         public ISequenceItem GetNext()
         {
             return _nextSequence;

@@ -1,12 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
-using NaughtyAttributes.Test;
-using System;
-using UnityEngine.UIElements;
-using static UnityEditor.Progress;
-using UnityEngine.Rendering.Universal;
-using System.Collections;
 
 namespace Sequences
 {

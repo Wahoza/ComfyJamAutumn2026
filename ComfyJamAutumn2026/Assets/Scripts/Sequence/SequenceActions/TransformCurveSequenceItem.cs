@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
-using UnityEditor.Rendering;
 using UnityEngine; 
 
 namespace Sequences
@@ -185,6 +184,8 @@ namespace Sequences
             }
         }
 
+#if UNITY_EDITOR
+
         #region serialization
         public static void DrawGUI(SerializedProperty targetObject, SerializedProperty serializedObject, SequenceEnumAlloc.SequenceType type)
         {
@@ -285,16 +286,6 @@ namespace Sequences
             modVectorProp.vector3Value = item._vModVector;
         }
 
-        public void SetOwnerComponent(SequenceComponent component)
-        {
-            ownerSequenceComp = component;
-        }
-
-        public ISequenceItem GetNext()
-        {
-            return nextSequence;
-        }
-
         //Type, use Transform?, DescripitveText
         private static Dictionary<SequenceEnumAlloc.SequenceType, (bool, string)> typeToEditorData = new()
         {
@@ -306,6 +297,16 @@ namespace Sequences
             {SequenceEnumAlloc.SequenceType.ScaleToTarget, (true, "Match Scale To") }
         };
         #endregion
+#endif
+        public void SetOwnerComponent(SequenceComponent component)
+        {
+            ownerSequenceComp = component;
+        }
+
+        public ISequenceItem GetNext()
+        {
+            return nextSequence;
+        }
     }
 }
 

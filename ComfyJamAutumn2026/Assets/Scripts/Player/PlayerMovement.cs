@@ -1,5 +1,3 @@
-using System;
-using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -46,7 +44,7 @@ public class PlayerMovement : StateBasedEnabledBehaviour
         rb.MovePosition(transform.position + movement * speed * Time.fixedDeltaTime);
     }
 
-    private void OnDestroy()
+    public void OnDestroy()
     {
         base.OnDestroy();
 

@@ -88,6 +88,7 @@ public class WaitSequenceItem : ISequenceItem
             yield return null;
         }
     }
+#if UNITY_EDITOR
     public static void DrawGUI(SerializedProperty serializedObject, SequenceEnumAlloc.SequenceType type) 
     {
         SerializedProperty typeProp = serializedObject.FindPropertyRelative("type");
@@ -113,6 +114,7 @@ public class WaitSequenceItem : ISequenceItem
         typeProp.enumValueIndex = Convert.ToInt32(type);
     }
 
+#endif
     public ISequenceItem GetNext()
     {
         return nextSequence;

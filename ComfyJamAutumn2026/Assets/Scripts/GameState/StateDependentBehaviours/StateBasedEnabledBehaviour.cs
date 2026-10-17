@@ -21,7 +21,7 @@ public class StateBasedEnabledBehaviour : MonoBehaviour, IGameStateListener
         (this as IGameStateListener).Subscribe();
     }
 
-    void OnDestroy()
+    public void OnDestroy()
     {
         (this as IGameStateListener).Unsubscribe();
     }

@@ -166,6 +166,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -173,10 +186,10 @@ TextureImporter:
       name: protagonist__0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 271
-        width: 67
-        height: 67
+        x: 9
+        y: 274
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -195,10 +208,10 @@ TextureImporter:
       name: protagonist__1
       rect:
         serializedVersion: 2
-        x: 67
-        y: 271
-        width: 67
-        height: 67
+        x: 73
+        y: 274
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -217,10 +230,10 @@ TextureImporter:
       name: protagonist__2
       rect:
         serializedVersion: 2
-        x: 134
-        y: 271
-        width: 67
-        height: 67
+        x: 137
+        y: 274
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -240,9 +253,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 201
-        y: 271
-        width: 67
-        height: 67
+        y: 274
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -261,10 +274,10 @@ TextureImporter:
       name: protagonist__4
       rect:
         serializedVersion: 2
-        x: 0
-        y: 204
-        width: 67
-        height: 67
+        x: 9
+        y: 210
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -283,10 +296,10 @@ TextureImporter:
       name: protagonist__5
       rect:
         serializedVersion: 2
-        x: 67
-        y: 204
-        width: 67
-        height: 67
+        x: 73
+        y: 210
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -305,10 +318,10 @@ TextureImporter:
       name: protagonist__6
       rect:
         serializedVersion: 2
-        x: 134
-        y: 204
-        width: 67
-        height: 67
+        x: 137
+        y: 210
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -328,9 +341,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 201
-        y: 204
-        width: 67
-        height: 67
+        y: 210
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -349,10 +362,10 @@ TextureImporter:
       name: protagonist__8
       rect:
         serializedVersion: 2
-        x: 0
-        y: 137
-        width: 67
-        height: 67
+        x: 9
+        y: 146
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -371,10 +384,10 @@ TextureImporter:
       name: protagonist__9
       rect:
         serializedVersion: 2
-        x: 67
-        y: 137
-        width: 67
-        height: 67
+        x: 73
+        y: 146
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -393,10 +406,10 @@ TextureImporter:
       name: protagonist__10
       rect:
         serializedVersion: 2
-        x: 134
-        y: 137
-        width: 67
-        height: 67
+        x: 137
+        y: 146
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -416,9 +429,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 201
-        y: 137
-        width: 67
-        height: 67
+        y: 146
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -437,10 +450,10 @@ TextureImporter:
       name: protagonist__12
       rect:
         serializedVersion: 2
-        x: 0
-        y: 70
-        width: 67
-        height: 67
+        x: 9
+        y: 82
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -459,10 +472,10 @@ TextureImporter:
       name: protagonist__13
       rect:
         serializedVersion: 2
-        x: 67
-        y: 70
-        width: 67
-        height: 67
+        x: 73
+        y: 82
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -481,10 +494,10 @@ TextureImporter:
       name: protagonist__14
       rect:
         serializedVersion: 2
-        x: 134
-        y: 70
-        width: 67
-        height: 67
+        x: 137
+        y: 82
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -504,9 +517,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 201
-        y: 70
-        width: 67
-        height: 67
+        y: 82
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -525,10 +538,10 @@ TextureImporter:
       name: protagonist__16
       rect:
         serializedVersion: 2
-        x: 0
-        y: 3
-        width: 67
-        height: 67
+        x: 9
+        y: 18
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -547,10 +560,10 @@ TextureImporter:
       name: protagonist__17
       rect:
         serializedVersion: 2
-        x: 67
-        y: 3
-        width: 67
-        height: 67
+        x: 73
+        y: 18
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -569,10 +582,10 @@ TextureImporter:
       name: protagonist__18
       rect:
         serializedVersion: 2
-        x: 134
-        y: 3
-        width: 67
-        height: 67
+        x: 137
+        y: 18
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -592,9 +605,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 201
-        y: 3
-        width: 67
-        height: 67
+        y: 18
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -623,7 +636,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":4.0,"y":5.0},"gridSpriteSize":{"x":67.0,"y":67.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":9.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       protagonist__0: -1998786362168695688
       protagonist__1: -3672263707789374833
